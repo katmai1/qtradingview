@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="prefijoNuevo">
+    <file>binance.png</file>
+    <file>bittrex.png</file>
+    <file>logo.png</file>
+  </qresource>
+</RCC>
