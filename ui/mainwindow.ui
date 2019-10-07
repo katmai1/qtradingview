@@ -52,63 +52,6 @@
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QDockWidget" name="dock_markets">
-   <property name="windowTitle">
-    <string>Markets List</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>2</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_logo">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>128</horstretch>
-           <verstretch>128</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_loaded">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QComboBox" name="combo_exchange"/>
-     </item>
-     <item>
-      <widget class="QListWidget" name="list_markets">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="editTriggers">
-        <set>QAbstractItemView::NoEditTriggers</set>
-       </property>
-       <property name="sortingEnabled">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -123,6 +66,7 @@
      <string>Ver</string>
     </property>
     <addaction name="actionMarkets_list"/>
+    <addaction name="actionInfo"/>
     <addaction name="separator"/>
     <addaction name="actionPantalla_completa"/>
     <addaction name="actionVentana_Normal"/>
@@ -195,6 +139,14 @@
     <string>F5</string>
    </property>
   </action>
+  <action name="actionInfo">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Info</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -205,22 +157,6 @@
  </customwidgets>
  <resources/>
  <connections>
-  <connection>
-   <sender>actionMarkets_list</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>dock_markets</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>136</x>
-     <y>238</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>actionSalir</sender>
    <signal>triggered()</signal>

@@ -1,5 +1,5 @@
 import peewee
-
+import sys
 
 db = peewee.SqliteDatabase('database.db')
 
@@ -18,14 +18,20 @@ class Markets(peewee.Model):
 
 # ────────────────────────────────────────────────────────────────────────────────
 
-
-
-#
-if __name__ == '__main__':
+def crea_tablas():
     try:
         db.connect()
         db.create_tables([Markets])
     except Exception as e:
         print(e)
         print("error!")
-    
+
+try:
+    test = Markets.select()
+except Exception as e:
+    print(e)
+    crea_tablas()
+    sys.exit()
+#
+if __name__ == '__main__':
+    crea_tablas()

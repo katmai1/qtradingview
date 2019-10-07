@@ -1,112 +1,97 @@
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtWidgets, QtCore, QtGui, QtTest
 from src.ui.mainwindow import Ui_MainWindow
 from src.db import Markets
-from src.tasks.update_markets_db import UpdateMarkets_DB
-from bs4 import BeautifulSoup
-
-
-class TradingSource:
-    '''clase per extreure dades de la pagina de tradingview'''
-
-    def __init__(self):
-        self.html = None
-        self.soup = None
-
-    def read_html(self, html):
-        self.html = html
-        self.soup = BeautifulSoup(html, 'html5lib')
-    
-    @property
-    def titulo(self):
-        return self.soup.title.string
-
-    @property
-    def full_symbol(self):
-        for script in self.soup.find_all("script"):
-            if "editchart.model.symbol" in script.text:
-                raw = str(script.text).split('"editchart.model.symbol":')[1].split(',')[0]
-                return raw.replace('"', '')
-        return None
-    
-    @property
-    def exchange(self):
-        return self.full_symbol.split(":")[0].lower()
-    
-    @property
-    def symbol(self):
-        return self.full_symbol.split(":")[1]
-
+from .dock_info import DockInfo
+from .dock_markets import DockMarkets
+from .utils.tradingsource import TradingSource
+from time import sleep
+from threading import Timer
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
-    exchanges = ['binance', 'bitfinex']
+    htmlFinished = QtCore.pyqtSignal(str)
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
-        # signals
-        self.actionPantalla_completa.toggled.connect(self.onActionPantallaCompleta)
-        self.actionActualizar_markets.triggered.connect(self.onActionActualizaMarkets)
-        self.combo_exchange.currentTextChanged.connect(self.onExchangeChanged)
-        self.list_markets.itemDoubleClicked.connect(self.onDoubleClickMarket)
-        self.actiontest.triggered.connect(self.update_page_info)
+        self.html = None
         # carga datos
         self.setWindowIcon(QtGui.QIcon('ico/logo.png'))
-        self._load_exchanges()
-        self.onExchangeChanged()
-        self.pagina_info = TradingSource()
-
-    @property
-    def selected_exchange(self):
-        return self.combo_exchange.currentText().lower()
+        self.chart = TradingSource()
+        self._docks()
+        self._signals()
     
     # ─── EVENTOS ────────────────────────────────────────────────────────────────────
+    
+    def onLoadPage(self, html):
+        """[recibe la señal para recibir el html]
+        
+        Arguments:
+            html {[str]} -- [codigo fuente html]
+        """
+        self.chart.read_html(html)
+        if self.chart.market is not None or self.chart.exchange is not None:
+            titol = f"{self.chart.market} | {self.chart.exchange.title()} | QTradingView"
+            self.setWindowTitle(titol)
 
     def onActionPantallaCompleta(self):
         if self.actionPantalla_completa.isChecked():
             self.showFullScreen()
         else:
             self.showMaximized()
+    
+    # ─── PUBLIC METHODS ─────────────────────────────────────────────────────────────
 
-    def onActionActualizaMarkets(self):
-        t = UpdateMarkets_DB(self)
-        t.run()
-    
-    def onExchangeChanged(self):
-        exchange = self.combo_exchange.currentText().lower()
-        self.list_markets.clear()
-        lista = Markets.select().where(Markets.exchange == exchange)
-        for it in lista:
-            self.list_markets.addItem(it.symbol)
-    
-    def onDoubleClickMarket(self, item):
-        self._load_chart(item.text(), self.selected_exchange)
+    def update_page_info(self, onLoad=False):
+        """[funcion para solicitar actualizacion de codigo fuente web]
+        
+        Keyword Arguments:
+            onLoad {bool} -- [es True cuando venimos del evento WebLoadFinished] (default: {False})
+        """
+        if onLoad:
+            QtCore.QTimer.singleShot(10000, self.update_page_info)
+        page = self.webview.page()
+        page.toHtml(self._html_parser)
 
     # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
     
-    def update_page_info(self):
-        def html_parser(html):
-            self.pagina_info.read_html(html)
-            self.label_loaded.setText(self.pagina_info.symbol)
-            path = f'ico/{self.pagina_info.exchange}.png'
-            pixmap = QtGui.QPixmap(path)
-            self.label_logo.setPixmap(pixmap.scaled(64, 64))
-            print(self.pagina_info.titulo)
-        self.webview.page().toHtml(html_parser)
+    def _docks(self):
+        self.dock_markets = DockMarkets(self)
+        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
+        
+        # self.dock_info = DockInfo(self)
+        # self.addDockWidget(QtCore.Qt.RightDockWidgetArea, self.dock_info)
+    
+    def _signals(self):
+        self.actionPantalla_completa.toggled.connect(self.onActionPantallaCompleta)
+        self.actionActualizar_markets.triggered.connect(self.dock_markets.onActionActualizaMarkets)
+        self.actiontest.triggered.connect(self.update_page_info)
+        self.webview.loadFinished.connect(self.update_page_info)
+        self.htmlFinished.connect(self.onLoadPage)
+        self.actionMarkets_list.toggled['bool'].connect(self.dock_markets.setVisible)
 
-    def _load_exchanges(self):
-        '''Carga la lista de exchanges en el combo'''
-        self.combo_exchange.clear()
-        for x in self.exchanges:
-            path = f"ico/{x}.png"
-            self.combo_exchange.addItem(QtGui.QIcon(path), x.title())
-
+    def _html_parser(self, html):
+        """[funcion async que recibe y emite el codigo fuente de la pagina]
+        
+        Arguments:
+            html {[str]} -- [codigo fuente de la pagina]
+        """
+        self.htmlFinished.emit(html)
+    
     def _load_chart(self, market, exchange=None):
-        if exchange is None:
-            exchange = self.selected_exchange
-        self.statusbar.showMessage(f"Cargando market '{market}' en {exchange.title()}", 3000)
+        """[carrega nou market a la grafica]
+        
+        Arguments:
+            market {[str]} -- [market a cargar, tipo: BTC/USD]
+        
+        Keyword Arguments:
+            exchange {[str]} -- [nombre del exchange] (default: {None})
+        """
+        self.chart.clear()
+        self.setWindowTitle("QTradingView")
+        self.statusbar.showMessage(f"Cargando market '{market}' en {exchange.title()}")
         mar, ket = market.split("/")
         url = f"https://es.tradingview.com/chart/?symbol={exchange.upper()}:{mar}{ket}"
         self.webview.setUrl(QtCore.QUrl(url))
