@@ -129,6 +129,27 @@
       </property>
      </widget>
     </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="btn_favorite">
+        <property name="text">
+         <string>Favoritos</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ico/iconos.qrc">
+          <normaloff>:/base/star.svg</normaloff>:/base/star.svg</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
  </widget>
@@ -137,6 +158,8 @@
   <tabstop>edit_filtro</tabstop>
   <tabstop>list_markets</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../ico/iconos.qrc"/>
+ </resources>
  <connections/>
 </ui>

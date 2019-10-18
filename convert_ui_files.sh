@@ -1,4 +1,5 @@
 echo -e "\n"
+pyrcc5 ico/iconos.qrc -o iconos_rc.py
 for input_file in ui/*
 do
     echo " Conviertiendo fichero '$input_file'..."

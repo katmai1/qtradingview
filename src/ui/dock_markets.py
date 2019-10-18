@@ -61,6 +61,17 @@ class Ui_dock_markets(object):
         self.list_markets.setSelectionRectVisible(False)
         self.list_markets.setObjectName("list_markets")
         self.verticalLayout.addWidget(self.list_markets)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.btn_favorite = QtWidgets.QPushButton(self.dockWidgetContents)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/base/star.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_favorite.setIcon(icon)
+        self.btn_favorite.setCheckable(True)
+        self.btn_favorite.setChecked(False)
+        self.btn_favorite.setObjectName("btn_favorite")
+        self.horizontalLayout.addWidget(self.btn_favorite)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         dock_markets.setWidget(self.dockWidgetContents)
 
         self.retranslateUi(dock_markets)
@@ -73,4 +84,6 @@ class Ui_dock_markets(object):
         dock_markets.setWindowTitle(_translate("dock_markets", "Markets  (F1)"))
         self.edit_filtro.setPlaceholderText(_translate("dock_markets", "Filtrar..."))
         self.list_markets.setSortingEnabled(True)
+        self.btn_favorite.setText(_translate("dock_markets", "Favoritos"))
 
+import iconos_rc

@@ -29,8 +29,8 @@
    <string>QTradingview</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../ico/logo.png</normaloff>../ico/logo.png</iconset>
+   <iconset resource="../ico/iconos.qrc">
+    <normaloff>:/base/logo.png</normaloff>:/base/logo.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -65,7 +65,8 @@
     <property name="title">
      <string>Ver</string>
     </property>
-    <addaction name="actionMarkets_list"/>
+    <addaction name="actionMarkets"/>
+    <addaction name="actionDebug"/>
     <addaction name="actionInfo"/>
     <addaction name="separator"/>
     <addaction name="actionPantalla_completa"/>
@@ -88,7 +89,7 @@
    <addaction name="menuVer"/>
    <addaction name="menuOpciones"/>
   </widget>
-  <action name="actionMarkets_list">
+  <action name="actionMarkets">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -96,7 +97,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Markets list</string>
+    <string>Markets</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -147,6 +148,17 @@
     <string>Info</string>
    </property>
   </action>
+  <action name="actionDebug">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Debug</string>
+   </property>
+   <property name="shortcut">
+    <string>F10</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -155,7 +167,9 @@
    <header location="global">QtWebEngineWidgets/QWebEngineView</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../ico/iconos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionSalir</sender>

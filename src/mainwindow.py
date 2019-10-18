@@ -1,11 +1,30 @@
-from PyQt5 import QtWidgets, QtCore, QtGui, QtTest
+from PyQt5 import QtWidgets, QtCore, QtGui, QtTest, QtWebEngineWidgets
 from src.ui.mainwindow import Ui_MainWindow
 from src.db import Markets
 from .dock_info import DockInfo
+from .dock_debug import DockDebug
 from .dock_markets import DockMarkets
 from .utils.tradingsource import TradingSource
 from time import sleep
 from threading import Timer
+import coloredlogs, logging
+
+
+class Qlogger(logging.Handler):
+    def __init__(self, parent):
+        super().__init__()
+        self.parent = parent
+        coloredlogs.install()
+        self.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+    def emit(self, record):
+        msg = self.format(record)
+        self.parent.dock_debug.edit_logger.append(msg)
+
+
+class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
+    def javaScriptConsoleMessage(self, level, msg, line, sourceID):
+        pass
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
 
@@ -17,12 +36,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
         self.html = None
+        page = WebEnginePage(self.webview)
+        self.webview.setPage(page)
+        self.webview.setUrl(QtCore.QUrl("https://es.tradingview.com/chart/"))
         # carga datos
-        self.setWindowIcon(QtGui.QIcon('ico/logo.png'))
         self.chart = TradingSource()
         self._docks()
         self._signals()
-    
+        #
+        qlog = Qlogger(self)
+        logging.getLogger().addHandler(qlog)
+        logging.getLogger().setLevel(logging.DEBUG)
+
     # ─── EVENTOS ────────────────────────────────────────────────────────────────────
     
     def onLoadPage(self, html):
@@ -60,6 +85,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def _docks(self):
         self.dock_markets = DockMarkets(self)
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
+        self.dock_debug = DockDebug(self)
+        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_debug)
         
         # self.dock_info = DockInfo(self)
         # self.addDockWidget(QtCore.Qt.RightDockWidgetArea, self.dock_info)
@@ -70,7 +97,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actiontest.triggered.connect(self.update_page_info)
         self.webview.loadFinished.connect(self.update_page_info)
         self.htmlFinished.connect(self.onLoadPage)
-        self.actionMarkets_list.toggled['bool'].connect(self.dock_markets.setVisible)
+        self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
+        self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
 
     def _html_parser(self, html):
         """[funcion async que recibe y emite el codigo fuente de la pagina]
