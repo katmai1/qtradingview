@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_dock_markets(object):
     def setupUi(self, dock_markets):
         dock_markets.setObjectName("dock_markets")
-        dock_markets.resize(280, 300)
+        dock_markets.resize(274, 532)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -32,6 +32,12 @@ class Ui_dock_markets(object):
         self.verticalLayout.addWidget(self.combo_exchange)
         spacerItem = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.verticalLayout.addItem(spacerItem)
+        self.btn_alarm = QtWidgets.QPushButton(self.dockWidgetContents)
+        self.btn_alarm.setFlat(False)
+        self.btn_alarm.setObjectName("btn_alarm")
+        self.verticalLayout.addWidget(self.btn_alarm)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem1)
         self.edit_filtro = QtWidgets.QLineEdit(self.dockWidgetContents)
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -61,8 +67,6 @@ class Ui_dock_markets(object):
         self.list_markets.setSelectionRectVisible(False)
         self.list_markets.setObjectName("list_markets")
         self.verticalLayout.addWidget(self.list_markets)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
         self.btn_favorite = QtWidgets.QPushButton(self.dockWidgetContents)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/base/star.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -70,8 +74,7 @@ class Ui_dock_markets(object):
         self.btn_favorite.setCheckable(True)
         self.btn_favorite.setChecked(False)
         self.btn_favorite.setObjectName("btn_favorite")
-        self.horizontalLayout.addWidget(self.btn_favorite)
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.verticalLayout.addWidget(self.btn_favorite)
         dock_markets.setWidget(self.dockWidgetContents)
 
         self.retranslateUi(dock_markets)
@@ -82,8 +85,9 @@ class Ui_dock_markets(object):
     def retranslateUi(self, dock_markets):
         _translate = QtCore.QCoreApplication.translate
         dock_markets.setWindowTitle(_translate("dock_markets", "Markets  (F1)"))
+        self.btn_alarm.setText(_translate("dock_markets", "Create Alarm"))
         self.edit_filtro.setPlaceholderText(_translate("dock_markets", "Filtrar..."))
         self.list_markets.setSortingEnabled(True)
-        self.btn_favorite.setText(_translate("dock_markets", "Favoritos"))
+        self.btn_favorite.setText(_translate("dock_markets", "Show Favorite"))
 
 import iconos_rc

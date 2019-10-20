@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from time import sleep
+import logging
 
 
 class TradingSource:
@@ -10,42 +10,50 @@ class TradingSource:
 
     def read_html(self, html):
         self.html = html
-        raw = self.soup_find_class("pane-legend-title__description")
+        raw = self.soup_find_class("legend-source-title")
         if raw is None:
-            print("No se ha cargado la pagina correctamente")
+            logging.debug("No se ha cargado la pagina correctamente")
         else:
-            if ":" in raw:
-                self.extract_data_2()
-            else:
-                self.extract_data_1()
-    
+            self.market = raw[0].text
+            self.interval = raw[1].text
+            self.exchange = raw[2].text
+            # self.extract_nuevo(raw)
+
+    def extract_nuevo(self, raw):
+        # for i, div in enumerate(raw):
+        #     print(f"{i}: {div.text}")
+        ...
+
     def extract_data_1(self):
         self.market = self.soup_find_class("pane-legend-title__description")
         self.interval = self.soup_find_class("pane-legend-title__interval")
         self.exchange = self.soup_find_class("pane-legend-title__details")
-    
+
     def extract_data_2(self):
         raw = self.soup_find_class("pane-legend-title__description")
         self.exchange, self.market = raw.split(":")
         self.interval = self.soup_find_class("pane-legend-title__interval")
-    
+
     def soup_find_class(self, clase):
         try:
             soup = BeautifulSoup(self.html, 'html5lib')
-            return soup.find(class_=clase).text
-        except Exception as e:
-            print("Error al fer el soup!")
-            print(e)
+            return soup.findAll('div', {"data-name" : clase})
+        except AttributeError:
+            ...
             return None
-    
-    @property
-    def data_is_ok(self):
-        raw = self.soup_find_class("pane-legend-title__description")
-        if raw is None:
-            return False
-        if ":" in raw:
-            return False
-        return True
+        except Exception as e:
+            logging.error("Fallo al filtrar con BeautifulSoup")
+            logging.error(e.__str__())
+            return None
+
+    # @property
+    # def data_is_ok(self):
+    #     raw = self.soup_find_class("pane-legend-title__description")
+    #     if raw is None:
+    #         return False
+    #     if ":" in raw:
+    #         return False
+    #     return True
 
     def clear(self):
         self.market = None
@@ -71,7 +79,7 @@ class TradingSource:
     #     except Exception as e:
     #         print(e)
     #         return None
-    
+
     # @property
     # def exchange(self):
     #     try:

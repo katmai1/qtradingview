@@ -4,8 +4,8 @@
     <file>bitfinex.png</file>
   </qresource>
   <qresource prefix="base">
-    <file>logo.png</file>
     <file>star.svg</file>
+    <file>logo.png</file>
     <file>voidstar.svg</file>
   </qresource>
 </RCC>
