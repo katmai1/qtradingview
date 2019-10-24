@@ -3,3 +3,6 @@ old/*
 *.db
 /target/
 /old/
+/src/build/
+*.pyc
+*.cpython-37.pyc
