@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="exchanges">
+    <file>binance.png</file>
+    <file>bitfinex.png</file>
+  </qresource>
+  <qresource prefix="base">
+    <file>splash.png</file>
+    <file>star.svg</file>
+    <file>logo.png</file>
+    <file>voidstar.svg</file>
+  </qresource>
+</RCC>
