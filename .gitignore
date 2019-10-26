@@ -1,9 +1,0 @@
-old/*
-*.directory
-*.db
-/target/
-/old/
-/src/build/
-*.pyc
-*.cpython-37.pyc
-*.gpg
