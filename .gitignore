@@ -1,3 +1,7 @@
 *.directory
 *.pyc
 *.db
+/src/main/python/__pycache__/
+/src/main/python/tasks/__pycache__/
+/src/main/python/ui/__pycache__/
+/src/main/python/utils/__pycache__/
