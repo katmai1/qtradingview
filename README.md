@@ -1,6 +1,11 @@
 # QTradingView
 PyQt App for TradingView...
 
+## Demo
+
+![Image not found](/ruta/a/la/imagen.jpg)
+
+---
 
 ## Prepare develop environment with anaconda
 
@@ -33,3 +38,11 @@ Create linux installer (ubuntu, arch)
     'fbs installer'
 
 > **fbs** have more options to deploy, for windows, mac and docker. [tutorial](https://github.com/mherrmann/fbs-tutorial).
+
+---
+
+Pending features:
+
+- alarm system
+- favorite markets
+- ...
