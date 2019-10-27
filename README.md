@@ -1,13 +1,12 @@
 # QTradingView
-PyQt App for TradingView...
+
+PyQt App for TradingView. Recommends login to autosave your draws.
 
 ## Demo
 
 ![Image not found](demo.png)
 
-
 ---
-
 
 ## Prepare develop environment with anaconda
 
