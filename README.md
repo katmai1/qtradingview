@@ -3,9 +3,11 @@ PyQt App for TradingView...
 
 ## Demo
 
-![Image not found](/ruta/a/la/imagen.jpg)
+![Image not found](demo.png)
+
 
 ---
+
 
 ## Prepare develop environment with anaconda
 
