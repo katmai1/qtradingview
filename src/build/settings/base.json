@@ -2,5 +2,7 @@
     "app_name": "QTradingView",
     "author": "katmai",
     "main_module": "src/main/python/main.py",
-    "version": "0.0.0"
+    "version": "0.0.0",
+    "gpg_key": "D09D4D5917CF908F4EF66DFE7D500B2C97F5B84B",
+    "gpg_name": "katmai"
 }
