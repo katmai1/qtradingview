@@ -1,6 +1,5 @@
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
-from PyQt5.QtWidgets import QMainWindow
-from mainwindow import MainWindow
+from base.mainwindow import MainWindow
 from db import db, crea_tablas
 
 import sys

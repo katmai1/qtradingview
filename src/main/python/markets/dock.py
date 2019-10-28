@@ -1,0 +1,112 @@
+from PyQt5 import QtWidgets, QtGui, QtCore
+
+from ui.dock_markets_Ui import Ui_dock_markets
+
+from .tasks import UpdateMarkets_DB
+from .widgets import CustomItem, CustomItemDelegate
+
+from db import db, Markets
+
+
+class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
+
+    def __init__(self, parent):
+        QtWidgets.QDockWidget.__init__(self, parent=parent)
+        self.setupUi(self)
+        #
+        self._load_exchanges()
+        self._signals()
+        #
+        self.delegate = CustomItemDelegate()
+        self.list_markets.setItemDelegate(self.delegate)
+        self.list_markets.customContextMenuRequested.connect(self._get_context_menu)
+    
+    def _signals(self):
+        self.combo_exchange.currentTextChanged.connect(self.onExchangeChanged)
+        self.list_markets.itemDoubleClicked.connect(self.onDoubleClickMarket)
+        self.edit_filtro.textEdited.connect(self.onFiltroChanged)
+        self.btn_favorite.toggled.connect(self.onClickFavoriteButton)
+
+    @property
+    def selected_exchange(self):
+        return self.combo_exchange.currentText().lower()
+
+    @property
+    def fav_is_checked(self):
+        return self.btn_favorite.isChecked()
+
+    # ─── EVENTS ─────────────────────────────────────────────────────────────────────
+
+    def onClickFavoriteButton(self, fav_actived):
+        filtro = self.edit_filtro.text()
+        for index in range(self.list_markets.count()):
+            item = self.list_markets.item(index)
+            item.mostrar(fav_actived, filtro)
+
+    def onFiltroChanged(self, text):
+        for index in range(self.list_markets.count()):
+            item = self.list_markets.item(index)
+            item.mostrar(self.fav_is_checked, text)
+
+    def onExchangeChanged(self):
+        self.edit_filtro.clear()
+        self._load_markets()
+
+    def onActionActualizaMarkets(self):
+        t = UpdateMarkets_DB(self.parentWidget())
+        t.run()
+
+    def onDoubleClickMarket(self, item):
+        self.parentWidget().load_chart(item.text(), self.selected_exchange)
+
+    # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
+    
+    def _get_context_menu(self, position):
+        item = self.list_markets.itemAt(position)
+        menu = QtWidgets.QMenu(self.list_markets)
+        if item.is_favorite:
+            favoriteAction = menu.addAction("Remove from Favorite")
+            favoriteAction.setIcon(QtGui.QIcon(":/base/voidstar.svg"))
+        else:
+            favoriteAction = menu.addAction("Add to Favorite")
+            favoriteAction.setIcon(QtGui.QIcon(":/base/star.svg"))
+        alarmAction = menu.addAction("New Alarm")
+        action = menu.exec_(self.list_markets.viewport().mapToGlobal(position))
+        if action == favoriteAction:
+            item.toggle_favorite()
+        elif action == alarmAction:
+            print("alarm")
+
+    def _load_exchanges(self):
+        """ Carga la lista de exchanges en el combo, selecciona el definido por defecto y llama al evento de cambio """
+        self.combo_exchange.clear()
+        for x in self.parentWidget().exchanges_enabled:
+            path = f":/exchanges/{x}.png"
+            self.combo_exchange.addItem(QtGui.QIcon(path), x.title())
+        # initial config
+        default_index = self.combo_exchange.findText(self.parentWidget().initial_exchange.title())
+        if default_index != -1:
+            self.combo_exchange.setCurrentIndex(default_index)
+        # load markets
+        self.onExchangeChanged()
+
+    def _load_markets(self):
+        filtro = self.edit_filtro.text()
+        self.list_markets.clear()
+        for it in Markets.get_all_by_exchange(self.selected_exchange):
+            nuevo = CustomItem(self.list_markets)
+            nuevo.configurar(it.symbol, self.selected_exchange)
+            nuevo.mostrar(self.fav_is_checked, filtro)
+
+    # ─── PUBLIC METHODS ─────────────────────────────────────────────────────────────
+
+    def clear_currentInfo(self):
+        self.label_currentMarket.setText(" ")
+        self.label_currentExchange.setPixmap(QtGui.QPixmap())
+    
+    def set_currentInfo(self, exchange, market):
+        pixmap = QtGui.QPixmap(f":/exchanges/{exchange}.png").scaledToWidth(100)
+        self.label_currentMarket.setText(market)
+        self.label_currentExchange.setPixmap(pixmap)
+
+# ────────────────────────────────────────────────────────────────────────────────

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="exchanges">
+    <file>poloniex.png</file>
     <file>binance.png</file>
     <file>bitfinex.png</file>
   </qresource>

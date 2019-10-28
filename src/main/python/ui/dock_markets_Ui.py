@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'ui/dock_markets.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_dock_markets(object):
     def setupUi(self, dock_markets):
@@ -32,7 +30,7 @@ class Ui_dock_markets(object):
         self.combo_exchange.setIconSize(QtCore.QSize(32, 32))
         self.combo_exchange.setObjectName("combo_exchange")
         self.verticalLayout.addWidget(self.combo_exchange)
-        spacerItem = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout.addItem(spacerItem)
         self.btn_favorite = QtWidgets.QPushButton(self.dockWidgetContents)
         icon = QtGui.QIcon()
@@ -62,6 +60,7 @@ class Ui_dock_markets(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         self.list_markets.setFont(font)
+        self.list_markets.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.list_markets.setAutoScrollMargin(20)
         self.list_markets.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.list_markets.setTabKeyNavigation(False)
@@ -75,6 +74,31 @@ class Ui_dock_markets(object):
         self.verticalLayout.addWidget(self.list_markets)
         spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.verticalLayout.addItem(spacerItem2)
+        self.line = QtWidgets.QFrame(self.dockWidgetContents)
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.verticalLayout.addWidget(self.line)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_currentExchange = QtWidgets.QLabel(self.dockWidgetContents)
+        self.label_currentExchange.setText("")
+        self.label_currentExchange.setObjectName("label_currentExchange")
+        self.horizontalLayout.addWidget(self.label_currentExchange)
+        self.label_currentMarket = QtWidgets.QLabel(self.dockWidgetContents)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_currentMarket.setFont(font)
+        self.label_currentMarket.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.label_currentMarket.setLineWidth(1)
+        self.label_currentMarket.setScaledContents(True)
+        self.label_currentMarket.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_currentMarket.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextSelectableByMouse)
+        self.label_currentMarket.setObjectName("label_currentMarket")
+        self.horizontalLayout.addWidget(self.label_currentMarket)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         dock_markets.setWidget(self.dockWidgetContents)
 
         self.retranslateUi(dock_markets)
@@ -92,4 +116,6 @@ class Ui_dock_markets(object):
         self.edit_filtro.setPlaceholderText(_translate("dock_markets", "Filter..."))
         self.list_markets.setToolTip(_translate("dock_markets", "<html><head/><body><p>Use double click to load a market</p><p>-</p><p>Right click for more options</p></body></html>"))
         self.list_markets.setSortingEnabled(True)
+        self.label_currentMarket.setText(_translate("dock_markets", "-"))
+
 import iconos_rc

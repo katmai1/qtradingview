@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'ui/dock_info.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_dock_info(object):
     def setupUi(self, dock_info):
@@ -36,3 +34,4 @@ class Ui_dock_info(object):
         _translate = QtCore.QCoreApplication.translate
         dock_info.setWindowTitle(_translate("dock_info", "DockWidget"))
         self.label_exchange.setText(_translate("dock_info", "Exchange"))
+

@@ -2,13 +2,11 @@
 
 # Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -109,5 +107,6 @@ class Ui_MainWindow(object):
         self.actionInfo.setText(_translate("MainWindow", "Info"))
         self.actionDebug.setText(_translate("MainWindow", "Debug"))
         self.actionDebug.setShortcut(_translate("MainWindow", "F10"))
+
 from PyQt5 import QtWebEngineWidgets
 import iconos_rc
