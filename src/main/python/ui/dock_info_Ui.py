@@ -2,16 +2,19 @@
 
 # Form implementation generated from reading ui file 'ui/dock_info.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_dock_info(object):
     def setupUi(self, dock_info):
         dock_info.setObjectName("dock_info")
         dock_info.resize(248, 587)
+        dock_info.setFeatures(QtWidgets.QDockWidget.DockWidgetFloatable|QtWidgets.QDockWidget.DockWidgetMovable|QtWidgets.QDockWidget.DockWidgetVerticalTitleBar)
         self.dockWidgetContents = QtWidgets.QWidget()
         self.dockWidgetContents.setObjectName("dockWidgetContents")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.dockWidgetContents)
@@ -32,6 +35,5 @@ class Ui_dock_info(object):
 
     def retranslateUi(self, dock_info):
         _translate = QtCore.QCoreApplication.translate
-        dock_info.setWindowTitle(_translate("dock_info", "DockWidget"))
+        dock_info.setWindowTitle(_translate("dock_info", "Info"))
         self.label_exchange.setText(_translate("dock_info", "Exchange"))
-

@@ -1,12 +1,8 @@
 from PyQt5.QtWidgets import QStyledItemDelegate, QListWidgetItem, QStyleOptionViewItem, QListWidget
 from PyQt5.QtGui import QIcon
 
-from db import Markets
+from models.markets import Markets
 
-# class lista(QListWidget):
-
-#     def __init__(self, parent):
-#         super().__init__(parent)
 
 class CustomItemDelegate(QStyledItemDelegate):
     def paint(self, painter, option, index):
@@ -63,10 +59,10 @@ class CustomItem(QListWidgetItem):
                 self._mostrar()
             else:
                 self._ocultar()
-    
+
     def toggle_favorite(self):
         item = Markets.get_symbol_by_exchange(self.text(), self.exchange)
         item.toggle_fav()
         self.setIcon(self._get_icon())
-        
+
 # ────────────────────────────────────────────────────────────────────────────────

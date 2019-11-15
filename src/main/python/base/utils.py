@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import logging
+from PyQt5.QtCore import QCoreApplication as qapp
 
 
 class TradingSource:
@@ -12,12 +13,16 @@ class TradingSource:
         self.html = html
         raw = self.soup_find_class("legend-source-title")
         if raw is None:
-            logging.debug("No se ha cargado la pagina correctamente")
+            mensaje = qapp.tr("No se ha podido cargar la pagina correctamente")
+            logging.debug(mensaje)
         else:
-            self.market = raw[0].text
-            self.interval = raw[1].text
-            self.exchange = raw[2].text
- 
+            try:
+                self.market = raw[0].text
+                self.interval = raw[1].text
+                self.exchange = raw[2].text
+            except Exception as e:
+                logging.error(e)
+
     def extract_data_1(self):
         self.market = self.soup_find_class("pane-legend-title__description")
         self.interval = self.soup_find_class("pane-legend-title__interval")
@@ -31,12 +36,12 @@ class TradingSource:
     def soup_find_class(self, clase):
         try:
             soup = BeautifulSoup(self.html, 'html5lib')
-            return soup.findAll('div', {"data-name" : clase})
+            return soup.findAll('div', {"data-name": clase})
         except AttributeError:
             ...
             return None
         except Exception as e:
-            logging.error("Fallo al filtrar con BeautifulSoup")
+            logging.error(qapp.tr("Fallo al filtrar con BeautifulSoup"))
             logging.error(e.__str__())
             return None
 

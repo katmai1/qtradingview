@@ -3,7 +3,7 @@ from ui.dock_info_Ui import Ui_dock_info
 
 
 class DockInfo(QtWidgets.QDockWidget, Ui_dock_info):
-    
+
     def __init__(self, *args, **kwargs):
         QtWidgets.QDockWidget.__init__(self, *args, **kwargs)
         self.setupUi(self)

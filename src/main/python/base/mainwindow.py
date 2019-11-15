@@ -1,18 +1,21 @@
 
 import logging
 
-from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QCoreApplication as qapp
 
 from ui.mainwindow_Ui import Ui_MainWindow
 
 from debug.dock import DockDebug, Qlogger
 from markets.dock import DockMarkets
-from markets.tasks import UpdateMarkets_DB
+from alarms.dock import DockAlarms
+from config.dialog import DialogConfig
 
 from .utils import TradingSource
 from .widgets import CustomWebEnginePage, CustomSplashScreen
+from .tasks import UpdateMarkets_DB
 
-from db import Markets
+from models.markets import Markets
 
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
@@ -20,68 +23,93 @@ from db import Markets
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     htmlFinished = QtCore.pyqtSignal(str)
-    
+
     # default config
     initial_exchange = "bitfinex"
     initial_market = "BTC/USD"
     exchanges_enabled = ['binance', 'bitfinex', 'poloniex']
 
-    def __init__(self, *args, **kwargs):
+    #
+    worker = UpdateMarkets_DB()
+
+    def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
         self.html = None
+        self.ctx = ctx
         # splash
         splash = CustomSplashScreen(self)
         splash.show()
-        splash.set_texto("loading...")
         # webenginepage
         page = CustomWebEnginePage(self.webview)
         self.webview.setPage(page)
-
-        # si la tabla markets esta vacía hacemos el primer update
-        if Markets.select().count() == 0:
-            splash.set_texto("updating markets database...")
-            t = UpdateMarkets_DB(self)
-            t.run()
+        self.start_markets_updater()
 
         # docks
         self._docks()
         self._signals()
-        
+
         # carga datos
         self.chart = TradingSource()
-        
+
         # logs
         qlog = Qlogger(self)
         logging.getLogger().addHandler(qlog)
-        logging.getLogger().setLevel(logging.DEBUG)
-        
+        logging.getLogger().setLevel(logging.INFO)
+
         # loaded
         splash.finish(self)
         self.load_chart(self.initial_market, self.initial_exchange)
 
     # ─── BASE ───────────────────────────────────────────────────────────────────────
 
+    def _tr(self, contexto, mensaje):
+        return self.ctx.app.translate(contexto, mensaje)
+
     def _docks(self):
+        self.setTabPosition(QtCore.Qt.AllDockWidgetAreas, QtWidgets.QTabWidget.North)
         self.dock_markets = DockMarkets(self)
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
+        self.dock_alarms = DockAlarms(self)
+        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_alarms)
         self.dock_debug = DockDebug(self)
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_debug)
+        self.tabifyDockWidget(self.dock_markets, self.dock_alarms)
 
     def _signals(self):
         # docks actions
         self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
         self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
+        self.actionAlarms.toggled['bool'].connect(self.dock_alarms.setVisible)
+        self.actionConfigurar.triggered.connect(self.openDialogConfigurar)
         # other actions
         self.actionPantalla_completa.toggled.connect(self.onActionPantallaCompleta)
-        self.actionActualizar_markets.triggered.connect(self.dock_markets.onActionActualizaMarkets)
+        # self.actionActualizar_markets.triggered.connect(self.dock_markets.onActionActualizaMarkets)
         # webview related
         self.webview.loadFinished.connect(self.update_page_info)
         self.htmlFinished.connect(self.onLoadPage)
         # test action
-        self.actiontest.triggered.connect(self.update_page_info)
+        self.worker.finished.connect(self.start_markets_updater)
+
+    def closeEvent(self, event):
+        result = QtWidgets.QMessageBox.question(
+            self, qapp.translate("mainwindow", 'Salir'),
+            qapp.translate("mainwindow", "Quieres cerrar la aplicacion?"),
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+            QtWidgets.QMessageBox.No
+        )
+        if result:
+            return super().closeEvent(event)
 
     # ─── EVENTOS ────────────────────────────────────────────────────────────────────
+    def openDialogConfigurar(self):
+        dialog = DialogConfig(self)
+        dialog.load_config(self.ctx.config)
+        dialog.exec_()
+
+    def start_markets_updater(self):
+        self.worker.lista_exchanges = self.exchanges_enabled
+        self.worker.start()
 
     def onLoadPage(self, html):
         """ recibe la señal para recibir el html"""
@@ -90,8 +118,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusbar.clearMessage()
             titol = f"{self.currentMarket} ({self.chart.exchange.title()}) | QTradingView"
             self.setWindowTitle(titol)
-            self.dock_markets.set_currentInfo(self.currentExchange, self.currentMarket)
-            self.webview.page().adblocker_tradingview()                               
+            self.webview.page().adblocker_tradingview()
         else:
             QtCore.QTimer.singleShot(10000, self.update_page_info)
 
@@ -99,6 +126,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.actionPantalla_completa.isChecked():
             self.showFullScreen()
         else:
+            self.showNormal()
             self.showMaximized()
 
     # ─── PUBLIC METHODS ─────────────────────────────────────────────────────────────
@@ -110,13 +138,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def load_chart(self, market, exchange):
         self.chart.clear()
         self.setWindowTitle("QTradingView")
-        self.statusbar.showMessage(f"Cargando market '{market}' en {exchange.title()}...")
+        mensaje = qapp.translate("mainwindow", "Cargando mercado")
+        self.statusbar.showMessage(f"{mensaje} {market} ({exchange.title()})...")
         mar, ket = market.split("/")
         url = f"https://es.tradingview.com/chart/?symbol={exchange.upper()}:{mar}{ket}"
         self.webview.setUrl(QtCore.QUrl(url))
         self.currentExchange = exchange
         self.currentMarket = market
-        self.dock_markets.clear_currentInfo()
 
     # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
 

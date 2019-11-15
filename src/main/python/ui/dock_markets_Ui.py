@@ -2,22 +2,24 @@
 
 # Form implementation generated from reading ui file 'ui/dock_markets.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_dock_markets(object):
     def setupUi(self, dock_markets):
         dock_markets.setObjectName("dock_markets")
-        dock_markets.resize(274, 532)
+        dock_markets.resize(302, 532)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(dock_markets.sizePolicy().hasHeightForWidth())
         dock_markets.setSizePolicy(sizePolicy)
-        dock_markets.setFeatures(QtWidgets.QDockWidget.AllDockWidgetFeatures)
+        dock_markets.setFeatures(QtWidgets.QDockWidget.DockWidgetFloatable|QtWidgets.QDockWidget.DockWidgetMovable)
         dock_markets.setAllowedAreas(QtCore.Qt.AllDockWidgetAreas)
         self.dockWidgetContents = QtWidgets.QWidget()
         self.dockWidgetContents.setObjectName("dockWidgetContents")
@@ -36,8 +38,11 @@ class Ui_dock_markets(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/base/star.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_favorite.setIcon(icon)
+        self.btn_favorite.setIconSize(QtCore.QSize(24, 24))
         self.btn_favorite.setCheckable(True)
         self.btn_favorite.setChecked(False)
+        self.btn_favorite.setDefault(False)
+        self.btn_favorite.setFlat(False)
         self.btn_favorite.setObjectName("btn_favorite")
         self.verticalLayout.addWidget(self.btn_favorite)
         spacerItem1 = QtWidgets.QSpacerItem(20, 5, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
@@ -51,7 +56,8 @@ class Ui_dock_markets(object):
         self.edit_filtro.setAcceptDrops(False)
         self.edit_filtro.setInputMethodHints(QtCore.Qt.ImhUppercaseOnly)
         self.edit_filtro.setText("")
-        self.edit_filtro.setAlignment(QtCore.Qt.AlignCenter)
+        self.edit_filtro.setFrame(True)
+        self.edit_filtro.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.edit_filtro.setCursorMoveStyle(QtCore.Qt.LogicalMoveStyle)
         self.edit_filtro.setClearButtonEnabled(True)
         self.edit_filtro.setObjectName("edit_filtro")
@@ -74,31 +80,6 @@ class Ui_dock_markets(object):
         self.verticalLayout.addWidget(self.list_markets)
         spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.verticalLayout.addItem(spacerItem2)
-        self.line = QtWidgets.QFrame(self.dockWidgetContents)
-        self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line.setObjectName("line")
-        self.verticalLayout.addWidget(self.line)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.label_currentExchange = QtWidgets.QLabel(self.dockWidgetContents)
-        self.label_currentExchange.setText("")
-        self.label_currentExchange.setObjectName("label_currentExchange")
-        self.horizontalLayout.addWidget(self.label_currentExchange)
-        self.label_currentMarket = QtWidgets.QLabel(self.dockWidgetContents)
-        font = QtGui.QFont()
-        font.setPointSize(18)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_currentMarket.setFont(font)
-        self.label_currentMarket.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.label_currentMarket.setLineWidth(1)
-        self.label_currentMarket.setScaledContents(True)
-        self.label_currentMarket.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_currentMarket.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextSelectableByMouse)
-        self.label_currentMarket.setObjectName("label_currentMarket")
-        self.horizontalLayout.addWidget(self.label_currentMarket)
-        self.verticalLayout.addLayout(self.horizontalLayout)
         dock_markets.setWidget(self.dockWidgetContents)
 
         self.retranslateUi(dock_markets)
@@ -108,14 +89,10 @@ class Ui_dock_markets(object):
 
     def retranslateUi(self, dock_markets):
         _translate = QtCore.QCoreApplication.translate
-        dock_markets.setWindowTitle(_translate("dock_markets", "Markets  (F1)"))
-        self.combo_exchange.setStatusTip(_translate("dock_markets", "Select any exchange"))
-        self.btn_favorite.setStatusTip(_translate("dock_markets", "Show all markets or favorite only"))
-        self.btn_favorite.setText(_translate("dock_markets", "Show Favorite"))
-        self.edit_filtro.setStatusTip(_translate("dock_markets", "Filter markets by name"))
-        self.edit_filtro.setPlaceholderText(_translate("dock_markets", "Filter..."))
-        self.list_markets.setToolTip(_translate("dock_markets", "<html><head/><body><p>Use double click to load a market</p><p>-</p><p>Right click for more options</p></body></html>"))
+        dock_markets.setWindowTitle(_translate("dock_markets", "&Mercados"))
+        self.btn_favorite.setStatusTip(_translate("dock_markets", "Filtrar mercados marcados como favoritos"))
+        self.btn_favorite.setText(_translate("dock_markets", "Mostrar solo favoritos"))
+        self.edit_filtro.setStatusTip(_translate("dock_markets", "Filtrar mercados por nombre"))
+        self.edit_filtro.setPlaceholderText(_translate("dock_markets", "Filtro"))
         self.list_markets.setSortingEnabled(True)
-        self.label_currentMarket.setText(_translate("dock_markets", "-"))
-
 import iconos_rc

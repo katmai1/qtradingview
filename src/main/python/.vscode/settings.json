@@ -10,5 +10,9 @@
         "**/.vscode": true,
         "**/__pycache__": true
     },
-    "explorerExclude.backup": null
+    "explorerExclude.backup": null,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylamaEnabled": false
 }

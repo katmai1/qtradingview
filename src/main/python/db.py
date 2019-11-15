@@ -1,55 +1,49 @@
 import peewee
 import logging
+from pathlib import Path
+import os
+import sys
 
 
 peewee.logger.setLevel(logging.INFO)
-db = peewee.SqliteDatabase('database.db')
+home = str(Path.home()) + "/.qtradingview"
+if not os.path.exists(home):
+    os.mkdir(home)
+db = peewee.SqliteDatabase(f'{home}/database.db')
 
-# ─── CONFIGURACIONES ────────────────────────────────────────────────────────────
+# ─── CUSTOM MODEL BASE ──────────────────────────────────────────────────────────
 
 
-class Markets(peewee.Model):
-
-    exchange = peewee.CharField(default="")
-    symbol = peewee.CharField(default="")
-    tag = peewee.CharField(default="all")
-    favorite = peewee.BooleanField(default=False)
+class CustomModel(peewee.Model):
 
     class Meta:
         database = db
-        db_table = 'markets'
-
-    def toggle_fav(self):
-        self.favorite = not self.favorite
-        self.save()
 
     @classmethod
-    def get_all_by_exchange(cls, exchange):
-        return cls.select().where(cls.exchange == exchange)
-
-    @classmethod
-    def get_symbol_by_exchange(cls, symbol, exchange):
-        return cls.get(cls.exchange == exchange, cls.symbol == symbol)
-
-    @classmethod
-    def check_symbol_is_fav(cls, symbol, exchange):
-        item = cls.get_symbol_by_exchange(symbol, exchange)
-        return item.favorite
+    def count_all(cls):
+        return cls.select().count()
 
 # ────────────────────────────────────────────────────────────────────────────────
 
 
-def crea_tablas():
-    try:
-        db.connect(reuse_if_open=True)
-        db.create_tables([Markets])
-    except Exception as e:
-        print(e)
-        print("error!")
+# ─── MIGRATE ────────────────────────────────────────────────────────────────────
+
+
+def migrate_tables():
+    from peewee_migrate import Router
+    router = Router(db)
+    # Create migration
+    router.create('migration_name', auto=True)
+    # Run migration/migrations
+    router.run('migration_name')
+    # Run all unapplied migrations
+    router.run()
 
 
 #
 if __name__ == '__main__':
-    crea_tablas()
-
-# ────────────────────────────────────────────────────────────────────────────────
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "migrate":
+            migrate_tables()
+    else:
+        print("parameter missing")
