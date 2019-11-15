@@ -4,6 +4,13 @@
     <file>binance.png</file>
     <file>bitfinex.png</file>
   </qresource>
+  <qresource prefix="actions">
+    <file>actions/salir.svg</file>
+    <file>actions/screen.svg</file>
+    <file>actions/alarms.svg</file>
+    <file>actions/debug.svg</file>
+    <file>actions/markets.svg</file>
+  </qresource>
   <qresource prefix="base">
     <file>splash.png</file>
     <file>star.svg</file>

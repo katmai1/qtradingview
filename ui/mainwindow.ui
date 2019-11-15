@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
+    <width>639</width>
     <height>480</height>
    </rect>
   </property>
@@ -32,6 +32,9 @@
    <iconset resource="../icons/iconos.qrc">
     <normaloff>:/base/logo.png</normaloff>:/base/logo.png</iconset>
   </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks</set>
+  </property>
   <property name="currentExchange" stdset="0">
    <string/>
   </property>
@@ -47,47 +50,35 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QWebEngineView" name="webview"/>
+     <widget class="QWebEngineView" name="webview" native="true"/>
     </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>650</width>
-     <height>20</height>
-    </rect>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>Barra de herramientas</string>
    </property>
-   <widget class="QMenu" name="menuVer">
-    <property name="title">
-     <string>Ver</string>
-    </property>
-    <addaction name="actionMarkets"/>
-    <addaction name="actionDebug"/>
-    <addaction name="actionInfo"/>
-    <addaction name="separator"/>
-    <addaction name="actionPantalla_completa"/>
-    <addaction name="actionVentana_Normal"/>
-   </widget>
-   <widget class="QMenu" name="menuArchivo">
-    <property name="title">
-     <string>Archivo</string>
-    </property>
-    <addaction name="actionSalir"/>
-   </widget>
-   <widget class="QMenu" name="menuOpciones">
-    <property name="title">
-     <string>Herramientas</string>
-    </property>
-    <addaction name="actionActualizar_markets"/>
-    <addaction name="actiontest"/>
-   </widget>
-   <addaction name="menuArchivo"/>
-   <addaction name="menuVer"/>
-   <addaction name="menuOpciones"/>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextBesideIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionMarkets"/>
+   <addaction name="actionAlarms"/>
+   <addaction name="separator"/>
+   <addaction name="actionPantalla_completa"/>
+   <addaction name="separator"/>
+   <addaction name="actionConfigurar"/>
+   <addaction name="actionDebug"/>
+   <addaction name="actionSalir"/>
   </widget>
   <action name="actionMarkets">
    <property name="checkable">
@@ -96,14 +87,25 @@
    <property name="checked">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../icons/iconos.qrc">
+     <normaloff>:/actions/actions/markets.svg</normaloff>:/actions/actions/markets.svg</iconset>
+   </property>
    <property name="text">
-    <string>Markets</string>
+    <string>Mercados</string>
+   </property>
+   <property name="toolTip">
+    <string>Mercados</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
    </property>
   </action>
   <action name="actionSalir">
+   <property name="icon">
+    <iconset resource="../icons/iconos.qrc">
+     <normaloff>:/actions/actions/salir.svg</normaloff>:/actions/actions/salir.svg</iconset>
+   </property>
    <property name="text">
     <string>Salir</string>
    </property>
@@ -115,29 +117,15 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../icons/iconos.qrc">
+     <normaloff>:/actions/actions/screen.svg</normaloff>:/actions/actions/screen.svg</iconset>
+   </property>
    <property name="text">
     <string>Pantalla completa</string>
    </property>
    <property name="shortcut">
     <string>F11</string>
-   </property>
-  </action>
-  <action name="actionVentana_Normal">
-   <property name="text">
-    <string>Ventana Normal</string>
-   </property>
-  </action>
-  <action name="actionActualizar_markets">
-   <property name="text">
-    <string>Actualizar markets</string>
-   </property>
-  </action>
-  <action name="actiontest">
-   <property name="text">
-    <string>test</string>
-   </property>
-   <property name="shortcut">
-    <string>F5</string>
    </property>
   </action>
   <action name="actionInfo">
@@ -152,11 +140,44 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="../icons/iconos.qrc">
+     <normaloff>:/actions/actions/debug.svg</normaloff>:/actions/actions/debug.svg</iconset>
+   </property>
    <property name="text">
-    <string>Debug</string>
+    <string>Depurar</string>
+   </property>
+   <property name="toolTip">
+    <string>Depurar</string>
    </property>
    <property name="shortcut">
     <string>F10</string>
+   </property>
+  </action>
+  <action name="actionAlarms">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons/iconos.qrc">
+     <normaloff>:/actions/actions/alarms.svg</normaloff>:/actions/actions/alarms.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Alarmas</string>
+   </property>
+   <property name="toolTip">
+    <string>Alarmas</string>
+   </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
+  </action>
+  <action name="actionConfigurar">
+   <property name="text">
+    <string>Configurar</string>
    </property>
   </action>
  </widget>

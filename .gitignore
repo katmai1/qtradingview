@@ -8,3 +8,4 @@
 /target/
 *.json
 *.gpg
+/src/main/python/migrations/

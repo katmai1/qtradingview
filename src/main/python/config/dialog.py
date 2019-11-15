@@ -22,4 +22,7 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
         index = self.combo_languages.findText(language)
         self.combo_languages.setCurrentIndex(index)
 
+    def accept(self):
+        # TODO: save changes
+        return super().accept()
 # ────────────────────────────────────────────────────────────────────────────────

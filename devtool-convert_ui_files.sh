@@ -2,15 +2,58 @@
 # Script to convert qt ui files and resources to python files
 #
 
-echo -e "\n"
-echo -e " [i] File 'icons/iconos.qrc' | Converting icons resource...\n"
-pyrcc5 icons/iconos.qrc -o src/main/python/iconos_rc.py
+function header {
+    echo -e "\n#"
+    echo "# QTradingView - devtool"
+    echo -e "#\n"
+}
 
-# Conviertiendo UI files...
-for input_file in ui/*
-do
-    output_file=${input_file/.ui/_Ui.py}
-    echo -e " [i] Converting '$input_file' to '$output_file'..."
-    pyuic5 -o src/main/python/$output_file $input_file
-done
+function info {
+    echo -e " [i] $1"
+}
 
+#
+
+function build_icons {
+    echo -e "\tFile: 'icons/iconos.qrc'"
+    pyrcc5 icons/iconos.qrc -o src/main/python/iconos_rc.py
+}
+
+#
+
+function build_UiFiles {
+    for input_file in ui/*
+    do
+        output_file=${input_file/.ui/_Ui.py}
+        echo -e "\t'$input_file' to '$output_file'..."
+        pyuic5 -o src/main/python/$output_file $input_file
+    done
+}
+
+#
+
+function build_project_file {
+    cd src/main/python
+    echo " " > qtradingview.pro
+    find . -type f -name "*.py" | while read filename
+    do
+        echo "SOURCES += $filename" >> qtradingview.pro
+    done
+    echo "TRANSLATIONS += i18n/en_EN.ts" >> qtradingview.pro
+    echo "TRANSLATIONS += i18n/es_ES.ts" >> qtradingview.pro
+    pylupdate5 -noobsolete qtradingview.pro
+    # pylupdate5 qtradingview.pro
+    lrelease qtradingview.pro
+}
+
+# inicio
+
+header
+
+info "Icon Resources"
+build_icons
+
+info "Ui Files"
+build_UiFiles
+
+build_project_file

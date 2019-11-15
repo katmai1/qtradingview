@@ -10,8 +10,11 @@
     <height>587</height>
    </rect>
   </property>
+  <property name="features">
+   <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetVerticalTitleBar</set>
+  </property>
   <property name="windowTitle">
-   <string>DockWidget</string>
+   <string>Info</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QVBoxLayout" name="verticalLayout">
