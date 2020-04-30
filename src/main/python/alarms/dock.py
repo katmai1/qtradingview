@@ -1,6 +1,6 @@
 import logging
 from PyQt5 import QtWidgets, QtCore, QtGui
-import notify2
+# import notify2
 
 from ui.dock_alarms_Ui import Ui_DockAlarms
 from models.markets import Alarms

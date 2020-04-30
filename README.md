@@ -21,8 +21,12 @@ install PyQt5
 
 install dependencies
 
-    'pip install fbs coloredlogs peewee ccxt beautifulsoup4 html5lib PyQtWebEngine'
+    'pip install fbs coloredlogs peewee ccxt beautifulsoup4 html5lib PyQtWebEngine pyyaml'
 
+
+create database
+
+    './devtool-update_database_models.sh'
 
 ## Usage (with fbs)
 
@@ -39,6 +43,17 @@ Create linux installer (ubuntu, arch)
     'fbs installer'
 
 > **fbs** have more options to deploy, for windows, mac and docker. [tutorial](https://github.com/mherrmann/fbs-tutorial).
+
+
+## Developer utils
+
+After create/edit UI files
+
+    './devtool-convert_ui_files.sh'
+
+After modify database models
+
+    './devtool-update_database_models.sh'
 
 ---
 

@@ -1,6 +1,6 @@
 import logging
 from PyQt5 import QtCore
-import notify2
+# import notify2
 from PyQt5.QtCore import QCoreApplication as qapp
 
 from models.markets import Alarms
@@ -19,12 +19,13 @@ class CheckAlarms(QtCore.QThread):
                     Alarms.delete_by_id(alarm.id)
 
     def notify(self, mensaje, alarm):
-        notify2.init("QTradingView")
-        n = notify2.Notification(
-            qapp.tr("Alarma!"),
-            f"#{alarm.id} | {alarm.market.symbol}: {mensaje}",
-            "logo.png"
-        )
-        n.show()
+        logging.info(f"#{alarm.id} | {alarm.market.symbol}: {mensaje}")
+        # notify2.init("QTradingView")
+        # n = notify2.Notification(
+        #     qapp.tr("Alarma!"),
+        #     f"#{alarm.id} | {alarm.market.symbol}: {mensaje}",
+        #     "logo.png"
+        # )
+        # n.show()
 
 # ────────────────────────────────────────────────────────────────────────────────
