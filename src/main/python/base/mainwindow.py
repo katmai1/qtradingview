@@ -25,8 +25,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     htmlFinished = QtCore.pyqtSignal(str)
 
     # default config
-    initial_exchange = "bitfinex"
-    initial_market = "BTC/USD"
+    initial_exchange = "binance"
+    initial_market = "BTC/USDT"
     exchanges_enabled = ['binance', 'bitfinex', 'poloniex']
 
     #

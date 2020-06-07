@@ -9,3 +9,6 @@
 *.json
 *.gpg
 /src/main/python/migrations/
+/settings.gm
+/src/main/python/.vscode/settings.json
+/src/main/python/.vscode/
