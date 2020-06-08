@@ -32,8 +32,17 @@
    <iconset resource="../icons/iconos.qrc">
     <normaloff>:/base/logo.png</normaloff>:/base/logo.png</iconset>
   </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
   <property name="dockOptions">
-   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks</set>
+   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks|QMainWindow::GroupedDragging|QMainWindow::VerticalTabs</set>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
   </property>
   <property name="currentExchange" stdset="0">
    <string/>
@@ -92,13 +101,13 @@
      <normaloff>:/actions/actions/markets.svg</normaloff>:/actions/actions/markets.svg</iconset>
    </property>
    <property name="text">
-    <string>Mercados</string>
+    <string>Markets</string>
    </property>
    <property name="toolTip">
-    <string>Mercados (F1)</string>
+    <string>Markets (F1)</string>
    </property>
    <property name="statusTip">
-    <string>Muestra/oculta panel mercados (F1)</string>
+    <string>Show/hide markets panel (F1)</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -110,13 +119,10 @@
      <normaloff>:/actions/actions/salir.svg</normaloff>:/actions/actions/salir.svg</iconset>
    </property>
    <property name="text">
-    <string>Salir</string>
+    <string>Quit</string>
    </property>
    <property name="toolTip">
-    <string>Salir (Control+Q)</string>
-   </property>
-   <property name="statusTip">
-    <string>Sale de la aplicación (Control+Q)</string>
+    <string>Quit (Control+Q)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -131,13 +137,13 @@
      <normaloff>:/actions/actions/screen.svg</normaloff>:/actions/actions/screen.svg</iconset>
    </property>
    <property name="text">
-    <string>Pantalla completa</string>
+    <string>Full Screen</string>
    </property>
    <property name="toolTip">
-    <string>Pantalla completa (F11)</string>
+    <string>Full Screen (F11)</string>
    </property>
    <property name="statusTip">
-    <string>Activa/desactiva la pantalla completa (F11)</string>
+    <string>Turn on/off full screen (F11)</string>
    </property>
    <property name="shortcut">
     <string>F11</string>
@@ -160,13 +166,13 @@
      <normaloff>:/actions/actions/debug.svg</normaloff>:/actions/actions/debug.svg</iconset>
    </property>
    <property name="text">
-    <string>Depurar</string>
+    <string>Debug</string>
    </property>
    <property name="toolTip">
-    <string>Depurar (F10)</string>
+    <string>Debug (F10)</string>
    </property>
    <property name="statusTip">
-    <string>Muestra/oculta panel de depuración (F10)</string>
+    <string>Show/hide debug panel (F10)</string>
    </property>
    <property name="shortcut">
     <string>F10</string>
@@ -184,13 +190,13 @@
      <normaloff>:/actions/actions/alarms.svg</normaloff>:/actions/actions/alarms.svg</iconset>
    </property>
    <property name="text">
-    <string>Alarmas</string>
+    <string>Alarms</string>
    </property>
    <property name="toolTip">
-    <string>Alarmas (F2)</string>
+    <string>Alarms (F2)</string>
    </property>
    <property name="statusTip">
-    <string>Muestra/oculta panel alarmas (F2)</string>
+    <string>Show/hide alarms panel (F2)</string>
    </property>
    <property name="shortcut">
     <string>F2</string>
@@ -202,13 +208,13 @@
      <normaloff>:/actions/actions/settings.svg</normaloff>:/actions/actions/settings.svg</iconset>
    </property>
    <property name="text">
-    <string>Configurar</string>
+    <string>Settings</string>
    </property>
    <property name="toolTip">
-    <string>Configurar (F9)</string>
+    <string>Settings (F9)</string>
    </property>
    <property name="statusTip">
-    <string>Muestra ventana de configuración (F9)</string>
+    <string>Show settings window (F9)</string>
    </property>
    <property name="shortcut">
     <string>F9</string>

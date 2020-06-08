@@ -10,6 +10,13 @@
     <height>300</height>
    </rect>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons/iconos.qrc">
+    <normaloff>:/actions/actions/debug.svg</normaloff>:/actions/actions/debug.svg</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="features">
    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
   </property>
@@ -17,14 +24,14 @@
    <set>Qt::BottomDockWidgetArea|Qt::TopDockWidgetArea</set>
   </property>
   <property name="windowTitle">
-   <string>Dep&amp;urar</string>
+   <string>De&amp;bug</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTextBrowser" name="edit_logger">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(222, 222, 222);</string>
+      <property name="locale">
+       <locale language="English" country="UnitedStates"/>
       </property>
       <property name="autoFormatting">
        <set>QTextEdit::AutoAll</set>
@@ -36,10 +43,16 @@
     </item>
     <item>
      <widget class="QPushButton" name="btn_clear">
+      <property name="locale">
+       <locale language="English" country="UnitedStates"/>
+      </property>
       <property name="text">
-       <string>Limpiar</string>
+       <string>Clear</string>
       </property>
       <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+      <property name="default">
        <bool>true</bool>
       </property>
      </widget>
@@ -47,7 +60,9 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons/iconos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btn_clear</sender>

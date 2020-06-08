@@ -16,14 +16,21 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons/iconos.qrc">
+    <normaloff>:/actions/actions/markets.svg</normaloff>:/actions/actions/markets.svg</iconset>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
   <property name="features">
-   <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   <set>QDockWidget::DockWidgetMovable</set>
   </property>
   <property name="allowedAreas">
-   <set>Qt::AllDockWidgetAreas</set>
+   <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
   </property>
   <property name="windowTitle">
-   <string>&amp;Mercados</string>
+   <string>&amp;Markets</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -59,36 +66,60 @@
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="btn_favorite">
-      <property name="statusTip">
-       <string>Filtrar mercados marcados como favoritos</string>
-      </property>
-      <property name="text">
-       <string>Mostrar solo favoritos</string>
-      </property>
-      <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
-        <normaloff>:/base/star.svg</normaloff>:/base/star.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="btn_favorite">
+        <property name="statusTip">
+         <string>Show only favorite markets</string>
+        </property>
+        <property name="text">
+         <string>Favorite</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons/iconos.qrc">
+          <normaloff>:/base/star.svg</normaloff>:/base/star.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_margin">
+        <property name="toolTip">
+         <string>Show only margin markets</string>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Margin</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons/iconos.qrc">
+          <normaloff>:/base/margin.svg</normaloff>:/base/margin.svg</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <spacer name="verticalSpacer_2">
@@ -119,7 +150,7 @@
        <bool>false</bool>
       </property>
       <property name="statusTip">
-       <string>Filtrar mercados por nombre</string>
+       <string>Filter markets by symbol</string>
       </property>
       <property name="inputMethodHints">
        <set>Qt::ImhUppercaseOnly</set>
@@ -134,7 +165,7 @@
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
       <property name="placeholderText">
-       <string>Filtro</string>
+       <string>Filter</string>
       </property>
       <property name="cursorMoveStyle">
        <enum>Qt::LogicalMoveStyle</enum>

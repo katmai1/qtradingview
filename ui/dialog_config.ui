@@ -32,7 +32,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Configuracion</string>
+   <string>Settings</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../icons/iconos.qrc">
@@ -41,8 +41,11 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_general">
       <attribute name="title">
@@ -57,11 +60,17 @@
          <height>71</height>
         </rect>
        </property>
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <layout class="QFormLayout" name="formLayout">
         <item row="0" column="0">
          <widget class="QLabel" name="label">
+          <property name="locale">
+           <locale language="English" country="UnitedStates"/>
+          </property>
           <property name="text">
-           <string>Idioma</string>
+           <string>Language:</string>
           </property>
          </widget>
         </item>
@@ -72,6 +81,9 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="locale">
+           <locale language="English" country="UnitedStates"/>
           </property>
           <item>
            <property name="text">
@@ -101,16 +113,25 @@
          <height>151</height>
         </rect>
        </property>
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QLabel" name="label_3">
+          <property name="locale">
+           <locale language="English" country="UnitedStates"/>
+          </property>
           <property name="text">
-           <string>Exchanges activos:</string>
+           <string>Active exchanges:</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QListWidget" name="list_exchanges">
+          <property name="locale">
+           <locale language="English" country="UnitedStates"/>
+          </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>
@@ -136,19 +157,33 @@
          <height>41</height>
         </rect>
        </property>
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QLabel" name="label_2">
+          <property name="locale">
+           <locale language="English" country="UnitedStates"/>
+          </property>
           <property name="text">
-           <string>Cargar al inicio:</string>
+           <string>Load on boot:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="combo_initial_exchange"/>
+         <widget class="QComboBox" name="combo_initial_exchange">
+          <property name="locale">
+           <locale language="English" country="UnitedStates"/>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="combo_initial_market"/>
+         <widget class="QComboBox" name="combo_initial_market">
+          <property name="locale">
+           <locale language="English" country="UnitedStates"/>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -157,6 +192,9 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
