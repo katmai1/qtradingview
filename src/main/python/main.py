@@ -3,6 +3,7 @@ import os
 import sys
 
 import yaml
+import toml
 # import peewee
 from fbs_runtime.application_context import cached_property
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
@@ -19,12 +20,12 @@ from db import db, home
 
 class AppContext(ApplicationContext):
 
-    config_file = f"{home}/config.yaml"
+    config_file = f"{home}/config.toml"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not os.path.isfile(self.config_file):
-            os.system(f"cp default_config.yaml {self.config_file}")
+            os.system(f"cp default_config.toml {self.config_file}")
 
     def run(self):
         self.window.showMaximized()
@@ -40,8 +41,9 @@ class AppContext(ApplicationContext):
 
     @cached_property
     def config(self):
-        with open(self.config_file) as file:
-            config = yaml.full_load(file)
+        # with open(self.config_file) as file:
+        #     config = yaml.full_load(file)
+        config = toml.load(self.config_file)
         return config
 
     @cached_property

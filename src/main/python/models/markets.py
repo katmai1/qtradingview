@@ -50,7 +50,6 @@ class Markets(CustomModel):
         self.limit_max_price = data['limits']['price']['max']
         self.limit_min_amount = data['limits']['amount']['min']
         self.limit_max_amount = data['limits']['amount']['max']
-        self.limit_min_cost = data['limits']['cost']['min']
         self.precision_price = data['precision']['price']
         self.actived = data['active']
 

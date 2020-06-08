@@ -47,9 +47,12 @@ class UpdateMarkets_DB(QtCore.QThread):
 
     def run(self):
         for exchange in self.lista_exchanges:
+            logging.info(f"Updating markets of {exchange}")
             self.ex = getattr(ccxt, exchange)()
             self.ex.enableRateLimit = True
             self.update_one_exchange(exchange)
-        self.sleep(10)
+            self.sleep(30)
+        logging.info("Updated all exchanges")
+        self.sleep(60)
 
 # ────────────────────────────────────────────────────────────────────────────────

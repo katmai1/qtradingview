@@ -9,8 +9,8 @@ from ui.mainwindow_Ui import Ui_MainWindow
 from debug.dock import DockDebug, Qlogger
 from markets.dock import DockMarkets
 from alarms.dock import DockAlarms
-from config.dialog import DialogConfig
 
+from .dialog_config import DialogConfig
 from .utils import TradingSource
 from .widgets import CustomWebEnginePage, CustomSplashScreen
 from .tasks import UpdateMarkets_DB
@@ -23,13 +23,6 @@ from models.markets import Markets
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     htmlFinished = QtCore.pyqtSignal(str)
-
-    # default config
-    initial_exchange = "binance"
-    initial_market = "BTC/USDT"
-    exchanges_enabled = ['binance', 'bitfinex', 'poloniex']
-
-    #
     worker = UpdateMarkets_DB()
 
     def __init__(self, ctx, *args, **kwargs):
@@ -37,6 +30,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.html = None
         self.ctx = ctx
+        self.config = ctx.config
         # splash
         splash = CustomSplashScreen(self)
         splash.show()
@@ -59,7 +53,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # loaded
         splash.finish(self)
-        self.load_chart(self.initial_market, self.initial_exchange)
+        self.load_chart(self.config['initial_market'], self.config['initial_exchange'])
 
     # ─── BASE ───────────────────────────────────────────────────────────────────────
 
@@ -104,11 +98,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # ─── EVENTOS ────────────────────────────────────────────────────────────────────
     def openDialogConfigurar(self):
         dialog = DialogConfig(self)
-        dialog.load_config(self.ctx.config)
+        dialog.load_config(self.config)
         dialog.exec_()
 
     def start_markets_updater(self):
-        self.worker.lista_exchanges = self.exchanges_enabled
+        self.worker.lista_exchanges = self.config['exchanges']
         self.worker.start()
 
     def onLoadPage(self, html):
