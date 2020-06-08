@@ -95,7 +95,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         selecciona el definido por defecto y llama al evento de cambio """
         self.combo_exchange.clear()
         for x in self.parentWidget().config['exchanges']:
-            path = f":/exchanges/{x}.png"
+            path = f":/exchanges/{x.lower()}.png"
             self.combo_exchange.addItem(QtGui.QIcon(path), x.title())
         # initial config
         default_index = self.combo_exchange.findText(self.parentWidget().config['initial_exchange'].title())

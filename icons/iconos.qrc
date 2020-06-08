@@ -5,6 +5,7 @@
     <file>bitfinex.png</file>
   </qresource>
   <qresource prefix="actions">
+    <file>actions/settings.svg</file>
     <file>actions/salir.svg</file>
     <file>actions/screen.svg</file>
     <file>actions/alarms.svg</file>

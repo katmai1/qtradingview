@@ -34,11 +34,15 @@
   <property name="windowTitle">
    <string>Configuracion</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons/iconos.qrc">
+    <normaloff>:/actions/actions/settings.svg</normaloff>:/actions/actions/settings.svg</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_general">
       <attribute name="title">
@@ -50,7 +54,7 @@
          <x>10</x>
          <y>10</y>
          <width>361</width>
-         <height>181</height>
+         <height>71</height>
         </rect>
        </property>
        <layout class="QFormLayout" name="formLayout">
@@ -58,13 +62,6 @@
          <widget class="QLabel" name="label">
           <property name="text">
            <string>Idioma</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>TextLabel</string>
           </property>
          </widget>
         </item>
@@ -98,53 +95,60 @@
       <widget class="QWidget" name="verticalLayoutWidget">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>361</width>
-         <height>191</height>
+         <x>0</x>
+         <y>50</y>
+         <width>371</width>
+         <height>151</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QCheckBox" name="check_bittrex">
+         <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Bittrex</string>
+           <string>Exchanges activos:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="check_bitfinex">
+         <widget class="QListWidget" name="list_exchanges">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::MultiSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectItems</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>371</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Bitfinex</string>
+           <string>Cargar al inicio:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="check_binance">
-          <property name="text">
-           <string>Binance</string>
-          </property>
-         </widget>
+         <widget class="QComboBox" name="combo_initial_exchange"/>
         </item>
         <item>
-         <widget class="QCheckBox" name="check_poloniex">
-          <property name="text">
-           <string>Poloniex</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
+         <widget class="QComboBox" name="combo_initial_market"/>
         </item>
        </layout>
       </widget>
@@ -163,7 +167,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons/iconos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

@@ -1,4 +1,4 @@
 language = "es_ES"
-exchanges = [ "bittrex", "bitfinex", "binance", "poloniex",]
-initial_exchange = "binance"
+exchanges = [ "Bittrex", "Bitfinex", "Binance", "Poloniex",]
+initial_exchange = "Binance"
 initial_market = "BTC/USDT"

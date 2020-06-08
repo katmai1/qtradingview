@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>639</width>
+    <width>673</width>
     <height>480</height>
    </rect>
   </property>
@@ -95,7 +95,10 @@
     <string>Mercados</string>
    </property>
    <property name="toolTip">
-    <string>Mercados</string>
+    <string>Mercados (F1)</string>
+   </property>
+   <property name="statusTip">
+    <string>Muestra/oculta panel mercados (F1)</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -108,6 +111,12 @@
    </property>
    <property name="text">
     <string>Salir</string>
+   </property>
+   <property name="toolTip">
+    <string>Salir (Control+Q)</string>
+   </property>
+   <property name="statusTip">
+    <string>Sale de la aplicación (Control+Q)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -123,6 +132,12 @@
    </property>
    <property name="text">
     <string>Pantalla completa</string>
+   </property>
+   <property name="toolTip">
+    <string>Pantalla completa (F11)</string>
+   </property>
+   <property name="statusTip">
+    <string>Activa/desactiva la pantalla completa (F11)</string>
    </property>
    <property name="shortcut">
     <string>F11</string>
@@ -148,7 +163,10 @@
     <string>Depurar</string>
    </property>
    <property name="toolTip">
-    <string>Depurar</string>
+    <string>Depurar (F10)</string>
+   </property>
+   <property name="statusTip">
+    <string>Muestra/oculta panel de depuración (F10)</string>
    </property>
    <property name="shortcut">
     <string>F10</string>
@@ -169,15 +187,31 @@
     <string>Alarmas</string>
    </property>
    <property name="toolTip">
-    <string>Alarmas</string>
+    <string>Alarmas (F2)</string>
+   </property>
+   <property name="statusTip">
+    <string>Muestra/oculta panel alarmas (F2)</string>
    </property>
    <property name="shortcut">
     <string>F2</string>
    </property>
   </action>
   <action name="actionConfigurar">
+   <property name="icon">
+    <iconset resource="../icons/iconos.qrc">
+     <normaloff>:/actions/actions/settings.svg</normaloff>:/actions/actions/settings.svg</iconset>
+   </property>
    <property name="text">
     <string>Configurar</string>
+   </property>
+   <property name="toolTip">
+    <string>Configurar (F9)</string>
+   </property>
+   <property name="statusTip">
+    <string>Muestra ventana de configuración (F9)</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
    </property>
   </action>
  </widget>
