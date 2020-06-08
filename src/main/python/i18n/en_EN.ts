@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="es">
+<!DOCTYPE TS>
+<TS version="2.1" language="en" sourcelanguage="es">
 <context>
     <name>DialogConfig</name>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="104"/>
         <source>Configuracion</source>
-        <translation type="unfinished"></translation>
+        <translation>Settings</translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="105"/>
         <source>Idioma</source>
-        <translation type="unfinished"></translation>
+        <translation>Language</translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="106"/>
         <source>es_ES</source>
-        <translation type="unfinished"></translation>
+        <translation>es_ES</translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="107"/>
         <source>en_EN</source>
-        <translation type="unfinished"></translation>
+        <translation>en_EN</translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="108"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>General</translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="111"/>
         <source>Exchanges</source>
-        <translation type="unfinished"></translation>
+        <translation>Exchanges</translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="110"/>
         <source>Cargar al inicio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Load on boot:</translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="109"/>
         <source>Exchanges activos:</source>
-        <translation type="unfinished"></translation>
+        <translation>Active exchanges:</translation>
     </message>
 </context>
 <context>
@@ -73,7 +74,7 @@
     <message>
         <location filename="../ui/dock_alarms_Ui.py" line="59"/>
         <source>A&amp;larmas</source>
-        <translation>Alarms</translation>
+        <translation>A&amp;larms</translation>
     </message>
     <message>
         <location filename="../ui/dock_alarms_Ui.py" line="67"/>
@@ -91,7 +92,7 @@
     <message>
         <location filename="../ui/dock_debug_Ui.py" line="42"/>
         <source>Dep&amp;urar</source>
-        <translation>Debug</translation>
+        <translation>Deb&amp;ug</translation>
     </message>
 </context>
 <context>
@@ -177,72 +178,72 @@
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="129"/>
         <source>Configurar</source>
-        <translation type="unfinished"></translation>
+        <translation>Settings</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="109"/>
         <source>Mercados (F1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Markets (F1)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="110"/>
         <source>Muestra/oculta panel mercados (F1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Show/hide markets panel (F1)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="113"/>
         <source>Salir (Control+Q)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exit (Control+Q)</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/mainwindow_Ui.py" line="114"/>
         <source>Sale de la aplicación (Control+Q)</source>
-        <translation type="unfinished"></translation>
+        <translation>Quit (Control+Q)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="117"/>
         <source>Pantalla completa (F11)</source>
-        <translation type="unfinished"></translation>
+        <translation>Full Screen (F11)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="118"/>
         <source>Activa/desactiva la pantalla completa (F11)</source>
-        <translation type="unfinished"></translation>
+        <translation>Turn on/off full screen (F11)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="122"/>
         <source>Depurar (F10)</source>
-        <translation type="unfinished"></translation>
+        <translation>Debug (F10)</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/mainwindow_Ui.py" line="123"/>
         <source>Muestra/oculta panel de depuración (F10)</source>
-        <translation type="unfinished"></translation>
+        <translation>Show/hide debug panel (F10)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="126"/>
         <source>Alarmas (F2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarms (F2)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="127"/>
         <source>Muestra/oculta panel alarmas (F2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Show/hide alarms panel (F2)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="130"/>
         <source>Configurar (F9)</source>
-        <translation type="unfinished"></translation>
+        <translation>Settings (F9)</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <location filename="../ui/mainwindow_Ui.py" line="131"/>
         <source>Muestra ventana de configuración (F9)</source>
-        <translation type="unfinished"></translation>
+        <translation>Show settings window (F9)</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="132"/>
         <source>F9</source>
-        <translation type="unfinished">F9</translation>
+        <translation>F9</translation>
     </message>
 </context>
 <context>
@@ -321,7 +322,7 @@
     <message>
         <location filename="../ui/dock_markets_Ui.py" line="93"/>
         <source>&amp;Mercados</source>
-        <translation>Markets</translation>
+        <translation>&amp;Markets</translation>
     </message>
 </context>
 <context>
