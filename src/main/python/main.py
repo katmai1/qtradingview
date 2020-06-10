@@ -10,7 +10,7 @@ from PyQt5.QtCore import QLibraryInfo, QLocale, QTranslator
 from PyQt5.QtWidgets import QApplication
 
 from base.mainwindow import MainWindow
-from db import db, home, migrate_tables
+from db import db, home_dir, database_file, migrate_tables
 
 # from pathlib import Path
 
@@ -19,14 +19,14 @@ from db import db, home, migrate_tables
 
 class AppContext(ApplicationContext):
 
-    config_file = f"{home}/config.toml"
-    db_file = f"{home}/database.db"
+    config_file = os.path.join(home_dir, "config.toml")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not os.path.isfile(self.config_file):
             os.system(f"cp default_config.toml {self.config_file}")
-        if not os.path.isfile(self.db_file):
+        if not os.path.isfile(database_file):
+            os.system("devtool-update_database_models.bat")
             os.system("./devtool-update_database_models.sh")
 
     def run(self):
