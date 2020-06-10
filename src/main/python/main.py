@@ -1,6 +1,7 @@
 # import logging
 import os
 import sys
+import shutil
 
 import toml
 # import peewee
@@ -24,7 +25,7 @@ class AppContext(ApplicationContext):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not os.path.isfile(self.config_file):
-            os.system(f"cp default_config.toml {self.config_file}")
+            shutil.copy("default_config.toml", self.config_file)
         if not os.path.isfile(database_file):
             os.system("devtool-update_database_models.bat")
             os.system("./devtool-update_database_models.sh")
