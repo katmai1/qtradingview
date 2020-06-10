@@ -1,1 +1,9 @@
-fbs==0.8.4
+fbs
+coloredlogs
+peewee
+peewee-migrate
+ccxt
+beautifulsoup4
+html5lib
+PyQtWebEngine
+toml

@@ -13,7 +13,7 @@ from alarms.dock import DockAlarms
 from .dialog_config import DialogConfig
 from .utils import TradingSource
 from .widgets import CustomWebEnginePage, CustomSplashScreen
-from .tasks import UpdateMarkets_DB
+# from .tasks import UpdateMarkets_DB
 
 from models.markets import Markets
 
@@ -23,7 +23,6 @@ from models.markets import Markets
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     htmlFinished = QtCore.pyqtSignal(str)
-    worker = UpdateMarkets_DB()
 
     def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -37,7 +36,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # webenginepage
         page = CustomWebEnginePage(self.webview)
         self.webview.setPage(page)
-        self.start_markets_updater()
 
         # docks
         self._docks()
@@ -82,8 +80,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # webview related
         self.webview.loadFinished.connect(self.update_page_info)
         self.htmlFinished.connect(self.onLoadPage)
-        # test action
-        self.worker.finished.connect(self.start_markets_updater)
 
     def closeEvent(self, event):
         result = QtWidgets.QMessageBox.question(
@@ -96,14 +92,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return super().closeEvent(event)
 
     # ─── EVENTOS ────────────────────────────────────────────────────────────────────
+        
     def openDialogConfigurar(self):
         dialog = DialogConfig(self)
         dialog.load_config(self.config)
         dialog.exec_()
-
-    def start_markets_updater(self):
-        self.worker.lista_exchanges = self.config['exchanges']
-        self.worker.start()
 
     def onLoadPage(self, html):
         """ recibe la señal para recibir el html"""

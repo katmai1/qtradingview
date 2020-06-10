@@ -1,3 +1,5 @@
+import logging
+
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import QCoreApplication as qapp
 
@@ -8,6 +10,7 @@ from alarms.dialog import DialogAlarm
 
 from db import db
 from models.markets import Markets, Alarms
+from .updater import UpdateMarkets
 
 
 class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
@@ -16,19 +19,24 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
         self.setupUi(self)
         #
+        self.lista_mode = "all"
+        self.updater = UpdateMarkets()
         self._load_exchanges()
         self._signals()
         #
         self.delegate = CustomItemDelegate()
         self.list_markets.setItemDelegate(self.delegate)
         self.list_markets.customContextMenuRequested.connect(self._get_context_menu)
+        self.onClickAllButton(True)
 
     def _signals(self):
         self.combo_exchange.currentTextChanged.connect(self.onExchangeChanged)
         self.list_markets.itemDoubleClicked.connect(self.onDoubleClickMarket)
         self.edit_filtro.textEdited.connect(self.onFiltroChanged)
+        self.btn_all.toggled.connect(self.onClickAllButton)
         self.btn_favorite.toggled.connect(self.onClickFavoriteButton)
-        # self.worker.finishSignal.connect(self.start_update_markets)
+        self.btn_margin.toggled.connect(self.onClickMarginButton)
+        self.btn_update.clicked.connect(self.start_update_market)
 
     @property
     def selected_exchange(self):
@@ -44,17 +52,36 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             self.raise_()
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
+    def start_update_market(self):
+        self.updater.update_markets(self.selected_exchange)
+        self.onExchangeChanged()
+        self.parent().statusbar.showMessage('Updated markets', 2000)
 
-    def onClickFavoriteButton(self, fav_actived):
+    def onClickAllButton(self, all_actived):
+        self.lista_mode = "all"
         filtro = self.edit_filtro.text()
         for index in range(self.list_markets.count()):
             item = self.list_markets.item(index)
-            item.mostrar(fav_actived, filtro)
+            item.mostrar(self.lista_mode, filtro)
+
+    def onClickFavoriteButton(self, fav_actived):
+        self.lista_mode = "fav"
+        filtro = self.edit_filtro.text()
+        for index in range(self.list_markets.count()):
+            item = self.list_markets.item(index)
+            item.mostrar(self.lista_mode, filtro)
+
+    def onClickMarginButton(self, margin_actived):
+        self.lista_mode = "margin"
+        filtro = self.edit_filtro.text()
+        for index in range(self.list_markets.count()):
+            item = self.list_markets.item(index)
+            item.mostrar(self.lista_mode, filtro)
 
     def onFiltroChanged(self, text):
         for index in range(self.list_markets.count()):
             item = self.list_markets.item(index)
-            item.mostrar(self.fav_is_checked, text)
+            item.mostrar(self.lista_mode, text)
 
     def onExchangeChanged(self):
         self.edit_filtro.clear()
@@ -110,7 +137,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         for it in Markets.get_all_by_exchange(self.selected_exchange):
             nuevo = CustomItem(self.list_markets)
             nuevo.configurar(it.symbol, self.selected_exchange)
-            nuevo.mostrar(self.fav_is_checked, filtro)
+            nuevo.mostrar(self.lista_mode, filtro)
 
     # ─── PUBLIC METHODS ─────────────────────────────────────────────────────────────
 

@@ -21,7 +21,7 @@ install PyQt5
 
 install dependencies
 
-    'pip install fbs coloredlogs peewee ccxt beautifulsoup4 html5lib PyQtWebEngine pyyaml'
+    'pip install -r requeriments/linux.txt'
 
 
 create database
@@ -55,10 +55,3 @@ After modify database models
 
     './devtool-update_database_models.sh'
 
----
-
-Pending features:
-
-- alarm system
-- favorite markets
-- ...

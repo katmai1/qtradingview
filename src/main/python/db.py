@@ -9,7 +9,12 @@ peewee.logger.setLevel(logging.INFO)
 home = str(Path.home()) + "/.qtradingview"
 if not os.path.exists(home):
     os.mkdir(home)
-db = peewee.SqliteDatabase(f'{home}/database.db')
+db = peewee.SqliteDatabase(f'{home}/database.db', pragmas={
+    'journal_mode': 'wal',
+    'cache_size': -1 * 64000,  # 64MB
+    'foreign_keys': 1,
+    'ignore_check_constraints': 0,
+    'synchronous': 0})
 
 # ─── CUSTOM MODEL BASE ──────────────────────────────────────────────────────────
 

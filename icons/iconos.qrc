@@ -5,6 +5,7 @@
     <file>bitfinex.png</file>
   </qresource>
   <qresource prefix="actions">
+    <file>actions/update.svg</file>
     <file>actions/settings.svg</file>
     <file>actions/salir.svg</file>
     <file>actions/screen.svg</file>
@@ -15,8 +16,9 @@
   <qresource prefix="base">
     <file>margin.svg</file>
     <file>splash.png</file>
-    <file>star.svg</file>
     <file>logo.png</file>
+    <file>star.svg</file>
+    <file>unstar.svg</file>
     <file>voidstar.svg</file>
   </qresource>
 </RCC>

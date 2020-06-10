@@ -1,8 +1,2 @@
 -r base.txt
-coloredlogs
-PyQt5
-peewee
-ccxt
-beautifulsoup4
-html5lib
-PyQtWebEngine
+

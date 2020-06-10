@@ -97,12 +97,12 @@
 <context>
     <name>DockMarkets</name>
     <message>
-        <location filename="../markets/dock.py" line="73"/>
+        <location filename="../markets/dock.py" line="100"/>
         <source>Eliminar de favoritos</source>
         <translation>Delete from favorites</translation>
     </message>
     <message>
-        <location filename="../markets/dock.py" line="78"/>
+        <location filename="../markets/dock.py" line="105"/>
         <source>Crear nueva alarma</source>
         <translation>Create new alarm</translation>
     </message>
@@ -299,55 +299,60 @@
 <context>
     <name>dock_markets</name>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="109"/>
+        <location filename="../ui/dock_markets_Ui.py" line="171"/>
         <source>Show only favorite markets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="110"/>
-        <source>Favorite</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/dock_markets_Ui.py" line="111"/>
+        <location filename="../ui/dock_markets_Ui.py" line="172"/>
         <source>Show only margin markets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="112"/>
-        <source>Margin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/dock_markets_Ui.py" line="113"/>
+        <location filename="../ui/dock_markets_Ui.py" line="173"/>
         <source>Filter markets by symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="114"/>
+        <location filename="../ui/dock_markets_Ui.py" line="174"/>
         <source>Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="108"/>
-        <source>&amp;Markets</source>
+        <location filename="../ui/dock_markets_Ui.py" line="167"/>
+        <source>Update markets on db (F5)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dock_markets_Ui.py" line="168"/>
+        <source>F5</source>
+        <translation type="unfinished">F5</translation>
+    </message>
+    <message>
+        <location filename="../ui/dock_markets_Ui.py" line="170"/>
+        <source>ALL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dock_markets_Ui.py" line="169"/>
+        <source>Show all markets in list</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>mainwindow</name>
     <message>
-        <location filename="../base/mainwindow.py" line="134"/>
+        <location filename="../base/mainwindow.py" line="127"/>
         <source>Cargando mercado</source>
         <translation>Loading market</translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="88"/>
+        <location filename="../base/mainwindow.py" line="84"/>
         <source>Salir</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="88"/>
+        <location filename="../base/mainwindow.py" line="84"/>
         <source>Quieres cerrar la aplicacion?</source>
         <translation>Do you want close?</translation>
     </message>

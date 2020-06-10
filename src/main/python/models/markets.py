@@ -44,6 +44,11 @@ class Markets(CustomModel):
     def check_symbol_is_fav(cls, symbol, exchange):
         item = cls.get_symbol_by_exchange(symbol, exchange)
         return item.favorite
+    
+    @classmethod
+    def check_symbol_is_margin(cls, symbol, exchange):
+        item = cls.get_symbol_by_exchange(symbol, exchange)
+        return item.margin
 
     def update_data(self, data):
         self.limit_min_price = data['limits']['price']['min']
@@ -51,6 +56,11 @@ class Markets(CustomModel):
         self.limit_min_amount = data['limits']['amount']['min']
         self.limit_max_amount = data['limits']['amount']['max']
         self.precision_price = data['precision']['price']
+        if data.get("margin"):
+            self.margin = data.get("margin")
+        if data['info'].get("margin"):
+            self.margin = data['info'].get("margin")
+        # pprint(data)
         self.actived = data['active']
 
     def update_prices(self, prices):
