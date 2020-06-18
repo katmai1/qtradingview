@@ -16,7 +16,7 @@ function info {
 
 function build_icons {
     echo -e "\tFile: 'icons/iconos.qrc'"
-    pyrcc5 icons/iconos.qrc -o src/main/python/iconos_rc.py
+    pyrcc5 icons/iconos.qrc -o app/iconos_rc.py
 }
 
 #
@@ -26,14 +26,14 @@ function build_UiFiles {
     do
         output_file=${input_file/.ui/_Ui.py}
         echo -e "\t'$input_file' to '$output_file'..."
-        pyuic5 -o src/main/python/$output_file $input_file
+        pyuic5 -o app/$output_file $input_file
     done
 }
 
 #
 
 function build_project_file {
-    cd src/main/python
+    cd app
     echo " " > qtradingview.pro
     find . -type f -name "*.py" | while read filename
     do
