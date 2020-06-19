@@ -16,7 +16,6 @@ class CustomWebEnginePage(QWebEnginePage):
             function() {
                 'use strict';
                 const checkAd = setInterval(() => {
-                    GM_addStyle(`.tv-gopro-dialog { display: none !important; }`);
                     const adBox = document.getElementById('tv-toasts');
                     if (adBox) {    adBox.remove(); }
                     const adWrapper = $("div[class^='toast-positioning-wrapper-']")[0];

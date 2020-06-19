@@ -27,18 +27,21 @@ from PyQt5.QtCore import QLibraryInfo, QLocale, QTranslator
 
 from base.mainwindow import MainWindow
 
-from db import db, home_dir, database_file, migrate_tables
+from models.markets import Markets
+from db import db, home_dir, database_file
 
 
 # ─── CONTEXTO APP ───────────────────────────────────────────────────────────────
 
 class ContextoApp:
 
+    config_file = os.path.join(home_dir, "config.toml")
+    
     def __init__(self, args):
         self.app = QApplication([])
         self.debug = args['--debug']
         signal(SIGINT, SIG_DFL)
-        self.config_file = os.path.join(home_dir, "config.toml")
+        self._generate_basic_files()
 
     def run(self):
         self.window.showMaximized()
@@ -46,6 +49,14 @@ class ContextoApp:
 
     def tr(self, context, message):
         return self.app.translate(context, message)
+    
+    # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
+
+    def _generate_basic_files(self):
+        if not os.path.exists(self.config_file):
+            shutil.copy("default_config.toml", self.config_file)
+        if not os.path.isfile(database_file):
+            db.create_tables([Markets])
 
     # ─── PROPIEDADES ────────────────────────────────────────────────────────────────
 

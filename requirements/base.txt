@@ -1,4 +1,3 @@
-fbs
 coloredlogs
 peewee
 peewee-migrate
