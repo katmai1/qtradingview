@@ -11,10 +11,10 @@ PyInstaller.__main__.run([
     # '--specpath=./_build',
     '--clean',
     '--windowed',
-    '--upx-dir=/opt/upx',
+    '--noupx',
     '--add-data=%s:.' % os.path.join('icons', 'logo.ico'),
     '--icon=%s' % os.path.join('icons', 'logo.ico'),
-    os.path.join('app', 'main.py'),
+    os.path.join('app', 'run.py'),
 ])
 
 #

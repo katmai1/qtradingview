@@ -36,7 +36,7 @@ from db import db, home_dir, database_file
 class ContextoApp:
 
     config_file = os.path.join(home_dir, "config.toml")
-    
+
     def __init__(self, args):
         self.app = QApplication([])
         self.debug = args['--debug']
@@ -49,7 +49,7 @@ class ContextoApp:
 
     def tr(self, context, message):
         return self.app.translate(context, message)
-    
+
     # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
 
     def _generate_basic_files(self):
