@@ -50,6 +50,10 @@ class ContextoApp:
     def tr(self, context, message):
         return self.app.translate(context, message)
 
+    def save_config(self):
+        with open(self.config_file, "w") as f:
+            toml.dump(self.config, f)
+
     # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
 
     def _generate_basic_files(self):

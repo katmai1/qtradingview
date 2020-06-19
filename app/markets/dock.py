@@ -4,7 +4,7 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 
 from ui.dock_markets_Ui import Ui_dock_markets
 
-from .widgets import CustomItem, CustomItemDelegate
+from .widgets import CustomItem, CustomItemDelegate, CustomContextMenu
 from .updater import UpdateMarkets
 
 from models.markets import Markets
@@ -26,7 +26,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         #
         self.delegate = CustomItemDelegate()
         self.list_markets.setItemDelegate(self.delegate)
-        self.list_markets.customContextMenuRequested.connect(self._get_context_menu)
+        self.list_markets.customContextMenuRequested.connect(self.contextMenuEvent)
         self.onClickAllButton(True)
 
     def _signals(self):
@@ -52,11 +52,31 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             self.raise_()
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
+    
+    # gestiona los shortcuts del dock
+    def keyPressEvent(self, event):
+        # f5 actualiza markets
+        if event.key() == QtCore.Qt.Key_F5:
+            self.start_update_market()
+        # si el foco esta en la lista de markets...
+        if self.list_markets.hasFocus():
+            item = self.list_markets.currentItem()
+            # escape favorite toggle
+            if event.key() == QtCore.Qt.Key_Escape:
+                item.toggle_favorite()
+            # return load selected market
+            elif event.key() == QtCore.Qt.Key_Return:
+                self.parent().load_chart(item.symbol, item.exchange)
+        else:
+            logging.debug(event.key())
+
+    # actualiza markets en la db
     def start_update_market(self):
         self.updater.update_markets(self.selected_exchange)
         self.onExchangeChanged()
         self.parent().statusbar.showMessage('Updated markets', 2000)
 
+    # filtro all
     def onClickAllButton(self, all_actived):
         self.lista_mode = "all"
         filtro = self.edit_filtro.text()
@@ -64,6 +84,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             item = self.list_markets.item(index)
             item.mostrar(self.lista_mode, filtro)
 
+    # filtro favorite
     def onClickFavoriteButton(self, fav_actived):
         self.lista_mode = "fav"
         filtro = self.edit_filtro.text()
@@ -71,6 +92,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             item = self.list_markets.item(index)
             item.mostrar(self.lista_mode, filtro)
 
+    # filtro margin
     def onClickMarginButton(self, margin_actived):
         self.lista_mode = "margin"
         filtro = self.edit_filtro.text()
@@ -78,6 +100,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             item = self.list_markets.item(index)
             item.mostrar(self.lista_mode, filtro)
 
+    # filtro de texto
     def onFiltroChanged(self, text):
         for index in range(self.list_markets.count()):
             item = self.list_markets.item(index)
@@ -92,34 +115,12 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
 
-    def _get_context_menu(self, position):
-        item = self.list_markets.itemAt(position)
-        # market = Markets.get_symbol_by_exchange(item.text(), self.selected_exchange)
-        menu = QtWidgets.QMenu(self.list_markets)
-        if item.is_favorite:
-            favoriteAction = menu.addAction("Remove from favorite")
-            favoriteAction.setIcon(QtGui.QIcon(":/base/voidstar"))
-        else:
-            favoriteAction = menu.addAction("Add to favorite")
-            favoriteAction.setIcon(QtGui.QIcon(":/base/star"))
-        # alarmAction = menu.addAction("Crear nueva alarma")
-        action = menu.exec_(self.list_markets.viewport().mapToGlobal(position))
-        if action == favoriteAction:
-            item.toggle_favorite()
-    #     elif action == alarmAction:
-    #         self._new_alarm(self.selected_exchange, item.text())
+    def contextMenuEvent(self, position):
+        contextMenu = CustomContextMenu(self.list_markets)
+        contextMenu.handler(position)
 
-    # def _new_alarm(self, exchange, market):
-    #     dialog = DialogAlarm(self)
-    #     dialog.new_alarm(exchange, market)
-    #     result = dialog.exec_()
-    #     if result:
-    #         self.parentWidget().dock_alarms.refresh_alarms()
-    #         self.parentWidget().dock_alarms.raise_()
-
+    # carga lista de exchanges en el combo
     def _load_exchanges(self):
-        """ Carga la lista de exchanges en el combo,
-        selecciona el definido por defecto y llama al evento de cambio """
         self.combo_exchange.clear()
         for x in self.parentWidget().config['exchanges']:
             path = f":/exchanges/{x.lower()}"
@@ -131,6 +132,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         # load markets
         self.onExchangeChanged()
 
+    # carga lista de markets
     def _load_markets(self):
         filtro = self.edit_filtro.text()
         self.list_markets.clear()

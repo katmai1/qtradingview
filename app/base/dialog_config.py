@@ -13,7 +13,7 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
     def __init__(self, *args, **kwargs):
         QtWidgets.QDialog.__init__(self, *args, **kwargs)
         self.setupUi(self)
-        self.config = self.parent().config
+        self.config = self.parent().ctx.config
         self.combo_initial_exchange.currentTextChanged.connect(self.onSelectInitialExchange)
 
     def load_config(self, config):
@@ -62,7 +62,6 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
         self.config['exchanges'] = self._get_list_exchanges()
         self.config['initial_exchange'] = self.combo_initial_exchange.currentText()
         self.config['initial_market'] = self.combo_initial_market.currentText()
-        with open("/home/q/.qtradingview/config.toml", "w") as f:
-            toml.dump(self.config, f)
+        self.parent().ctx.save_config()
         return super().accept()
 # ────────────────────────────────────────────────────────────────────────────────

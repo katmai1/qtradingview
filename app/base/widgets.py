@@ -20,7 +20,7 @@ class CustomWebEnginePage(QWebEnginePage):
                     if (adBox) {    adBox.remove(); }
                     const adWrapper = $("div[class^='toast-positioning-wrapper-']")[0];
                     if (adWrapper)  {   adWrapper.style.display = "none";   }
-                }, 5000);
+                }, 3000);
             }
         )();"""
 
@@ -39,7 +39,7 @@ class CustomWebEnginePage(QWebEnginePage):
     # al finalizar la carga activa el adblocker y updater titulo
     def _on_load_finished(self):
         self.html = self.toHtml(self._get_html)
-        self.timer_titulo.start(3000)
+        self.timer_titulo.start(5000)
         self.adblocker_tradingview()
 
     # actualiza el titulo de la ventana con el market y precio actual

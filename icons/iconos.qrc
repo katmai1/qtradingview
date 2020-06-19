@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="exchanges">
+    <file alias="bittrex">exchanges/bittrex.png</file>
+    <file alias="kraken">exchanges/kraken.png</file>
     <file alias="binance">exchanges/binance.png</file>
     <file alias="bitfinex">exchanges/bitfinex.png</file>
     <file alias="poloniex">exchanges/poloniex.png</file>

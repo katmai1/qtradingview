@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QStyledItemDelegate, QListWidgetItem, QStyleOptionViewItem, QListWidget
-from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QStyledItemDelegate, QListWidgetItem, QStyleOptionViewItem, QMenu, QAction
+from PyQt5.QtGui import QIcon, QKeySequence
 
 from models.markets import Markets
 
@@ -8,6 +8,54 @@ class CustomItemDelegate(QStyledItemDelegate):
     def paint(self, painter, option, index):
         option.decorationPosition = QStyleOptionViewItem.Right
         super(CustomItemDelegate, self).paint(painter, option, index)
+
+
+class CustomContextMenu(QMenu):
+
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+
+    def handler(self, position):
+        self._item = self.parent().itemAt(position)
+        self._insert_load_chart()
+        self._insert_favorite(self._item.is_favorite)
+        self._insert_select_initial_market()
+        self.exec_(self.parent().mapToGlobal(position))
+
+    # funcion para configurar las opciones rapidamente
+    def _action(self, icono, texto, cmd, shortcut=None):
+        action = QAction(QIcon(icono), texto, self, triggered=cmd)
+        if shortcut is not None:
+            action.setShortcut(shortcut)
+        return action
+
+    # ─── INSERT MENUS ────────────────────────────────────────────────────────────────────
+    def _insert_select_initial_market(self):
+        self.addAction(self._action(":/actions/settings", "Set as initial market", self._run_set_initial_market))
+        
+    def _insert_load_chart(self):
+        self.addAction(self._action(":/actions/markets", "Load chart...", self._run_load_chart, "Return"))
+
+    # accion favorito toggle
+    def _insert_favorite(self, fav):
+        v = {}
+        v[True] = {"txt": "Remove from favorite", "ico": ":base/voidstar"}
+        v[False] = {"txt": "Add to favorite", "ico": ":base/star"}
+        self.addAction(self._action(v[fav]['ico'], v[fav]['txt'], self._item.toggle_favorite, "Esc"))
+
+    # ─── ACTIONS ────────────────────────────────────────────────────────────────────
+
+    def _run_load_chart(self):
+        self.parent().parent().parent().parent().load_chart(self._item.symbol, self._item.exchange)
+
+    def _run_set_initial_market(self):
+        self.parent().parent().parent().parent().config['initial_exchange'] = self._item.exchange.title()
+        self.parent().parent().parent().parent().config['initial_market'] = self._item.symbol
+        self.parent().parent().parent().parent().ctx.save_config()
+
+# ────────────────────────────────────────────────────────────────────────────────
+
+# ─── ITEMS ──────────────────────────────────────────────────────────────────────
 
 
 class CustomItem(QListWidgetItem):

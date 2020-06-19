@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en" sourcelanguage="es">
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="es">
 <context>
     <name>DialogConfig</name>
     <message>
@@ -354,19 +353,6 @@
     <message>
         <location filename="../ui/dock_markets_Ui.py" line="178"/>
         <source>Ctrl+M</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>mainwindow</name>
-    <message>
-        <location filename="../base/mainwindow.py" line="81"/>
-        <source>Exit</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../base/mainwindow.py" line="81"/>
-        <source>Do you want quit?</source>
         <translation></translation>
     </message>
 </context>
