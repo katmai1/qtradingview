@@ -1,8 +1,8 @@
 <RCC>
   <qresource prefix="exchanges">
-    <file>poloniex.png</file>
-    <file>binance.png</file>
-    <file>bitfinex.png</file>
+    <file>exchanges/binance.png</file>
+    <file>exchanges/bitfinex.png</file>
+    <file>exchanges/poloniex.png</file>
   </qresource>
   <qresource prefix="actions">
     <file>actions/update.svg</file>
@@ -14,11 +14,11 @@
     <file>actions/markets.svg</file>
   </qresource>
   <qresource prefix="base">
-    <file>margin.svg</file>
+    <file>base/margin.svg</file>
+    <file>base/star.svg</file>
+    <file>base/unstar.svg</file>
+    <file>base/voidstar.svg</file>
     <file>splash.png</file>
     <file>logo.png</file>
-    <file>star.svg</file>
-    <file>unstar.svg</file>
-    <file>voidstar.svg</file>
   </qresource>
 </RCC>

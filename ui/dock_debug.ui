@@ -17,6 +17,9 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
   <property name="features">
    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
   </property>
@@ -24,7 +27,7 @@
    <set>Qt::BottomDockWidgetArea|Qt::TopDockWidgetArea</set>
   </property>
   <property name="windowTitle">
-   <string>De&amp;bug</string>
+   <string>Debug</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QVBoxLayout" name="verticalLayout">
