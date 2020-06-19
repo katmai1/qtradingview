@@ -12,6 +12,7 @@ PyQt App for TradingView. Recommends simple login to autosave your draws. (Login
 Create and active environment.
 
 `conda create -n env_name python=3.7`
+
 `conda activate env_name`
 
 Install PyQt5
@@ -32,7 +33,7 @@ Uninstall fbs if installed (fbs use v3.4)
 
 `pip uninstall fbs`
 
-Install pyinstaller
+Install pyinstaller (v3.6)
 
 `pip install pyinstaller`
 
@@ -50,5 +51,3 @@ Build
 After create/edit UI files
 
 `./devtool-convert_ui_files.sh`
-
-
