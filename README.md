@@ -10,16 +10,20 @@ PyQt App for TradingView. Recommends login to autosave your draws.
 ## Prepare develop environment with anaconda
 
 - create and active environment.
+
 `conda create -n env_name python=3.7`
 `conda activate env_name`
 
 - install PyQt5
+
 `conda install -c anaconda pyqt`
 
 - install dependencies
+
 `pip install -r requeriments/linux.txt`
 
 - run
+
 `python app/run.py`
 
 ## Developer tips
