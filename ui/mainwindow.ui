@@ -30,7 +30,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../icons/iconos.qrc">
-    <normaloff>:/base/logo.png</normaloff>:/base/logo.png</iconset>
+    <normaloff>:/base/logo</normaloff>:/base/logo</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -66,7 +66,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
-    <string>Barra de herramientas</string>
+    <string>Toolbar</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -98,7 +98,7 @@
    </property>
    <property name="icon">
     <iconset resource="../icons/iconos.qrc">
-     <normaloff>:/actions/actions/markets.svg</normaloff>:/actions/actions/markets.svg</iconset>
+     <normaloff>:/actions/markets</normaloff>:/actions/markets</iconset>
    </property>
    <property name="text">
     <string>Markets</string>
@@ -116,7 +116,7 @@
   <action name="actionSalir">
    <property name="icon">
     <iconset resource="../icons/iconos.qrc">
-     <normaloff>:/actions/actions/salir.svg</normaloff>:/actions/actions/salir.svg</iconset>
+     <normaloff>:/actions/exit</normaloff>:/actions/exit</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -134,7 +134,7 @@
    </property>
    <property name="icon">
     <iconset resource="../icons/iconos.qrc">
-     <normaloff>:/actions/actions/screen.svg</normaloff>:/actions/actions/screen.svg</iconset>
+     <normaloff>:/actions/screen</normaloff>:/actions/screen</iconset>
    </property>
    <property name="text">
     <string>Full Screen</string>
@@ -163,7 +163,7 @@
    </property>
    <property name="icon">
     <iconset resource="../icons/iconos.qrc">
-     <normaloff>:/actions/actions/debug.svg</normaloff>:/actions/actions/debug.svg</iconset>
+     <normaloff>:/actions/debug</normaloff>:/actions/debug</iconset>
    </property>
    <property name="text">
     <string>Debug</string>
@@ -187,7 +187,7 @@
    </property>
    <property name="icon">
     <iconset resource="../icons/iconos.qrc">
-     <normaloff>:/actions/actions/alarms.svg</normaloff>:/actions/actions/alarms.svg</iconset>
+     <normaloff>:/actions/alarms</normaloff>:/actions/alarms</iconset>
    </property>
    <property name="text">
     <string>Alarms</string>
@@ -205,7 +205,7 @@
   <action name="actionConfigurar">
    <property name="icon">
     <iconset resource="../icons/iconos.qrc">
-     <normaloff>:/actions/actions/settings.svg</normaloff>:/actions/actions/settings.svg</iconset>
+     <normaloff>:/actions/settings</normaloff>:/actions/settings</iconset>
    </property>
    <property name="text">
     <string>Settings</string>

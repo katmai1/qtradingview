@@ -97,11 +97,11 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         # market = Markets.get_symbol_by_exchange(item.text(), self.selected_exchange)
         menu = QtWidgets.QMenu(self.list_markets)
         if item.is_favorite:
-            favoriteAction = menu.addAction("Eliminar de favoritos")
-            favoriteAction.setIcon(QtGui.QIcon(":/base/voidstar.svg"))
+            favoriteAction = menu.addAction("Remove from favorite")
+            favoriteAction.setIcon(QtGui.QIcon(":/base/voidstar"))
         else:
-            favoriteAction = menu.addAction("Añadir a favoritos".encode("utf-8"))
-            favoriteAction.setIcon(QtGui.QIcon(":/base/star.svg"))
+            favoriteAction = menu.addAction("Add to favorite")
+            favoriteAction.setIcon(QtGui.QIcon(":/base/star"))
         # alarmAction = menu.addAction("Crear nueva alarma")
         action = menu.exec_(self.list_markets.viewport().mapToGlobal(position))
         if action == favoriteAction:
@@ -122,7 +122,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         selecciona el definido por defecto y llama al evento de cambio """
         self.combo_exchange.clear()
         for x in self.parentWidget().config['exchanges']:
-            path = f":/exchanges/{x.lower()}.png"
+            path = f":/exchanges/{x.lower()}"
             self.combo_exchange.addItem(QtGui.QIcon(path), x.title())
         # initial config
         default_index = self.combo_exchange.findText(self.parentWidget().config['initial_exchange'].title())
@@ -146,7 +146,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         self.label_currentExchange.setPixmap(QtGui.QPixmap())
 
     def set_currentInfo(self, exchange, market):
-        pixmap = QtGui.QPixmap(f":/exchanges/{exchange}.png").scaledToWidth(100)
+        pixmap = QtGui.QPixmap(f":/exchanges/{exchange}").scaledToWidth(100)
         self.label_currentMarket.setText(market)
         self.label_currentExchange.setPixmap(pixmap)
 

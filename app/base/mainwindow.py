@@ -79,7 +79,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # confirmacion de salida
     def closeEvent(self, event):
         result = QMessageBox.question(
-            self, qapp.translate("mainwindow", 'Exit'), qapp.translate("mainwindow", "Do you want quit?"),
+            self, self._tr("mainwindow", 'Exit'), self._tr("mainwindow", "Do you want quit?"),
             QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if result == QMessageBox.No:
             event.ignore()

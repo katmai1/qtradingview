@@ -28,8 +28,8 @@ class CustomItem(QListWidgetItem):
 
     def _get_icon(self):
         if self.is_favorite:
-            return QIcon(":/base/star.svg")
-        return QIcon(":/base/voidstar.svg")
+            return QIcon(":/base/star")
+        return QIcon(":/base/voidstar")
 
     def _mostrar(self):
         self.setHidden(False)

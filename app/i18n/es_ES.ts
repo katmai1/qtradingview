@@ -85,14 +85,14 @@
 <context>
     <name>DockDebug</name>
     <message>
-        <location filename="../ui/dock_debug_Ui.py" line="48"/>
-        <source>De&amp;bug</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/dock_debug_Ui.py" line="50"/>
+        <source>Clear</source>
+        <translation>Limpiar</translation>
     </message>
     <message>
         <location filename="../ui/dock_debug_Ui.py" line="49"/>
-        <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <source>Debug</source>
+        <translation>Depurar</translation>
     </message>
 </context>
 <context>
@@ -100,11 +100,6 @@
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="109"/>
         <source>QTradingview</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="110"/>
-        <source>Barra de herramientas</source>
         <translation></translation>
     </message>
     <message>
@@ -227,6 +222,11 @@
         <source>Show settings window (F9)</source>
         <translation>Mostrar ventana de confiración</translation>
     </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="110"/>
+        <source>Toolbar</source>
+        <translation>Barra de herramientas</translation>
+    </message>
 </context>
 <context>
     <name>dialogAlarm</name>
@@ -287,22 +287,22 @@
 <context>
     <name>dock_markets</name>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="173"/>
+        <location filename="../ui/dock_markets_Ui.py" line="174"/>
         <source>Show only favorite markets</source>
         <translation>Mostrar solo los mercados favoritos</translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="175"/>
+        <location filename="../ui/dock_markets_Ui.py" line="177"/>
         <source>Show only margin markets</source>
         <translation>Mostrar solo los mercados margin</translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="176"/>
+        <location filename="../ui/dock_markets_Ui.py" line="179"/>
         <source>Filter markets by symbol</source>
         <translation>Filtra los markets por su simbolo</translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="177"/>
+        <location filename="../ui/dock_markets_Ui.py" line="180"/>
         <source>Filter</source>
         <translation>Filtrar</translation>
     </message>
@@ -332,25 +332,40 @@
         <translation>Lista de todos los markets</translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="172"/>
+        <location filename="../ui/dock_markets_Ui.py" line="173"/>
         <source>List favorite markets</source>
         <translation>Lista de markets favoritos</translation>
     </message>
     <message>
-        <location filename="../ui/dock_markets_Ui.py" line="174"/>
+        <location filename="../ui/dock_markets_Ui.py" line="176"/>
         <source>List margin markets</source>
         <translation>Lista de markets margin</translation>
+    </message>
+    <message>
+        <location filename="../ui/dock_markets_Ui.py" line="172"/>
+        <source>Ctrl+A</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/dock_markets_Ui.py" line="175"/>
+        <source>Ctrl+F</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/dock_markets_Ui.py" line="178"/>
+        <source>Ctrl+M</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>mainwindow</name>
     <message>
-        <location filename="../base/mainwindow.py" line="67"/>
+        <location filename="../base/mainwindow.py" line="81"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="67"/>
+        <location filename="../base/mainwindow.py" line="81"/>
         <source>Do you want quit?</source>
         <translation>Quieres salir de la aplicación?</translation>
     </message>
@@ -358,9 +373,9 @@
 <context>
     <name>splash</name>
     <message>
-        <location filename="../base/widgets.py" line="58"/>
-        <source>Cargando...</source>
-        <translation></translation>
+        <location filename="../base/widgets.py" line="82"/>
+        <source>Loading...</source>
+        <translation>Cargando...</translation>
     </message>
 </context>
 </TS>

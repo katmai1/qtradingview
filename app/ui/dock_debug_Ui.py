@@ -19,6 +19,7 @@ class Ui_DockDebug(object):
         icon.addPixmap(QtGui.QPixmap(":/actions/actions/debug.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         DockDebug.setWindowIcon(icon)
         DockDebug.setAutoFillBackground(False)
+        DockDebug.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         DockDebug.setFeatures(QtWidgets.QDockWidget.DockWidgetFloatable|QtWidgets.QDockWidget.DockWidgetMovable)
         DockDebug.setAllowedAreas(QtCore.Qt.BottomDockWidgetArea|QtCore.Qt.TopDockWidgetArea)
         self.dockWidgetContents = QtWidgets.QWidget()
@@ -45,6 +46,6 @@ class Ui_DockDebug(object):
 
     def retranslateUi(self, DockDebug):
         _translate = QtCore.QCoreApplication.translate
-        DockDebug.setWindowTitle(_translate("DockDebug", "De&bug"))
+        DockDebug.setWindowTitle(_translate("DockDebug", "Debug"))
         self.btn_clear.setText(_translate("DockDebug", "Clear"))
 import iconos_rc

@@ -1,24 +1,23 @@
 <RCC>
   <qresource prefix="exchanges">
-    <file>exchanges/binance.png</file>
-    <file>exchanges/bitfinex.png</file>
-    <file>exchanges/poloniex.png</file>
+    <file alias="binance">exchanges/binance.png</file>
+    <file alias="bitfinex">exchanges/bitfinex.png</file>
+    <file alias="poloniex">exchanges/poloniex.png</file>
   </qresource>
   <qresource prefix="actions">
-    <file>actions/update.svg</file>
-    <file>actions/settings.svg</file>
-    <file>actions/salir.svg</file>
-    <file>actions/screen.svg</file>
-    <file>actions/alarms.svg</file>
-    <file>actions/debug.svg</file>
-    <file>actions/markets.svg</file>
+    <file alias="update">actions/update.svg</file>
+    <file alias="settings">actions/settings.svg</file>
+    <file alias="exit">actions/salir.svg</file>
+    <file alias="screen">actions/screen.svg</file>
+    <file alias="alarms">actions/alarms.svg</file>
+    <file alias="debug">actions/debug.svg</file>
+    <file alias="markets">actions/markets.svg</file>
   </qresource>
   <qresource prefix="base">
-    <file>base/margin.svg</file>
-    <file>base/star.svg</file>
-    <file>base/unstar.svg</file>
-    <file>base/voidstar.svg</file>
-    <file>splash.png</file>
-    <file>logo.png</file>
+    <file alias="margin">base/margin.svg</file>
+    <file alias="star">base/star.svg</file>
+    <file alias="unstar">base/unstar.svg</file>
+    <file alias="voidstar">base/voidstar.svg</file>
+    <file alias="logo">base/logo.svg</file>
   </qresource>
 </RCC>
