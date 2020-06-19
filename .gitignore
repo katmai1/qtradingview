@@ -16,3 +16,4 @@
 /dist/
 /build/
 *.spec
+/_build/
