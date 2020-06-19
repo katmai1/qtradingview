@@ -13,3 +13,6 @@
 /src/main/python/.vscode/settings.json
 /src/main/python/.vscode/
 /deploy/
+/dist/
+/build/
+*.spec
