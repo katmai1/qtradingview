@@ -19,41 +19,33 @@ function build_icons {
     pyrcc5 icons/iconos.qrc -o iconos_rc.py
 }
 
-#
-
-function build_UiFiles {
-    for input_file in ui/*
-    do
-        output_file=${input_file/.ui/_Ui.py}
-        echo -e "\t'$input_file' to '$output_file'..."
-        pyuic5 -o app/$output_file $input_file
-    done
-}
-
-#
-
+# create project file
 function build_project_file {
-    cd app
     echo " " > qtradingview.pro
+    # python files
     find . -type f -name "*.py" | while read filename
     do
         echo "SOURCES += $filename" >> qtradingview.pro
     done
+    # ui files
+    find . -type f -name "*.ui" | while read filename
+    do
+        echo "FORMS += $filename" >> qtradingview.pro
+    done
+    # translations
     echo "TRANSLATIONS += i18n/en_EN.ts" >> qtradingview.pro
     echo "TRANSLATIONS += i18n/es_ES.ts" >> qtradingview.pro
     pylupdate5 -noobsolete qtradingview.pro
-    # pylupdate5 qtradingview.pro
     lrelease qtradingview.pro
 }
 
-# inicio
+
+# main
 
 header
 
 info "Icon Resources"
 build_icons
 
-# info "Ui Files"
-# build_UiFiles
-
+info "Project File"
 build_project_file

@@ -16,7 +16,7 @@ import os
 import sys
 import docopt
 
-from context import ContextoApp
+from base.context import ContextoApp
 
 
 def get_version():
