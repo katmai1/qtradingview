@@ -14,9 +14,10 @@ Recommends simple login to autosave your draws.
 
 ## Install
 
-- Use pip to install
+- Install from remote
     - `pip install qtradingview`
-    - `qtradingview`
+- Install from local
+    - `pip install -e .`
 
 ---
 
@@ -57,4 +58,4 @@ Recommends simple login to autosave your draws.
     - `python setup.py sdist`
 
 - Upload to PyPi
-    - `twine upload --repository pypi dist/*`
+    - `twine upload --skip-existing  --repository pypi dist/*`
