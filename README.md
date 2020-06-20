@@ -1,53 +1,60 @@
 # QTradingView
 
-PyQt App for TradingView. Recommends simple login to autosave your draws. (Login with google account or others not works because try open a new tab...)
+PyQt App for TradingView.
 
-## Demo
+Recommends simple login to autosave your draws.
 
-![Image not found](demo.png)
 ---
 
-## Prepare develop environment with anaconda
+## Screenshot
 
-Create and active environment.
+![Image not found](demo.png)
 
-`conda create -n env_name python=3.7`
+---
 
-`conda activate env_name`
+## Install
 
-Install PyQt5
+- Use pip to install
+    - `pip install qtradingview`
+    - `qtradingview`
 
-`conda install -c anaconda pyqt`
+---
 
-Install dependencies
+## Install from source
 
-`pip install -r requeriments/linux.txt`
+###### Prepare environment with Anaconda
 
-Run
+- Create and active environment.
+    - `conda create -n env_name python=3.7`
+    - `conda activate env_name`
 
-`python app/run.py`
+- Install PyQt5
+    - `conda install -c anaconda pyqt`
 
-## Compile
+- Install dependencies
+    - `pip install -r requeriments/linux.txt`
 
-Uninstall fbs if installed (fbs use v3.4)
+- Run
+    - `python app/run.py`
 
-`pip uninstall fbs`
+#### Compile
 
-Install pyinstaller (v3.6)
+- Install pyinstaller
+    - `pip install --upgrade pyinstaller`
 
-`pip install pyinstaller`
+- Build
+    - `python build.py`
 
-Build
+- You can found the binary in '_build/dist'
 
-`python build.py`
+---
 
-- You can found the binary in '_build/dist', this process is tested in Debian10, and probably works in several Linux.
+## Developing
 
-- Also works in Windows without build.py (need replace linux paths format)
+#### PyPi Integrate
 
+- Build dist package
+    - `python setup.py sdist`
 
-## Developer tips
-
-After create/edit UI files
-
-`./devtool-convert_ui_files.sh`
+- Upload to PyPi
+    - `twine upload --repository pypi dist/*`

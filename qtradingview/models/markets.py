@@ -1,7 +1,7 @@
 import logging
 import peewee
 
-from models.base import CustomModel
+from qtradingview.models.base import CustomModel
 
 
 class Markets(CustomModel):

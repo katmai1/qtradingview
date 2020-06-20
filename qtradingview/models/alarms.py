@@ -1,7 +1,7 @@
 import peewee
 
-from models.base import CustomModel
-from models.markets import Markets
+from qtradingview.models.base import CustomModel
+from qtradingview.models.markets import Markets
 
 
 # ─── ALARMS ─────────────────────────────────────────────────────────────────────

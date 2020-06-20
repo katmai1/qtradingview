@@ -1,6 +1,6 @@
 from peewee import SqliteDatabase, Model
 
-from utils import AppUtil
+from qtradingview.utils import AppUtil
 
 
 # genera el objeto db y lo devuelve

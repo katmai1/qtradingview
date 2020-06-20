@@ -19,10 +19,10 @@ setuptools.setup(
     python_requires='>=3.7',
     entry_points={
         'console_scripts': [
-            'qtradingview=qtradingview:run',
+            'qtradingview=qtradingview:main',
         ],
     },
     install_requires=[
-        'docopt', 'peewee', 'PyQtWebEngine', 'toml', 'coloredlogs', 'ccxt'
+        'docopt', 'peewee', 'PyQtWebEngine', 'toml', 'coloredlogs', 'ccxt',
     ],
 )

@@ -6,13 +6,13 @@ from PyQt5.QtCore import QCoreApplication as qapp
 
 # from ui.mainwindow_Ui import Ui_MainWindow
 
-from markets.dock import DockMarkets
-from debug.dock import DockDebug, Qlogger
+from qtradingview.markets.dock import DockMarkets
+from qtradingview.debug.dock import DockDebug, Qlogger
 
 from .widgets import CustomWebEnginePage
 from .dialog_config import DialogConfig
 
-Ui_MainWindow, QtBaseClass = uic.loadUiType("ui/mainwindow.ui")
+Ui_MainWindow, QtBaseClass = uic.loadUiType("qtradingview/ui/mainwindow.ui")
 
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────

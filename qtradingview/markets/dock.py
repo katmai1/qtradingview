@@ -7,9 +7,9 @@ from PyQt5 import QtWidgets, QtGui, QtCore, uic
 from .widgets import CustomItem, CustomItemDelegate, CustomContextMenu
 from .updater import UpdateMarkets
 
-from models.markets import Markets
+from qtradingview.models.markets import Markets
 
-Ui_dock_markets, QtBaseClass = uic.loadUiType("ui/dock_markets.ui")
+Ui_dock_markets, QtBaseClass = uic.loadUiType("qtradingview/ui/dock_markets.ui")
 
 
 # ─── DOCK MARKETS ───────────────────────────────────────────────────────────────

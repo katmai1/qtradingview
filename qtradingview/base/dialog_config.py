@@ -3,9 +3,9 @@ import logging
 import toml
 
 # from ui.dialog_config_Ui import Ui_DialogConfig
-from models.markets import Markets
+from qtradingview.models.markets import Markets
 
-Ui_DialogConfig, QtBaseClass = uic.loadUiType("ui/dialog_config.ui")
+Ui_DialogConfig, QtBaseClass = uic.loadUiType("qtradingview/ui/dialog_config.ui")
 
 
 class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
