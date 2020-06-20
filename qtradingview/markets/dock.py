@@ -9,7 +9,7 @@ from .updater import UpdateMarkets
 
 from qtradingview.models.markets import Markets
 
-Ui_dock_markets, QtBaseClass = uic.loadUiType("qtradingview/ui/dock_markets.ui", import_from="qtradingview")
+Ui_dock_markets, QtBaseClass = uic.loadUiType("qtradingview/ui/dock_markets.ui")
 
 
 # ─── DOCK MARKETS ───────────────────────────────────────────────────────────────
