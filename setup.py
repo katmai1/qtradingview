@@ -5,7 +5,6 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="qtradingview",
-    version="0.9.2",
     author='katmai',
     author_email='katmai.mobil@gmail.com',
     description='PyQt5 GUI for TradingView',
