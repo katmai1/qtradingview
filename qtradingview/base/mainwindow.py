@@ -1,4 +1,5 @@
 import logging
+import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox
@@ -12,7 +13,14 @@ from qtradingview.debug.dock import DockDebug, Qlogger
 from .widgets import CustomWebEnginePage
 from .dialog_config import DialogConfig
 
-Ui_MainWindow, QtBaseClass = uic.loadUiType("qtradingview/ui/mainwindow.ui")
+
+def resource_path(filename):
+    base_path = os.path.abspath(".")
+    return os.path.join(base_path, "qtradingview", "ui", filename)
+
+
+resourceui = resource_path("mainwindow.ui")
+Ui_MainWindow, QtBaseClass = uic.loadUiType(resourceui)
 
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────

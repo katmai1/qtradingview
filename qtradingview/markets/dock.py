@@ -1,4 +1,5 @@
 import logging
+import os
 
 from PyQt5 import QtWidgets, QtGui, QtCore, uic
 
@@ -9,7 +10,14 @@ from .updater import UpdateMarkets
 
 from qtradingview.models.markets import Markets
 
-Ui_dock_markets, QtBaseClass = uic.loadUiType("qtradingview/ui/dock_markets.ui")
+
+def resource_path(filename):
+    base_path = os.path.abspath(".")
+    return os.path.join(base_path, "qtradingview", "ui", filename)
+
+
+resourceui = resource_path("dock_markets.ui")
+Ui_dock_markets, QtBaseClass = uic.loadUiType(resourceui)
 
 
 # ─── DOCK MARKETS ───────────────────────────────────────────────────────────────

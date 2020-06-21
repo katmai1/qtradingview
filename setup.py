@@ -12,7 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/katmai1/qtradingview",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude=["*.egg-info", ]),
     classifiers=[
         "Programming Language :: Python :: 3",
     ],
