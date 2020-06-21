@@ -1,0 +1,4 @@
+language = "es_ES"
+exchanges = [ "Bittrex", "Bitfinex", "Binance", "Poloniex",]
+initial_exchange = "Binance"
+initial_market = "BTC/USDT"

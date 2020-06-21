@@ -18,5 +18,3 @@
 *.spec
 /_build/
 /__pycache__/
-/qtradingview.egg-info/
-__pycache__

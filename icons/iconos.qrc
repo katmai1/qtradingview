@@ -1,0 +1,25 @@
+<RCC>
+  <qresource prefix="exchanges">
+    <file alias="bittrex">exchanges/bittrex.png</file>
+    <file alias="kraken">exchanges/kraken.png</file>
+    <file alias="binance">exchanges/binance.png</file>
+    <file alias="bitfinex">exchanges/bitfinex.png</file>
+    <file alias="poloniex">exchanges/poloniex.png</file>
+  </qresource>
+  <qresource prefix="actions">
+    <file alias="update">actions/update.svg</file>
+    <file alias="settings">actions/settings.svg</file>
+    <file alias="exit">actions/salir.svg</file>
+    <file alias="screen">actions/screen.svg</file>
+    <file alias="alarms">actions/alarms.svg</file>
+    <file alias="debug">actions/debug.svg</file>
+    <file alias="markets">actions/markets.svg</file>
+  </qresource>
+  <qresource prefix="base">
+    <file alias="margin">base/margin.svg</file>
+    <file alias="star">base/star.svg</file>
+    <file alias="unstar">base/unstar.svg</file>
+    <file alias="voidstar">base/voidstar.svg</file>
+    <file alias="logo">base/logo.svg</file>
+  </qresource>
+</RCC>
