@@ -19,7 +19,7 @@ setuptools.setup(
     python_requires='>=3.7',
     entry_points={
         'console_scripts': [
-            'qtradingview=qtradingview:main',
+            'qtradingview=qtradingview.__main__:main',
         ],
     },
     install_requires=[

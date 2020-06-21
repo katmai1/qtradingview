@@ -21,6 +21,7 @@ function build_icons {
 
 # create project file
 function build_project_file {
+    cd qtradingview
     echo " " > qtradingview.pro
     # python files
     find . -type f -name "*.py" | while read filename

@@ -1,10 +1,9 @@
 coloredlogs
 peewee
-peewee-migrate
 ccxt
 beautifulsoup4
 html5lib
 PyQtWebEngine
 toml
 docopt
-pyinstaller
+cached_property
