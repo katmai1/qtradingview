@@ -7,10 +7,10 @@ from cached_property import cached_property
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QLibraryInfo, QLocale, QTranslator
 
-from qtradingview.utils import AppUtil
-from qtradingview.models.base import get_db
-from qtradingview.models.markets import Markets
-from qtradingview.base.mainwindow import MainWindow
+from .utils import AppUtil
+from .models.base import get_db
+from .models.markets import Markets
+from .base.mainwindow import MainWindow
 
 
 # ─── CONTEXTO APP ───────────────────────────────────────────────────────────────
