@@ -6,15 +6,15 @@ import os
 from PyQt5 import QtWidgets, uic
 # from ui.dock_debug_Ui import Ui_DockDebug
 
-Ui_DockDebug, QtBaseClass = uic.loadUiType("ui/dock_debug.ui")
+# Ui_DockDebug, QtBaseClass = uic.loadUiType("ui/dock_debug.ui")
 
 
-class DockDebug(QtWidgets.QDockWidget, Ui_DockDebug):
+class DockDebug(QtWidgets.QDockWidget):
 
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent)
-        Ui_DockDebug.__init__(self)
-        self.setupUi(self)
+        # Ui_DockDebug.__init__(self)
+        uic.loadUi("ui/dock_debug.ui", self)
         #
         self.mw = parent
         #

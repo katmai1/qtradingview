@@ -9,17 +9,17 @@ from app.markets.updater import UpdateMarkets
 
 from app.models.markets import Markets
 
-Ui_dock_markets, QtBaseClass = uic.loadUiType("ui/dock_markets.ui")
+# Ui_dock_markets, QtBaseClass = uic.loadUiType("ui/dock_markets.ui")
 
 
 # ─── DOCK MARKETS ───────────────────────────────────────────────────────────────
 
-class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
+class DockMarkets(QtWidgets.QDockWidget):
 
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
-        Ui_dock_markets.__init__(self)
-        self.setupUi(self)
+        # Ui_dock_markets.__init__(self)
+        uic.loadUi("ui/dock_markets.ui", self)
         #
         self.mw = self.parent()  # mainwindow
         self.setVisible(self.mw.actionMarkets.isChecked())

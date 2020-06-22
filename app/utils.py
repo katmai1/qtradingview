@@ -31,6 +31,6 @@ class AppUtil:
     @classmethod
     def create_default_config(cls):
         if not os.path.exists(cls.get_config_file_path()):
-            shutil.copy("default_config.toml", cls.get_config_file_path())
+            shutil.copy(".default_config.toml", cls.get_config_file_path())
 
 # ────────────────────────────────────────────────────────────────────────────────

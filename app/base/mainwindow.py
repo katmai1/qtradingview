@@ -12,17 +12,17 @@ from app.debug.dock import DockDebug, Qlogger
 from app.base.widgets import CustomWebEnginePage
 from app.base.dialog_config import DialogConfig
 
-Ui_MainWindow, QtBaseClass = uic.loadUiType("ui/mainwindow.ui")
+# Ui_MainWindow, QtBaseClass = uic.loadUiType("ui/mainwindow.ui")
 
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
-        Ui_MainWindow.__init__(self)
-        self.setupUi(self)
+        # Ui_MainWindow.__init__(self)
+        uic.loadUi("ui/mainwindow.ui", self)
         #
         self.html = None
         self.ctx = ctx
