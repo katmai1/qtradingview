@@ -1,0 +1,17 @@
+[versionner]
+file = .VERSION
+date_format = %d-%m-%Y
+up_part = patch
+
+[vcs]
+engine = git
+commit_message = '%(version)s'
+
+[file:apprun.py]
+enabled = true
+search = ^\s*__version__\s*=.*$
+replace = __version__ = '%(version)s'
+date_format = %Y-%m-%d
+match = line
+search_flags = 
+encoding = utf-8
