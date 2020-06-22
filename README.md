@@ -1,53 +1,31 @@
 # QTradingView
 
-PyQt App for TradingView. Recommends simple login to autosave your draws. (Login with google account or others not works because try open a new tab...)
+PyQt App for TradingView.
+
+Recommends simple login to autosave your draws. 
 
 ## Demo
 
-![Image not found](demo.png)
+![Image not found](icons/screenshots/demo.png)
+
 ---
 
-## Prepare develop environment with anaconda
+#### Prepare with anaconda
+
 
 Create and active environment.
+```
+ conda create -n env_name python=3.7
+ conda activate env_name
+```
 
-`conda create -n env_name python=3.7`
-
-`conda activate env_name`
-
-Install PyQt5
-
-`conda install -c anaconda pyqt`
-
-Install dependencies
-
-`pip install -r requeriments/linux.txt`
+Install PyQt5 and dependencies
+```
+ conda install -c anaconda pyqt
+ pip install -r requeriments.txt
+```
 
 Run
-
-`python app/run.py`
-
-## Compile
-
-Uninstall fbs if installed (fbs use v3.4)
-
-`pip uninstall fbs`
-
-Install pyinstaller (v3.6)
-
-`pip install pyinstaller`
-
-Build
-
-`python build.py`
-
-- You can found the binary in '_build/dist', this process is tested in Debian10, and probably works in several Linux.
-
-- Also works in Windows without build.py (need replace linux paths format)
-
-
-## Developer tips
-
-After create/edit UI files
-
-`./devtool-convert_ui_files.sh`
+```
+ python apprun.py
+```
