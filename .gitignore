@@ -18,3 +18,4 @@
 *.spec
 /_build/
 /__pycache__/
+/QTradingView.desktop
