@@ -1,4 +1,5 @@
 import os
+import sys
 import shutil
 from pathlib import Path
 
@@ -34,3 +35,16 @@ class AppUtil:
             shutil.copy(".default_config.toml", cls.get_config_file_path())
 
 # ────────────────────────────────────────────────────────────────────────────────
+
+
+# mandatory to compile with pyinstaller
+def resource_path(ui_filename):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    relative_path = os.path.join("ui", ui_filename)
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)

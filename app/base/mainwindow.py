@@ -8,22 +8,22 @@ from PyQt5.QtCore import QCoreApplication as qapp
 from app.markets.dock import DockMarkets
 from app.debug.dock import DockDebug, Qlogger
 
+from app.utils import resource_path
 from app.base.widgets import CustomWebEnginePage
 from app.base.dialog_config import DialogConfig
 
 from app import iconos_rc
-
-# Ui_MainWindow, QtBaseClass = uic.loadUiType("ui/mainwindow.ui")
 
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
 
 class MainWindow(QtWidgets.QMainWindow):
 
+    ui_filename = "mainwindow.ui"
+
     def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
-        ui_file = os.path.join("ui", "mainwindow.ui")
-        uic.loadUi(ui_file, self)
+        uic.loadUi(resource_path(self.ui_filename), self)
         #
         self.html = None
         self.ctx = ctx

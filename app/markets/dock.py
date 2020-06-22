@@ -8,6 +8,8 @@ from app.markets.widgets import CustomItem, CustomItemDelegate, CustomContextMen
 from app.markets.updater import UpdateMarkets
 
 from app.models.markets import Markets
+from app.utils import resource_path
+
 
 # Ui_dock_markets, QtBaseClass = uic.loadUiType("ui/dock_markets.ui")
 
@@ -16,10 +18,13 @@ from app.models.markets import Markets
 
 class DockMarkets(QtWidgets.QDockWidget):
 
+    ui_filename = "dock_markets.ui"
+    
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
         # Ui_dock_markets.__init__(self)
-        uic.loadUi(os.path.join("ui", "dock_markets.ui"), self)
+        # uic.loadUi(os.path.join("ui", "dock_markets.ui"), self)
+        uic.loadUi(resource_path(self.ui_filename), self)
         #
         self.mw = self.parent()  # mainwindow
         self.setVisible(self.mw.actionMarkets.isChecked())

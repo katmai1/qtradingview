@@ -81,7 +81,7 @@ class CustomItem(QListWidgetItem):
     @property
     def is_favorite(self):
         return Markets.check_symbol_is_fav(self.symbol, self.exchange)
-    
+
     @property
     def is_margin(self):
         return Markets.check_symbol_is_margin(self.symbol, self.exchange)

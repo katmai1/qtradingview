@@ -4,18 +4,21 @@ import toml
 import os
 # from ui.dialog_config_Ui import Ui_DialogConfig
 from app.models.markets import Markets
+from app.utils import resource_path
 
 # Ui_DialogConfig, QtBaseClass = uic.loadUiType("ui/dialog_config.ui")
 
 
 class DialogConfig(QtWidgets.QDialog):
 
-    exchanges = ["Bittrex", 'Bitfinex', 'Binance', 'Poloniex', 'Kraken']
+    # exchanges = ["Bittrex", 'Bitfinex', 'Binance', 'Poloniex', 'Kraken']
+    ui_filename = "dialog_config.ui"
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QDialog.__init__(self, *args, **kwargs)
         # Ui_DialogConfig.__init__(self)
-        uic.loadUi(os.path.join("ui", "dialog_config.ui"), self)
+        # uic.loadUi(os.path.join("ui", "dialog_config.ui"), self)
+        uic.loadUi(resource_path(self.ui_filename), self)
         #
         self.config = self.parent().ctx.config
         self.combo_initial_exchange.currentTextChanged.connect(self.onSelectInitialExchange)
