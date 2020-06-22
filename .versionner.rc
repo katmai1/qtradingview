@@ -1,7 +1,7 @@
 [versionner]
 file = .VERSION
 date_format = %d-%m-%Y
-up_part = patch
+up_part = minor
 
 [vcs]
 engine = git

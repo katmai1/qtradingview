@@ -21,7 +21,7 @@ class AppUtil:
 
     @classmethod
     def get_i18n_dir(cls):
-        return "i18n"
+        return os.path.join("app", "i18n")
 
     @classmethod
     def create_home_dir(cls):
