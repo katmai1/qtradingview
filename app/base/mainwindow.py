@@ -23,7 +23,8 @@ class MainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         # Ui_MainWindow.__init__(self)
         # self.setupUi(self)
-        uic.loadUi(os.path.join("ui", "mainwindow.ui"), self)
+        ui_file = os.path.abspath(os.path.join("ui", "mainwindow.ui"))
+        uic.loadUi(ui_file, self)
         #
         self.html = None
         self.ctx = ctx

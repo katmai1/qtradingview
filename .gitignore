@@ -16,3 +16,5 @@
 *.spec
 /_build/
 /QTradingView.desktop
+/build/
+/dist/
