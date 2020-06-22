@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QCoreApplication as qapp
@@ -21,9 +22,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
-        # Ui_MainWindow.__init__(self)
-        # self.setupUi(self)
-        ui_file = os.path.abspath(os.path.join("ui", "mainwindow.ui"))
+        ui_file = os.path.join("ui", "mainwindow.ui")
         uic.loadUi(ui_file, self)
         #
         self.html = None
