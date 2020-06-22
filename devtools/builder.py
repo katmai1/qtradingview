@@ -11,14 +11,14 @@ Options:
   --debug       Execute in debug mode.
   --force       Try build with generic options.
 """
-__VERSION__ = 0.9
+__VERSION__ = "0.0.0"
 
 import sys
 import docopt
 from time import sleep
 
 from PyInstaller import os, PLATFORM, is_win
-import PyInstaller.__main__
+from PyInstaller.__main__ import run as pyrunner
 
 
 class BuilderManager:
@@ -55,7 +55,7 @@ class BuilderManager:
     def run(self):
         self.opt.append(self._dirjoin(['apprun.py']))
         print(self.opt)
-        PyInstaller.__main__.run(self.opt)
+        pyrunner(self.opt)
 
     def custom_print(self, texto, tipo="i", secs=3):
         print(f" [i] {texto}")
