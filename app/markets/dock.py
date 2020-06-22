@@ -1,5 +1,5 @@
 import logging
-
+import os
 from PyQt5 import QtWidgets, QtGui, QtCore, uic
 
 # from ui.dock_markets_Ui import Ui_dock_markets
@@ -19,7 +19,7 @@ class DockMarkets(QtWidgets.QDockWidget):
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
         # Ui_dock_markets.__init__(self)
-        uic.loadUi("ui/dock_markets.ui", self)
+        uic.loadUi(os.path.join("ui", "dock_markets.ui"), self)
         #
         self.mw = self.parent()  # mainwindow
         self.setVisible(self.mw.actionMarkets.isChecked())
@@ -57,7 +57,7 @@ class DockMarkets(QtWidgets.QDockWidget):
             self.raise_()
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
-    
+
     # gestiona los shortcuts del dock
     def keyPressEvent(self, event):
         # f5 actualiza markets

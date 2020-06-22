@@ -14,7 +14,7 @@ class DockDebug(QtWidgets.QDockWidget):
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent)
         # Ui_DockDebug.__init__(self)
-        uic.loadUi("ui/dock_debug.ui", self)
+        uic.loadUi(os.path.join("ui", "dock_debug.ui"), self)
         #
         self.mw = parent
         #

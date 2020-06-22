@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic
 import logging
 import toml
-
+import os
 # from ui.dialog_config_Ui import Ui_DialogConfig
 from app.models.markets import Markets
 
@@ -15,7 +15,7 @@ class DialogConfig(QtWidgets.QDialog):
     def __init__(self, *args, **kwargs):
         QtWidgets.QDialog.__init__(self, *args, **kwargs)
         # Ui_DialogConfig.__init__(self)
-        uic.loadUi("ui/dialog_config", self)
+        uic.loadUi(os.path.join("ui", "dialog_config.ui"), self)
         #
         self.config = self.parent().ctx.config
         self.combo_initial_exchange.currentTextChanged.connect(self.onSelectInitialExchange)

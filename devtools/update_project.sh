@@ -16,7 +16,7 @@ function info {
 
 function build_icons {
     echo -e "\tFile: 'icons/iconos.qrc'"
-    pyrcc5 ../icons/iconos.qrc -o ../iconos_rc.py
+    pyrcc5 ../icons/iconos.qrc -o ../app/iconos_rc.py
 }
 
 # create project file

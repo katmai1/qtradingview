@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="es_ES" sourcelanguage="es">
+<!DOCTYPE TS>
+<TS version="2.1" language="es_ES" sourcelanguage="es">
 <context>
     <name>DialogConfig</name>
     <message>
         <location filename="../../ui/dialog_config.ui" line="35"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferencias</translation>
     </message>
     <message>
         <location filename="../../ui/dialog_config.ui" line="56"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="../../ui/dialog_config.ui" line="79"/>
         <source>es_ES</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/dialog_config.ui" line="84"/>
         <source>en_EN</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/dialog_config.ui" line="103"/>
         <source>Initial market</source>
-        <translation type="unfinished"></translation>
+        <translation>Mercado inicial</translation>
     </message>
 </context>
 <context>
@@ -71,12 +72,12 @@
     <message>
         <location filename="../../ui/dock_debug.ui" line="30"/>
         <source>Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>Depurar</translation>
     </message>
     <message>
         <location filename="../../ui/dock_debug.ui" line="53"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpiar</translation>
     </message>
 </context>
 <context>
@@ -84,127 +85,127 @@
     <message>
         <location filename="../../ui/mainwindow.ui" line="29"/>
         <source>QTradingview</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="78"/>
         <source>TradingBar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="112"/>
         <source>AppBar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="147"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="155"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="167"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayuda</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="181"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferencias</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="184"/>
         <source>F9</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="193"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Salir</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="196"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="205"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="220"/>
         <source>Markets</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="223"/>
         <source>Show/hide markets</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar/ocultar panel de markets</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="226"/>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="238"/>
         <source>Alarms</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarmas</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="241"/>
         <source>Show/hide alarms</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar/ocultar panel de alarmas</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="244"/>
         <source>F2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="256"/>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Pantalla Completa</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="259"/>
         <source>Activate/deactivate full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar/desactivar pantalla completa</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="262"/>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="274"/>
         <source>Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>Depurar</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="277"/>
         <source>Show/hide debug panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar/ocultar panel de depuración</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="288"/>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="291"/>
         <source>Show/hide toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar/ocultar la barra de herramientas</translation>
     </message>
     <message>
         <location filename="../../ui/mainwindow.ui" line="294"/>
         <source>F4</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -268,72 +269,72 @@
     <message>
         <location filename="../../ui/dock_markets.ui" line="69"/>
         <source>Update markets on db (F5)</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizar markets en la base de datos (F5)</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="85"/>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="138"/>
         <source>List all markets</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista todos los markets</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="141"/>
         <source>Show all markets in list</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra todos los markets en lista</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="147"/>
         <source>ALL</source>
-        <translation type="unfinished"></translation>
+        <translation>TODOS</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="156"/>
         <source>Ctrl+A</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="187"/>
         <source>List favorite markets</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista markets favoritos</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="190"/>
         <source>Show only favorite markets</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra solo los markets favoritos</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="206"/>
         <source>Ctrl+F</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="240"/>
         <source>List margin markets</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista los markets margin</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="243"/>
         <source>Show only margin markets</source>
-        <translation type="unfinished"></translation>
+        <translation>Muestra solo los markets margin</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="262"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="309"/>
         <source>Filter markets by symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtra markets por el simbolo</translation>
     </message>
     <message>
         <location filename="../../ui/dock_markets.ui" line="324"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro</translation>
     </message>
 </context>
 <context>
