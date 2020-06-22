@@ -5,6 +5,7 @@ up_part = minor
 
 [vcs]
 engine = git
+commit = true
 commit_message = '%(version)s'
 
 [file:apprun.py]
