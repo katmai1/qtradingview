@@ -1,12 +1,20 @@
 import os
 import sys
 import shutil
+import toml
 from pathlib import Path
 
 
 # ─── APPUTIL ────────────────────────────────────────────────────────────────────
 
 class AppUtil:
+    
+    default_config = """
+        language = "es_ES"
+        exchanges = [ "Bittrex", "Bitfinex", "Binance", "Poloniex",]
+        initial_exchange = "Binance"
+        initial_market = "BTC/USDT"
+    """
 
     @classmethod
     def get_home_dir(cls):
@@ -32,7 +40,10 @@ class AppUtil:
     @classmethod
     def create_default_config(cls):
         if not os.path.exists(cls.get_config_file_path()):
-            shutil.copy(".default_config.toml", cls.get_config_file_path())
+            config = toml.loads(cls.default_config)
+            with open(AppUtil.get_config_file_path(), "w") as f:
+                toml.dump(config, f)
+            # shutil.copy("default_config.toml", cls.get_config_file_path())
 
 # ────────────────────────────────────────────────────────────────────────────────
 
