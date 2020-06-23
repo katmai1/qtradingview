@@ -12,18 +12,19 @@ from app.utils import resource_path
 from app.base.widgets import CustomWebEnginePage
 from app.base.dialog_config import DialogConfig
 
-from app import iconos_rc
-
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
 
-class MainWindow(QtWidgets.QMainWindow):
+ui_filename = os.path.join("ui", "mainwindow.ui")
+Ui_MainWindow, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
 
-    ui_filename = os.path.join("ui", "mainwindow.ui")
+
+class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
-        uic.loadUi(resource_path(self.ui_filename), self)
+        Ui_MainWindow.__init__(self)
+        self.setupUi(self)
         #
         self.html = None
         self.ctx = ctx
@@ -36,7 +37,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # signals
         self._docks()
         self._signals()
-        
+
         # logs
         log_mode = logging.INFO
         if self.ctx.debug:

@@ -20,6 +20,7 @@ import sys
 import docopt
 
 from app.context import ContextoApp
+import iconos_rc
 
 
 # ─── MAIN ───────────────────────────────────────────────────────────────────────

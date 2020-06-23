@@ -6,13 +6,18 @@ from PyQt5 import QtWidgets, uic
 from app.utils import resource_path
 
 
-class DockDebug(QtWidgets.QDockWidget):
+# ─── PANEL DEBUG ────────────────────────────────────────────────────────────────
 
-    ui_filename = os.path.join("ui", "dock_debug.ui")
+ui_filename = os.path.join("ui", "dock_debug.ui")
+Ui_DockDebug, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
+
+
+class DockDebug(QtWidgets.QDockWidget, Ui_DockDebug):
 
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent)
-        uic.loadUi(resource_path(self.ui_filename), self)
+        Ui_DockDebug.__init__(self)
+        self.setupUi(self)
         #
         self.mw = parent
         self.setVisible(self.mw.actionDebug.isChecked())

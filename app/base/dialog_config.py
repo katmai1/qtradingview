@@ -7,14 +7,20 @@ from app.models.markets import Markets
 from app.utils import resource_path
 
 
-class DialogConfig(QtWidgets.QDialog):
+# ─── CONFIG DIALOG ──────────────────────────────────────────────────────────────
+
+ui_filename = os.path.join("ui", "dialog_config.ui")
+Ui_DialogConfig, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
+
+
+class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
 
     exchanges = ["Bittrex", 'Bitfinex', 'Binance', 'Poloniex', 'Kraken']
-    ui_filename = os.path.join("ui", "dialog_config.ui")
 
     def __init__(self, parent=None, *args, **kwargs):
         QtWidgets.QDialog.__init__(self, parent=parent, *args, **kwargs)
-        uic.loadUi(resource_path(self.ui_filename), self)
+        Ui_DialogConfig.__init__(self)
+        self.setupUi(self)
         self.mw = parent
         #
         self.config = self.parent().ctx.config

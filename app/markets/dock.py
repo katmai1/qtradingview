@@ -11,14 +11,18 @@ from app.utils import resource_path
 
 # ─── DOCK MARKETS ───────────────────────────────────────────────────────────────
 
-class DockMarkets(QtWidgets.QDockWidget):
+ui_filename = os.path.join("ui", "dock_markets.ui")
+Ui_DockMarkets, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
 
-    ui_filename = os.path.join("ui", "dock_markets.ui")
+
+class DockMarkets(QtWidgets.QDockWidget, Ui_DockMarkets):
+
     statusbar_signal = QtCore.pyqtSignal(str)
-    
+
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
-        uic.loadUi(resource_path(self.ui_filename), self)
+        Ui_DockMarkets.__init__(self)
+        self.setupUi(self)
         #
         self.mw = self.parent()  # mainwindow
         self.setVisible(self.mw.actionMarkets.isChecked())
