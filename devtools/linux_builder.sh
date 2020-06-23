@@ -29,7 +29,7 @@ function pyinstaller_run {
     pyinstaller -y --clean --onefile --name qtradingview \
         --distpath $DIST_PATH \
         --workpath $WORK_PATH \
-        --add-data "icons/logo.png:." \
+        --add-data ".default_config.toml:." \
         --add-data "ui:ui" \
         apprun.py
 }
