@@ -70,7 +70,9 @@ class MainWindow(QtWidgets.QMainWindow):
     def openDialogSettings(self):
         dialog = DialogConfig(self)
         dialog.load_config(self.config)
-        dialog.exec_()
+        r = dialog.exec_()
+        if r:
+            self.dock_markets._load_exchanges()
 
     # fullscreen
     def onActionFullScreen(self):
@@ -82,11 +84,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # confirmacion de salida
     def closeEvent(self, event):
-        result = QMessageBox.question(
-            self, self._tr("mainwindow", 'Exit'), self._tr("mainwindow", "Do you want quit?"),
-            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if result == QMessageBox.Yes:
+        result = QMessageBox.question(self, self._tr("mainwindow", 'Exit'), self._tr("mainwindow", "Do you want quit?"))
+        print(int(result))
+        if int(result) == 16384:
             self.ctx.app.quit()
+        else:
+            event.ignore()
 
     # ────────────────────────────────────────────────────────────────────────────────
 
