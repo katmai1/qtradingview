@@ -5,7 +5,7 @@ from signal import signal, SIGINT, SIG_DFL
 from cached_property import cached_property
 
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QLibraryInfo, QLocale, QTranslator
+from PyQt5.QtCore import QLibraryInfo, QTranslator
 
 from app.utils import AppUtil
 from app.models.base import get_db
@@ -28,7 +28,7 @@ class ContextoApp:
 
     def run(self):
         self.window.showMaximized()
-        return self.app.exec()
+        return self.app.exec_()
 
     def tr(self, context, message):
         return self.app.translate(context, message)

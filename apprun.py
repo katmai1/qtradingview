@@ -15,12 +15,10 @@ Options:
 # export QT_LOGGING_RULES='*=false'
 __version__ = '0.12.7'
 
-import os
 import sys
 import docopt
 
 from app.context import ContextoApp
-import iconos_rc
 
 
 # ─── MAIN ───────────────────────────────────────────────────────────────────────

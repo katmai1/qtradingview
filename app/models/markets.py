@@ -1,4 +1,3 @@
-import logging
 import peewee
 
 from .base import CustomModel

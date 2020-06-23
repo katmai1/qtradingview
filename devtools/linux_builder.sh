@@ -30,7 +30,6 @@ function pyinstaller_run {
         --distpath $DIST_PATH \
         --workpath $WORK_PATH \
         --add-data "app/i18n:app/i18n" \
-        --add-data "ui:ui" \
         apprun.py
 }
 

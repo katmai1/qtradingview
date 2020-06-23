@@ -1,29 +1,26 @@
 import logging
-import os
-import sys
-from PyQt5 import QtCore, QtGui, QtWidgets, uic
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtCore import QCoreApplication as qapp
 
 from app.markets.dock import DockMarkets
 from app.debug.dock import DockDebug, Qlogger
 
-from app.utils import resource_path
 from app.base.widgets import CustomWebEnginePage
 from app.base.dialog_config import DialogConfig
+from app.ui.mainwindow_Ui import Ui_MainWindow
 
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
 
-ui_filename = os.path.join("ui", "mainwindow.ui")
-Ui_MainWindow, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
+# ui_filename = os.path.join("ui", "mainwindow.ui")
+# Ui_MainWindow, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
-        Ui_MainWindow.__init__(self)
+        # Ui_MainWindow.__init__(self)
         self.setupUi(self)
         #
         self.html = None
