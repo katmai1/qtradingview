@@ -8,7 +8,7 @@ from app.utils import resource_path
 
 class DockDebug(QtWidgets.QDockWidget):
 
-    ui_filename = "dock_debug.ui"
+    ui_filename = os.path.join("ui", "dock_debug.ui")
 
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent)

@@ -29,6 +29,7 @@ function pyinstaller_run {
     pyinstaller -y --clean --onefile --name qtradingview \
         --distpath $DIST_PATH \
         --workpath $WORK_PATH \
+        --add-data "app/i18n:app/i18n" \
         --add-data "ui:ui" \
         apprun.py
 }
@@ -53,7 +54,7 @@ function debian_run {
     size_bin=$(du -k $DIST_PATH'/qtradingview' | cut -f1)
     mkdir devtools/dist/qtradingview-$VERSION
     tar xvzf devtools/template_debian.tar.gz -C devtools/dist/qtradingview-$VERSION
-    mv $DIST_PATH'/qtradingview' "devtools/dist/qtradingview-$VERSION/usr/bin/"
+    cp $DIST_PATH'/qtradingview' "devtools/dist/qtradingview-$VERSION/usr/bin/"
     cd devtools/dist/qtradingview-$VERSION
     echo "Installed-Size: $size_bin" >> DEBIAN/control
     echo "Version: $VERSION" >> DEBIAN/control

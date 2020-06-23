@@ -10,7 +10,7 @@ from app.utils import resource_path
 class DialogConfig(QtWidgets.QDialog):
 
     exchanges = ["Bittrex", 'Bitfinex', 'Binance', 'Poloniex', 'Kraken']
-    ui_filename = "dialog_config.ui"
+    ui_filename = os.path.join("ui", "dialog_config.ui")
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QDialog.__init__(self, *args, **kwargs)

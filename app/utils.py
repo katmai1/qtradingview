@@ -5,10 +5,22 @@ import toml
 from pathlib import Path
 
 
+# mandatory to compile with pyinstaller
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 # ─── APPUTIL ────────────────────────────────────────────────────────────────────
 
 class AppUtil:
-    
+
     default_config = """
         language = "es_ES"
         exchanges = [ "Bittrex", "Bitfinex", "Binance", "Poloniex",]
@@ -30,7 +42,7 @@ class AppUtil:
 
     @classmethod
     def get_i18n_dir(cls):
-        return os.path.join("app", "i18n")
+        return resource_path(os.path.join("app", "i18n"))
 
     @classmethod
     def create_home_dir(cls):
@@ -43,19 +55,7 @@ class AppUtil:
             config = toml.loads(cls.default_config)
             with open(AppUtil.get_config_file_path(), "w") as f:
                 toml.dump(config, f)
-            # shutil.copy("default_config.toml", cls.get_config_file_path())
 
 # ────────────────────────────────────────────────────────────────────────────────
 
 
-# mandatory to compile with pyinstaller
-def resource_path(ui_filename):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
-    relative_path = os.path.join("ui", ui_filename)
-    try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)

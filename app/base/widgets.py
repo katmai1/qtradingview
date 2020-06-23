@@ -62,7 +62,7 @@ class CustomWebEnginePage(QWebEnginePage):
     # funcion necesaria para ver el codigo html (toHtml)
     def _get_html(self, html_str):
         self.html = html_str
-        logging.debug(html_str)
+        # logging.debug(html_str)
 
     # javascripts
     def javaScriptConsoleMessage(self, level, msg, line, sourceID):

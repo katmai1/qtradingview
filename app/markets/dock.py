@@ -13,7 +13,7 @@ from app.utils import resource_path
 
 class DockMarkets(QtWidgets.QDockWidget):
 
-    ui_filename = "dock_markets.ui"
+    ui_filename = os.path.join("ui", "dock_markets.ui")
 
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)

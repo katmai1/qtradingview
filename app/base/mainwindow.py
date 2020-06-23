@@ -19,7 +19,7 @@ from app import iconos_rc
 
 class MainWindow(QtWidgets.QMainWindow):
 
-    ui_filename = "mainwindow.ui"
+    ui_filename = os.path.join("ui", "mainwindow.ui")
 
     def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
