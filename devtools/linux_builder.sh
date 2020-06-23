@@ -58,9 +58,9 @@ function debian_run {
     cd devtools/dist/qtradingview-$VERSION
     echo "Installed-Size: $size_bin" >> DEBIAN/control
     echo "Version: $VERSION" >> DEBIAN/control
-    chown -R root:root .
     cd ..
-    dpkg -b qtradingview-$VERSION
+    dpkg-deb --build qtradingview-$VERSION
+    rm -rf qtradingview-$VERSION
 
 }
 
