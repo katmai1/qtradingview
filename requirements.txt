@@ -7,3 +7,4 @@ PyQtWebEngine
 toml
 docopt
 cached_property
+versionner

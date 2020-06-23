@@ -1,7 +1,7 @@
 import logging
 
 from PyQt5.QtWidgets import QStyledItemDelegate, QListWidgetItem, QStyleOptionViewItem, QMenu, QAction
-from PyQt5.QtGui import QIcon, QKeySequence
+from PyQt5.QtGui import QIcon
 
 from app.models.markets import Markets
 

@@ -1,17 +1,10 @@
-from PyQt5 import QtWidgets, uic
-import logging
-import toml
-import os
+from PyQt5 import QtWidgets
 
 from app.models.markets import Markets
-from app.utils import resource_path
 from app.ui.dialog_config_Ui import Ui_DialogConfig
 
+
 # ─── CONFIG DIALOG ──────────────────────────────────────────────────────────────
-
-# ui_filename = os.path.join("ui", "dialog_config.ui")
-# Ui_DialogConfig, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
-
 
 class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
 
@@ -19,7 +12,6 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
 
     def __init__(self, parent=None, *args, **kwargs):
         QtWidgets.QDialog.__init__(self, parent=parent, *args, **kwargs)
-        # Ui_DialogConfig.__init__(self)
         self.setupUi(self)
         self.mw = parent
         #

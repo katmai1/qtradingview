@@ -1,16 +1,11 @@
-import os
 import logging
 import coloredlogs
 
-from PyQt5 import QtWidgets, uic
-from app.utils import resource_path
+from PyQt5 import QtWidgets
 from app.ui.dock_debug_Ui import Ui_DockDebug
 
+
 # ─── PANEL DEBUG ────────────────────────────────────────────────────────────────
-
-# ui_filename = os.path.join("ui", "dock_debug.ui")
-# Ui_DockDebug, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
-
 
 class DockDebug(QtWidgets.QDockWidget, Ui_DockDebug):
 

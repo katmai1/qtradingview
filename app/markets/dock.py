@@ -1,19 +1,14 @@
 import logging
-import os
-from PyQt5 import QtWidgets, QtGui, QtCore, uic
+from PyQt5 import QtWidgets, QtGui, QtCore
 
 from app.markets.widgets import CustomItem, CustomItemDelegate, CustomContextMenu
 from app.markets.updater import UpdateMarkets
 
 from app.models.markets import Markets
-from app.utils import resource_path
 from app.ui.dock_markets_Ui import Ui_dock_markets
 
+
 # ─── DOCK MARKETS ───────────────────────────────────────────────────────────────
-
-# ui_filename = os.path.join("ui", "dock_markets.ui")
-# Ui_DockMarkets, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
-
 
 class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
@@ -21,7 +16,6 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
-        # Ui_DockMarkets.__init__(self)
         self.setupUi(self)
         #
         self.mw = self.parent()  # mainwindow
