@@ -13,7 +13,7 @@ Options:
   --debug       Execute in debug mode.
 """
 
-__version__ = '0.12.6'
+__version__ = '0.12.7'
 
 import os
 import sys
