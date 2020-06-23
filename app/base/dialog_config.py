@@ -19,7 +19,7 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
 
     def __init__(self, parent=None, *args, **kwargs):
         QtWidgets.QDialog.__init__(self, parent=parent, *args, **kwargs)
-        Ui_DialogConfig.__init__(self)
+        # Ui_DialogConfig.__init__(self)
         self.setupUi(self)
         self.mw = parent
         #

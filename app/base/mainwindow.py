@@ -24,7 +24,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __init__(self, ctx, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
-        Ui_MainWindow.__init__(self)
+        # Ui_MainWindow.__init__(self)
         self.setupUi(self)
         #
         self.html = None
