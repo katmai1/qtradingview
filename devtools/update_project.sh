@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #
 # Script to compile icons and search strings for linguistics in all project
 #
