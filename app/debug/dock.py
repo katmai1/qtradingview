@@ -1,14 +1,9 @@
+import os
 import logging
 import coloredlogs
 
-from pathlib import Path
-import os
 from PyQt5 import QtWidgets, uic
 from app.utils import resource_path
-
-# from ui.dock_debug_Ui import Ui_DockDebug
-
-# Ui_DockDebug, QtBaseClass = uic.loadUiType("ui/dock_debug.ui")
 
 
 class DockDebug(QtWidgets.QDockWidget):
@@ -17,12 +12,9 @@ class DockDebug(QtWidgets.QDockWidget):
 
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent)
-        # Ui_DockDebug.__init__(self)
-        # uic.loadUi(os.path.join("ui", "dock_debug.ui"), self)
         uic.loadUi(resource_path(self.ui_filename), self)
         #
         self.mw = parent
-        #
         self.setVisible(self.mw.actionDebug.isChecked())
 
 

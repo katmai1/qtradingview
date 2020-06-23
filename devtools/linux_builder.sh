@@ -59,7 +59,7 @@ function debian_run {
     echo "Version: $VERSION" >> DEBIAN/control
     cd ..
     dpkg-deb --build qtradingview-$VERSION
-    rm -rf qtradingview-$VERSION
+    # rm -rf qtradingview-$VERSION
 
 }
 

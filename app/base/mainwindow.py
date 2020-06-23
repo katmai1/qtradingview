@@ -29,14 +29,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ctx = ctx
         self.config = ctx.config
 
-        # logs
-        log_mode = logging.INFO
-        if self.ctx.debug:
-            log_mode = logging.DEBUG
-        qlog = Qlogger(self)
-        logging.getLogger().addHandler(qlog)
-        logging.getLogger().setLevel(log_mode)
-
         # webenginepage
         page = CustomWebEnginePage(self.webview)
         self.webview.setPage(page)
@@ -44,6 +36,14 @@ class MainWindow(QtWidgets.QMainWindow):
         # signals
         self._docks()
         self._signals()
+        
+        # logs
+        log_mode = logging.INFO
+        if self.ctx.debug:
+            log_mode = logging.DEBUG
+        qlog = Qlogger(self)
+        logging.getLogger().addHandler(qlog)
+        logging.getLogger().setLevel(log_mode)
 
         # carga market inicial
         self.load_chart(self.config['initial_market'], self.config['initial_exchange'])
