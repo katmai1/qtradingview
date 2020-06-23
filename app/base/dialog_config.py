@@ -12,9 +12,10 @@ class DialogConfig(QtWidgets.QDialog):
     exchanges = ["Bittrex", 'Bitfinex', 'Binance', 'Poloniex', 'Kraken']
     ui_filename = os.path.join("ui", "dialog_config.ui")
 
-    def __init__(self, *args, **kwargs):
-        QtWidgets.QDialog.__init__(self, *args, **kwargs)
+    def __init__(self, parent=None, *args, **kwargs):
+        QtWidgets.QDialog.__init__(self, parent=parent, *args, **kwargs)
         uic.loadUi(resource_path(self.ui_filename), self)
+        self.mw = parent
         #
         self.config = self.parent().ctx.config
         self.combo_initial_exchange.currentTextChanged.connect(self.onSelectInitialExchange)
@@ -66,5 +67,6 @@ class DialogConfig(QtWidgets.QDialog):
         self.config['initial_exchange'] = self.combo_initial_exchange.currentText()
         self.config['initial_market'] = self.combo_initial_market.currentText()
         self.parent().ctx.save_config()
+        self.mw.dock_markets._load_exchanges()
         return super().accept()
 # ────────────────────────────────────────────────────────────────────────────────

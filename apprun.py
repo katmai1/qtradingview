@@ -12,7 +12,7 @@ Options:
   -v --version  Show version.
   --debug       Execute in debug mode.
 """
-
+# export QT_LOGGING_RULES='*=false'
 __version__ = '0.12.7'
 
 import os

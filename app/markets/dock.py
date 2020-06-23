@@ -14,7 +14,8 @@ from app.utils import resource_path
 class DockMarkets(QtWidgets.QDockWidget):
 
     ui_filename = os.path.join("ui", "dock_markets.ui")
-
+    statusbar_signal = QtCore.pyqtSignal(str)
+    
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
         uic.loadUi(resource_path(self.ui_filename), self)
@@ -75,7 +76,7 @@ class DockMarkets(QtWidgets.QDockWidget):
 
     # actualiza markets en la db
     def start_update_market(self):
-        self.mw.statusbar.showMessage('Updating markets...', 2000)
+        self.statusbar_signal.emit('Updating markets...')
         self.updater.update_markets(self.selected_exchange)
         self.onExchangeChanged()
 
@@ -125,25 +126,29 @@ class DockMarkets(QtWidgets.QDockWidget):
 
     # carga lista de exchanges en el combo
     def _load_exchanges(self):
+        self.combo_exchange.blockSignals(True)
         self.combo_exchange.clear()
         for x in self.mw.config['exchanges']:
             path = f":/exchanges/{x.lower()}"
             self.combo_exchange.addItem(QtGui.QIcon(path), x.title())
-        # initial config
         default_index = self.combo_exchange.findText(self.mw.config['initial_exchange'].title())
         if default_index != -1:
             self.combo_exchange.setCurrentIndex(default_index)
-        # load markets
+        self.combo_exchange.blockSignals(False)
         self.onExchangeChanged()
 
     # carga lista de markets
     def _load_markets(self):
         filtro = self.edit_filtro.text()
         self.list_markets.clear()
-        for it in Markets.get_all_by_exchange(self.selected_exchange):
+        self.mw.statusbar.showMessage("Loading...")
+        for i, item in enumerate(Markets.get_all_by_exchange(self.selected_exchange)):
+            if i % 20 == 0:
+                QtCore.QCoreApplication.processEvents()
             nuevo = CustomItem(self.list_markets)
-            nuevo.configurar(it.symbol, self.selected_exchange)
+            nuevo.configurar(item.symbol, self.selected_exchange)
             nuevo.mostrar(self.lista_mode, filtro)
+        self.mw.statusbar.clearMessage()
 
     # ─── PUBLIC METHODS ─────────────────────────────────────────────────────────────
 

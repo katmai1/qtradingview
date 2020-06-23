@@ -57,6 +57,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.actionFull_Screen.toggled.connect(self.onActionFullScreen)
         self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
         self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
+        self.dock_markets.statusbar_signal.connect(self.set_text_status)
 
     def _docks(self):
         self.setTabPosition(QtCore.Qt.AllDockWidgetAreas, QtWidgets.QTabWidget.North)
@@ -67,12 +68,14 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
 
+    def set_text_status(self, text):
+        self.statusbar.showMessage(text)
+
     def openDialogSettings(self):
         dialog = DialogConfig(self)
         dialog.load_config(self.config)
-        r = dialog.exec_()
-        if r:
-            self.dock_markets._load_exchanges()
+        if dialog.exec_():
+            print("ok")
 
     # fullscreen
     def onActionFullScreen(self):
@@ -85,7 +88,6 @@ class MainWindow(QtWidgets.QMainWindow):
     # confirmacion de salida
     def closeEvent(self, event):
         result = QMessageBox.question(self, self._tr("mainwindow", 'Exit'), self._tr("mainwindow", "Do you want quit?"))
-        print(int(result))
         if int(result) == 16384:
             self.ctx.app.quit()
         else:
