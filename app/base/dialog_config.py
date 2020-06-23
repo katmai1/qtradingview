@@ -5,12 +5,12 @@ import os
 
 from app.models.markets import Markets
 from app.utils import resource_path
-
+from app.ui.dialog_config_Ui import Ui_DialogConfig
 
 # ─── CONFIG DIALOG ──────────────────────────────────────────────────────────────
 
-ui_filename = os.path.join("ui", "dialog_config.ui")
-Ui_DialogConfig, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
+# ui_filename = os.path.join("ui", "dialog_config.ui")
+# Ui_DialogConfig, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
 
 
 class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):

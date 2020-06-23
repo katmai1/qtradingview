@@ -11,12 +11,13 @@ from app.debug.dock import DockDebug, Qlogger
 from app.utils import resource_path
 from app.base.widgets import CustomWebEnginePage
 from app.base.dialog_config import DialogConfig
+from app.ui.mainwindow_Ui import Ui_MainWindow
 
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
 
-ui_filename = os.path.join("ui", "mainwindow.ui")
-Ui_MainWindow, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
+# ui_filename = os.path.join("ui", "mainwindow.ui")
+# Ui_MainWindow, QtBaseClass = uic.loadUiType(resource_path(ui_filename))
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
