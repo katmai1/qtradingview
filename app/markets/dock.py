@@ -12,7 +12,7 @@ from app.ui.dock_markets_Ui import Ui_dock_markets
 
 class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
-    statusbar_signal = QtCore.pyqtSignal(str)
+    # statusbar_signal = QtCore.pyqtSignal(str)
 
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
@@ -22,7 +22,6 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         self.setVisible(self.mw.actionMarkets.isChecked())
         #
         self.lista_mode = "all"
-        self.updater = UpdateMarkets()
         self._load_exchanges()
         self._signals()
         #
@@ -74,11 +73,13 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     # actualiza markets en la db
     def start_update_market(self):
-        self.statusbar_signal.emit('Updating markets...')
-        self.updater.update_markets(self.selected_exchange)
-        self.onExchangeChanged()
+        self.mw.set_text_status(f'Updating markets from {self.selected_exchange.title()}...')
+        QtCore.QCoreApplication.processEvents()
+        self.updater = UpdateMarkets(self.selected_exchange)
+        self.updater.onFinished.connect(self.onExchangeChanged)
+        self.updater.run()
 
-    # filtro all
+    # filtro al
     def onClickAllButton(self, all_actived):
         self.lista_mode = "all"
         filtro = self.edit_filtro.text()
@@ -137,26 +138,26 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     # carga lista de markets
     def _load_markets(self):
+        self.combo_exchange.setDisabled(True)
         filtro = self.edit_filtro.text()
         self.list_markets.clear()
-        self.mw.statusbar.showMessage("Loading...")
         for i, item in enumerate(Markets.get_all_by_exchange(self.selected_exchange)):
             if i % 20 == 0:
                 QtCore.QCoreApplication.processEvents()
             nuevo = CustomItem(self.list_markets)
             nuevo.configurar(item.symbol, self.selected_exchange)
             nuevo.mostrar(self.lista_mode, filtro)
-        self.mw.statusbar.clearMessage()
+        self.combo_exchange.setEnabled(True)
 
     # ─── PUBLIC METHODS ─────────────────────────────────────────────────────────────
 
-    def clear_currentInfo(self):
-        self.label_currentMarket.setText(" ")
-        self.label_currentExchange.setPixmap(QtGui.QPixmap())
+#     def clear_currentInfo(self):
+#         self.label_currentMarket.setText(" ")
+#         self.label_currentExchange.setPixmap(QtGui.QPixmap())
 
-    def set_currentInfo(self, exchange, market):
-        pixmap = QtGui.QPixmap(f":/exchanges/{exchange}").scaledToWidth(100)
-        self.label_currentMarket.setText(market)
-        self.label_currentExchange.setPixmap(pixmap)
+#     def set_currentInfo(self, exchange, market):
+#         pixmap = QtGui.QPixmap(f":/exchanges/{exchange}").scaledToWidth(100)
+#         self.label_currentMarket.setText(market)
+#         self.label_currentExchange.setPixmap(pixmap)
 
-# ────────────────────────────────────────────────────────────────────────────────
+# # ────────────────────────────────────────────────────────────────────────────────
