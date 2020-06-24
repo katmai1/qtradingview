@@ -54,7 +54,7 @@ class CustomWebEnginePage(QWebEnginePage):
             v = self.title().split(" ")
             titulo = f"{v[0]} {v[1]} {v[2]} | QTradingView"
         except Exception as e:
-            logging.error(e)
+            logging.debug(f"can't read title, market not load? {e}")
             titulo = "QTradingView"
         finally:
             self.mw.setWindowTitle(titulo)

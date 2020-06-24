@@ -18,7 +18,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
         #
-        self.html = None
+        # self.html = None
         self.ctx = ctx
         self.config = ctx.config
 
@@ -41,6 +41,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # carga market inicial
         self.load_chart(self.config['initial_market'], self.config['initial_exchange'])
 
+    # translate
     def _tr(self, contexto, mensaje):
         return self.ctx.tr(contexto, mensaje)
 
@@ -61,14 +62,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
 
-    def set_text_status(self, text):
-        self.statusbar.showMessage(text)
+    def set_text_status(self, text, ms=2000):
+        self.statusbar.showMessage(text, msecs=ms)
 
+    # config dialog
     def openDialogSettings(self):
         dialog = DialogConfig(self)
         dialog.load_config(self.config)
         if dialog.exec_():
-            print("ok")
+            if dialog.exchanges_is_changed:
+                self.dock_markets._load_exchanges()
 
     # fullscreen
     def onActionFullScreen(self):
