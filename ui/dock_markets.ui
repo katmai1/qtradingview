@@ -43,6 +43,9 @@
           <pointsize>20</pointsize>
          </font>
         </property>
+        <property name="toolTip">
+         <string>Select an exchange</string>
+        </property>
         <property name="iconSize">
          <size>
           <width>32</width>
@@ -135,9 +138,6 @@
          </font>
         </property>
         <property name="toolTip">
-         <string>List all markets</string>
-        </property>
-        <property name="statusTip">
          <string>Show all markets in list</string>
         </property>
         <property name="autoFillBackground">
@@ -184,9 +184,6 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>List favorite markets</string>
-        </property>
-        <property name="statusTip">
          <string>Show only favorite markets</string>
         </property>
         <property name="autoFillBackground">
@@ -237,9 +234,6 @@
          </size>
         </property>
         <property name="toolTip">
-         <string>List margin markets</string>
-        </property>
-        <property name="statusTip">
          <string>Show only margin markets</string>
         </property>
         <property name="autoFillBackground">
@@ -305,7 +299,7 @@
       <property name="acceptDrops">
        <bool>false</bool>
       </property>
-      <property name="statusTip">
+      <property name="toolTip">
        <string>Filter markets by symbol</string>
       </property>
       <property name="inputMethodHints">

@@ -5,9 +5,11 @@ from PyQt5.QtWidgets import QMessageBox
 from app.markets.dock import DockMarkets
 from app.debug.dock import DockDebug, Qlogger
 
-from app.base.widgets import CustomWebEnginePage
-from app.base.dialog_config import DialogConfig
 from app.ui.mainwindow_Ui import Ui_MainWindow
+
+from .widgets import CustomWebEnginePage
+from .dialog_config import DialogConfig
+from .dialog_about import DialogAbout
 
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
@@ -52,6 +54,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
         self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
         # self.dock_markets.statusbar_signal.connect(self.set_text_status)
+        self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
         self.setTabPosition(QtCore.Qt.AllDockWidgetAreas, QtWidgets.QTabWidget.North)
@@ -61,6 +64,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_debug)
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
+
+    def openAboutDialog(self):
+        dialog = DialogAbout(self)
+        dialog.exec_()
 
     def set_text_status(self, text, ms=3000):
         self.statusbar.showMessage(text, msecs=ms)
@@ -83,9 +90,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # confirmacion de salida
     def closeEvent(self, event):
-        result = QMessageBox.question(
-            self, self._tr("mainwindow", 'Exit'),
-            self._tr("mainwindow", "Do you want quit?"))
+        result = QMessageBox.question(self, self.tr('Exit'), self.tr("Do you want quit?"))
         if int(result) == 16384:
             self.ctx.app.quit()
         event.ignore()

@@ -62,7 +62,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QWebEngineView" name="webview"/>
+     <widget class="QWebEngineView" name="webview" native="true"/>
     </item>
    </layout>
   </widget>
@@ -136,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>673</width>
-     <height>20</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="defaultUp">
@@ -144,7 +144,7 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Fi&amp;le</string>
     </property>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
@@ -152,7 +152,7 @@
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>View</string>
+     <string>Vie&amp;w</string>
     </property>
     <addaction name="actionToolbar"/>
     <addaction name="separator"/>
@@ -164,7 +164,7 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
@@ -180,6 +180,9 @@
    <property name="text">
     <string>Settings</string>
    </property>
+   <property name="toolTip">
+    <string>Open settings window</string>
+   </property>
    <property name="shortcut">
     <string>F9</string>
    </property>
@@ -192,6 +195,9 @@
    <property name="text">
     <string>Quit</string>
    </property>
+   <property name="toolTip">
+    <string>Quit</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
@@ -202,7 +208,7 @@
      <normaloff>:/base/logo</normaloff>:/base/logo</iconset>
    </property>
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
   </action>
   <action name="actionMarkets">
@@ -219,7 +225,7 @@
    <property name="text">
     <string>Markets</string>
    </property>
-   <property name="statusTip">
+   <property name="toolTip">
     <string>Show/hide markets</string>
    </property>
    <property name="shortcut">
@@ -237,7 +243,7 @@
    <property name="text">
     <string>Alarms</string>
    </property>
-   <property name="statusTip">
+   <property name="toolTip">
     <string>Show/hide alarms</string>
    </property>
    <property name="shortcut">
@@ -255,7 +261,7 @@
    <property name="text">
     <string>Full Screen</string>
    </property>
-   <property name="statusTip">
+   <property name="toolTip">
     <string>Activate/deactivate full screen</string>
    </property>
    <property name="shortcut">
@@ -273,7 +279,7 @@
    <property name="text">
     <string>Debug</string>
    </property>
-   <property name="statusTip">
+   <property name="toolTip">
     <string>Show/hide debug panel</string>
    </property>
   </action>
@@ -285,7 +291,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Toolbar</string>
+    <string>&amp;Toolbar</string>
    </property>
    <property name="statusTip">
     <string>Show/hide toolbar</string>

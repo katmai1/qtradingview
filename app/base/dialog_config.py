@@ -17,16 +17,21 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
         self.list_exchanges.sortItems()
         self.config = self.mw.ctx.config
         self.combo_initial_exchange.currentTextChanged.connect(self.onSelectInitialExchange)
+        self._add_languages()
 
-    # return true if changed list of exchanges
+    def _add_languages(self):
+        self.combo_languages.addItem(self.tr("Spanish"), "es_ES")
+        self.combo_languages.addItem(self.tr("English"), "en_EN")
+
     @property
     def exchanges_is_changed(self):
+        """ Return true if exchanges list is modified """
         return self.old_config["exchanges"] != self.config["exchanges"]
 
     # ─── EVENTOS ────────────────────────────────────────────────────────────────────
 
-    # carga la lista de markets nueva
     def onSelectInitialExchange(self):
+        """ Load initial markets of selected initial exchange """
         self.combo_initial_market.clear()
         for it in Markets.get_all_by_exchange(self.combo_initial_exchange.currentText().lower()):
             self.combo_initial_market.addItem(it.symbol)
@@ -35,20 +40,20 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
 
     # ─── load methods ───────────────────────────────────────────────────────
 
-    # carga la configuracion a los componentes
     def load_config(self, config):
+        """ Load config in form widgets """
         self._select_exchanges(config['exchanges'])
         self._select_language(config['language'])
         self._select_initial_exchange()
         self.old_config = copy(config)
 
-    # carga combo de exchanges iniciales y selecciona el configurado
     def _select_initial_exchange(self):
+        """ Select initial exchange configured in config file """
         index = self.combo_initial_exchange.findText(self.config['initial_exchange'])
         self.combo_initial_exchange.setCurrentIndex(index)
 
-    # selecciona los exchanges configurados
     def _select_exchanges(self, exchanges):
+        """ Select exchanges actived in config file """
         for index in range(self.list_exchanges.count()):
             item = self.list_exchanges.item(index)
             if item.text() in self.config['exchanges']:
@@ -56,9 +61,9 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
             # añade la lista al combo de paso
             self.combo_initial_exchange.addItem(item.text())
 
-    # selecciona el idioma configurado
     def _select_language(self, language):
-        index = self.combo_languages.findText(language)
+        """ Select language defined in config file """
+        index = self.combo_languages.findData(language)
         self.combo_languages.setCurrentIndex(index)
 
     # ─── SAVING-EXIT METHODS ────────────────────────────────────────────────────────
@@ -74,7 +79,7 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
 
     # actualiza self.config y guarda cambios al fichero
     def accept(self):
-        self.config['language'] = self.combo_languages.currentText()
+        self.config['language'] = self.combo_languages.currentData()
         self.config['exchanges'] = self._get_list_exchanges()
         self.config['initial_exchange'] = self.combo_initial_exchange.currentText()
         self.config['initial_market'] = self.combo_initial_market.currentText()

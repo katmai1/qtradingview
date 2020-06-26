@@ -27,28 +27,34 @@ class AppUtil:
     """
 
     @classmethod
-    def get_home_dir(cls):
+    def get_app_dir(cls):
+        """ Return app dir into home folder """
         return os.path.join(Path.home(), ".qtradingview")
 
     @classmethod
     def get_config_file_path(cls):
-        return os.path.join(cls.get_home_dir(), "config.toml")
+        """ Return config file path """
+        return os.path.join(cls.get_app_dir(), "config.toml")
 
     @classmethod
     def get_db_file_path(cls):
-        return os.path.join(cls.get_home_dir(), "database.db")
+        """ Return database file path """
+        return os.path.join(cls.get_app_dir(), "database.db")
 
     @classmethod
     def get_i18n_dir(cls):
+        """ Return i18n resource path """
         return resource_path(os.path.join("app", "i18n"))
 
     @classmethod
-    def create_home_dir(cls):
-        if not os.path.exists(cls.get_home_dir()):
-            os.mkdir(cls.get_home_dir())
+    def create_app_dir(cls):
+        """ Create app folder if not exists """
+        if not os.path.exists(cls.get_app_dir()):
+            os.mkdir(cls.get_app_dir())
 
     @classmethod
     def create_default_config(cls):
+        """ Create default config file if not exists """
         if not os.path.exists(cls.get_config_file_path()):
             config = toml.loads(cls.default_config)
             with open(AppUtil.get_config_file_path(), "w") as f:

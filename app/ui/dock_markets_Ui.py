@@ -164,19 +164,17 @@ class Ui_dock_markets(object):
 
     def retranslateUi(self, dock_markets):
         _translate = QtCore.QCoreApplication.translate
+        self.combo_exchange.setToolTip(_translate("dock_markets", "Select an exchange"))
         self.btn_update.setToolTip(_translate("dock_markets", "Update markets on db (F5)"))
         self.btn_update.setShortcut(_translate("dock_markets", "F5"))
-        self.btn_all.setToolTip(_translate("dock_markets", "List all markets"))
-        self.btn_all.setStatusTip(_translate("dock_markets", "Show all markets in list"))
+        self.btn_all.setToolTip(_translate("dock_markets", "Show all markets in list"))
         self.btn_all.setText(_translate("dock_markets", "ALL"))
         self.btn_all.setShortcut(_translate("dock_markets", "Ctrl+A"))
-        self.btn_favorite.setToolTip(_translate("dock_markets", "List favorite markets"))
-        self.btn_favorite.setStatusTip(_translate("dock_markets", "Show only favorite markets"))
+        self.btn_favorite.setToolTip(_translate("dock_markets", "Show only favorite markets"))
         self.btn_favorite.setShortcut(_translate("dock_markets", "Ctrl+F"))
-        self.btn_margin.setToolTip(_translate("dock_markets", "List margin markets"))
-        self.btn_margin.setStatusTip(_translate("dock_markets", "Show only margin markets"))
+        self.btn_margin.setToolTip(_translate("dock_markets", "Show only margin markets"))
         self.btn_margin.setShortcut(_translate("dock_markets", "Ctrl+M"))
-        self.edit_filtro.setStatusTip(_translate("dock_markets", "Filter markets by symbol"))
+        self.edit_filtro.setToolTip(_translate("dock_markets", "Filter markets by symbol"))
         self.edit_filtro.setPlaceholderText(_translate("dock_markets", "Filter"))
         self.list_markets.setSortingEnabled(True)
 import iconos_rc

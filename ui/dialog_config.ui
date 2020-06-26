@@ -35,8 +35,8 @@
    <string>Settings</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/actions/actions/settings.svg</normaloff>:/actions/actions/settings.svg</iconset>
+   <iconset resource="../icons/iconos.qrc">
+    <normaloff>:/actions/settings</normaloff>:/actions/settings</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -74,16 +74,6 @@
        <property name="locale">
         <locale language="English" country="UnitedStates"/>
        </property>
-       <item>
-        <property name="text">
-         <string>es_ES</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>en_EN</string>
-        </property>
-       </item>
       </widget>
      </item>
     </layout>
@@ -210,11 +200,6 @@
       <property name="icon">
        <iconset resource="../icons/iconos.qrc">
         <normaloff>:/exchanges/bitfinex</normaloff>:/exchanges/bitfinex</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Bitmex</string>
       </property>
      </item>
      <item>

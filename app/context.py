@@ -21,25 +21,39 @@ class ContextoApp:
         self.app = QApplication([])
         self.debug = args['--debug']
         signal(SIGINT, SIG_DFL)
+        # disable qt logging if not debug mode
+        if not self.debug:
+            os.environ['QT_LOGGING_RULES'] = '*=false'
         #
-        AppUtil.create_home_dir()
+        AppUtil.create_app_dir()
         AppUtil.create_default_config()
-        self._check_db_file()
+        self.check_db_file()
 
     def run(self):
         self.window.showMaximized()
         return self.app.exec_()
 
     def tr(self, context, message):
+        """Shortcut to translate function
+
+        Args:
+
+            context (str): Context word
+            message (str): Message in english
+
+        Returns:
+
+            str: Translate string
+        """
         return self.app.translate(context, message)
 
     def save_config(self):
+        """ Save configuration changes in config file """
         with open(AppUtil.get_config_file_path(), "w") as f:
             toml.dump(self.config, f)
 
-    # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
-
-    def _check_db_file(self):
+    def check_db_file(self):
+        """ Check if database file exists and create tables """
         if not os.path.isfile(AppUtil.get_db_file_path()):
             self.db.create_tables([Markets])
 
