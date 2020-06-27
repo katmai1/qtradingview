@@ -54,14 +54,18 @@ class Markets(CustomModel):
         self.limit_max_price = data['limits']['price']['max']
         self.limit_min_amount = data['limits']['amount']['min']
         self.limit_max_amount = data['limits']['amount']['max']
-        # self.precision_price = data['precision']['price']
-        if data.get("margin"):
-            self.margin = data.get("margin")
-        if data['info'].get("margin"):
-            self.margin = data['info'].get("margin")
         # pprint(data)
         if data.get('active'):
             self.actived = data['active']
+        self.margin = self.get_margin(data)
+
+    def get_margin(self, data):
+        if data.get("margin"):
+            return data.get("margin")
+        if data.get('info'):
+            if data['info'].get("margin"):
+                return data['info'].get("margin")
+        return False
 
     def update_prices(self, prices):
         self.ask_price = prices['ask']
