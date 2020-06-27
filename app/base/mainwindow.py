@@ -43,10 +43,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # carga market inicial
         self.load_chart(self.config['initial_market'], self.config['initial_exchange'])
 
-    # translate
-    def _tr(self, contexto, mensaje):
-        return self.ctx.tr(contexto, mensaje)
-
     # signal connectors
     def _signals(self):
         self.actionSettings.triggered.connect(self.openDialogSettings)

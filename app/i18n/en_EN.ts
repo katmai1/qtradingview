@@ -1,60 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en" sourcelanguage="es">
+<!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="es">
 <context>
     <name>DialogConfig</name>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="144"/>
+        <location filename="../ui/dialog_config_Ui.py" line="178"/>
         <source>Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="145"/>
+        <location filename="../ui/dialog_config_Ui.py" line="179"/>
         <source>Language</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="146"/>
+        <location filename="../ui/dialog_config_Ui.py" line="180"/>
         <source>Initial market</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="157"/>
+        <location filename="../ui/dialog_config_Ui.py" line="201"/>
         <source>Bittrex</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="153"/>
+        <location filename="../ui/dialog_config_Ui.py" line="189"/>
         <source>Bitfinex</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="151"/>
+        <location filename="../ui/dialog_config_Ui.py" line="185"/>
         <source>Binance</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="165"/>
+        <location filename="../ui/dialog_config_Ui.py" line="231"/>
         <source>Poloniex</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="161"/>
+        <location filename="../ui/dialog_config_Ui.py" line="221"/>
         <source>Kraken</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="155"/>
+        <location filename="../ui/dialog_config_Ui.py" line="199"/>
         <source>Bitstamp</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="159"/>
+        <location filename="../ui/dialog_config_Ui.py" line="207"/>
         <source>Coinbase</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_config_Ui.py" line="163"/>
+        <location filename="../ui/dialog_config_Ui.py" line="223"/>
         <source>Kucoin</source>
         <translation></translation>
     </message>
@@ -67,6 +66,91 @@
         <location filename="../base/dialog_config.py" line="24"/>
         <source>English</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="187"/>
+        <source>BitBay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="191"/>
+        <source>BitFlyer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="193"/>
+        <source>Bithumb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="195"/>
+        <source>BitMEX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="197"/>
+        <source>Bitso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="203"/>
+        <source>Bybit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="205"/>
+        <source>CexIO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="209"/>
+        <source>Coinfloor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="211"/>
+        <source>Currencycom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="213"/>
+        <source>Deribit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="215"/>
+        <source>FTX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="217"/>
+        <source>Gemini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="219"/>
+        <source>HitBTC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="225"/>
+        <source>Mercado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="227"/>
+        <source>OKCoin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="229"/>
+        <source>Okex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_config_Ui.py" line="233"/>
+        <source>TheRock</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -185,12 +269,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="93"/>
+        <location filename="../base/mainwindow.py" line="89"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="93"/>
+        <location filename="../base/mainwindow.py" line="89"/>
         <source>Do you want quit?</source>
         <translation></translation>
     </message>

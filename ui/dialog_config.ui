@@ -195,11 +195,36 @@
      </item>
      <item>
       <property name="text">
+       <string>BitBay</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Bitfinex</string>
       </property>
       <property name="icon">
        <iconset resource="../icons/iconos.qrc">
         <normaloff>:/exchanges/bitfinex</normaloff>:/exchanges/bitfinex</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>BitFlyer</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Bithumb</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>BitMEX</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Bitso</string>
       </property>
      </item>
      <item>
@@ -218,7 +243,47 @@
      </item>
      <item>
       <property name="text">
+       <string>Bybit</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>CexIO</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Coinbase</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Coinfloor</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Currencycom</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Deribit</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FTX</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Gemini</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>HitBTC</string>
       </property>
      </item>
      <item>
@@ -237,11 +302,31 @@
      </item>
      <item>
       <property name="text">
+       <string>Mercado</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>OKCoin</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Okex</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Poloniex</string>
       </property>
       <property name="icon">
        <iconset resource="../icons/iconos.qrc">
         <normaloff>:/exchanges/poloniex</normaloff>:/exchanges/poloniex</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>TheRock</string>
       </property>
      </item>
     </widget>
