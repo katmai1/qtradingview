@@ -1,5 +1,15 @@
 <RCC>
   <qresource prefix="exchanges">
+    <file alias="bitbay">exchanges/bitbay.png</file>
+    <file alias="bithumb">exchanges/bithumb.png</file>
+    <file alias="bitso">exchanges/bitso.png</file>
+    <file alias="coinbase">exchanges/coinbase.png</file>
+    <file alias="gemini">exchanges/gemini.png</file>
+    <file alias="hitbtc">exchanges/hitbtc.png</file>
+    <file alias="therock">exchanges/therock.png</file>
+    <file alias="okcoin">exchanges/okcoin.png</file>
+    <file alias="kucoin">exchanges/kucoin.png</file>
+    <file alias="bitstamp">exchanges/bitstamp.png</file>
     <file alias="bittrex">exchanges/bittrex.png</file>
     <file alias="kraken">exchanges/kraken.png</file>
     <file alias="binance">exchanges/binance.png</file>

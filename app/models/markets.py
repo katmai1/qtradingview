@@ -1,7 +1,7 @@
 import peewee
+import logging
 
 from .base import CustomModel
-from pprint import pprint
 
 
 class Markets(CustomModel):
@@ -60,12 +60,15 @@ class Markets(CustomModel):
         self.margin = self.get_margin(data)
 
     def get_margin(self, data):
-        if data.get("margin"):
-            return data.get("margin")
-        if data.get('info'):
-            if data['info'].get("margin"):
-                return data['info'].get("margin")
-        return False
+        try:
+            if data.get("margin"):
+                return data.get("margin")
+            if data.get('info'):
+                if data['info'].get("margin"):
+                    return data['info'].get("margin")
+        except Exception as e:
+            logging.debug(e)
+            return False
 
     def update_prices(self, prices):
         self.ask_price = prices['ask']
