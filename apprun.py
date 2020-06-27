@@ -13,7 +13,7 @@ Options:
   --debug       Execute in debug mode.
 """
 # export QT_LOGGING_RULES='*=false'
-__version__ = '0.14.4'
+__version__ = '0.15.0'
 
 import sys
 import docopt
