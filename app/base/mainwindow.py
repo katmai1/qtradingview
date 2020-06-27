@@ -49,7 +49,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionFull_Screen.toggled.connect(self.onActionFullScreen)
         self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
         self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
-        # self.dock_markets.statusbar_signal.connect(self.set_text_status)
         self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
@@ -65,8 +64,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dialog = DialogAbout(self)
         dialog.exec_()
 
-    def set_text_status(self, text, ms=3000):
-        self.statusbar.showMessage(text, msecs=ms)
+    def set_text_status(self, text, msecs=3000):
+        self.statusbar.showMessage(text, msecs=msecs)
 
     # config dialog
     def openDialogSettings(self):

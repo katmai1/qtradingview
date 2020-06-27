@@ -1,6 +1,7 @@
 import peewee
 
 from .base import CustomModel
+from pprint import pprint
 
 
 class Markets(CustomModel):
@@ -17,7 +18,7 @@ class Markets(CustomModel):
     limit_min_cost = peewee.FloatField(null=True)
     precision_price = peewee.SmallIntegerField(null=True)
     margin = peewee.BooleanField(null=True, default=False)
-    actived = peewee.BooleanField(null=True)
+    actived = peewee.BooleanField(null=True, default=True)
     # prices
     ask_price = peewee.FloatField(null=True)
     bid_price = peewee.FloatField(null=True)
@@ -53,13 +54,14 @@ class Markets(CustomModel):
         self.limit_max_price = data['limits']['price']['max']
         self.limit_min_amount = data['limits']['amount']['min']
         self.limit_max_amount = data['limits']['amount']['max']
-        self.precision_price = data['precision']['price']
+        # self.precision_price = data['precision']['price']
         if data.get("margin"):
             self.margin = data.get("margin")
         if data['info'].get("margin"):
             self.margin = data['info'].get("margin")
         # pprint(data)
-        self.actived = data['active']
+        if data.get('active'):
+            self.actived = data['active']
 
     def update_prices(self, prices):
         self.ask_price = prices['ask']

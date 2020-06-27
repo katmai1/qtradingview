@@ -2,7 +2,7 @@ import logging
 from PyQt5 import QtWidgets, QtGui, QtCore
 
 from app.markets.widgets import CustomItem, CustomItemDelegate, CustomContextMenu
-from app.markets.updater import UpdateMarkets
+from app.markets.updater import UpdateMarkets, UpdateAllMarkets
 
 from app.models.markets import Markets
 from app.ui.dock_markets_Ui import Ui_dock_markets
@@ -21,6 +21,8 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         self.mw = self.parent()  # mainwindow
         self.setVisible(self.mw.actionMarkets.isChecked())
         #
+
+        self.markets_updater = UpdateAllMarkets(self)
         self.lista_mode = "all"
         self._load_exchanges()
         self._signals()
@@ -29,6 +31,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         self.list_markets.setItemDelegate(self.delegate)
         self.list_markets.customContextMenuRequested.connect(self.contextMenuEvent)
         self.onClickAllButton(True)
+        self.markets_updater.start()
 
     def _signals(self):
         self.combo_exchange.currentTextChanged.connect(self.onExchangeChanged)
@@ -38,6 +41,8 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         self.btn_favorite.toggled.connect(self.onClickFavoriteButton)
         self.btn_margin.toggled.connect(self.onClickMarginButton)
         self.btn_update.clicked.connect(self.start_update_market)
+        self.markets_updater.infoEvent.connect(self.onEventUpdater)
+        self.markets_updater.onFinished.connect(self._load_markets)
 
     @property
     def selected_exchange(self):
@@ -71,7 +76,11 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         else:
             logging.debug(event.key())
 
-    # actualiza markets en la db
+    def onEventUpdater(self, texto):
+        logging.info(texto)
+        self.mw.set_text_status(texto)
+        
+    # actualiza markets del exchange seleccionado en la db
     def start_update_market(self):
         self.mw.set_text_status(f'Updating markets from {self.selected_exchange.title()}...')
         QtCore.QCoreApplication.processEvents()
@@ -148,16 +157,3 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             nuevo.configurar(item.symbol, self.selected_exchange)
             nuevo.mostrar(self.lista_mode, filtro)
         self.combo_exchange.setEnabled(True)
-
-    # ─── PUBLIC METHODS ─────────────────────────────────────────────────────────────
-
-#     def clear_currentInfo(self):
-#         self.label_currentMarket.setText(" ")
-#         self.label_currentExchange.setPixmap(QtGui.QPixmap())
-
-#     def set_currentInfo(self, exchange, market):
-#         pixmap = QtGui.QPixmap(f":/exchanges/{exchange}").scaledToWidth(100)
-#         self.label_currentMarket.setText(market)
-#         self.label_currentExchange.setPixmap(pixmap)
-
-# # ────────────────────────────────────────────────────────────────────────────────
