@@ -7,7 +7,7 @@ from app.debug.dock import DockDebug, Qlogger
 
 from app.ui.mainwindow_Ui import Ui_MainWindow
 
-from .widgets import CustomWebEnginePage
+from .widgets import CustomWebEnginePage, CustomSplashScreen
 from .dialog_config import DialogConfig
 from .dialog_about import DialogAbout
 
@@ -20,7 +20,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
         #
-        # self.html = None
+        self.splash = CustomSplashScreen(self)
         self.ctx = ctx
         self.config = ctx.config
 
@@ -42,6 +42,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # carga market inicial
         self.load_chart(self.config['initial_market'], self.config['initial_exchange'])
+        self.splash.hide()
 
     # signal connectors
     def _signals(self):
@@ -85,11 +86,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # confirmacion de salida
     def closeEvent(self, event):
-        result = QMessageBox.question(self, self.tr('Exit'), self.tr("Do you want quit?"))
+        mbox = QMessageBox(self)
+        mbox.setIcon(QMessageBox.Question)
+        mbox.setWindowTitle(self.tr('Exit'))
+        mbox.setText(self.tr("Do you want quit?"))
+        mbox.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
+        result = mbox.exec_()
         if int(result) == 16384:
-            self.ctx.app.quit()
+            self.quit()
         event.ignore()
 
+    def quit(self):
+        if self.dock_markets.markets_updater.isRunning():
+            self.dock_markets.markets_updater.terminate()
+            self.set_text_status(self.tr("Closing background processes..."))
+        self.ctx.app.quit()
     # ────────────────────────────────────────────────────────────────────────────────
 
     # carga un market en la pagina

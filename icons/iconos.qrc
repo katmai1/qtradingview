@@ -16,6 +16,7 @@
     <file alias="markets">actions/markets.svg</file>
   </qresource>
   <qresource prefix="base">
+    <file alias="splash">base/splash.png</file>
     <file alias="margin">base/margin.svg</file>
     <file alias="star">base/star.svg</file>
     <file alias="unstar">base/unstar.svg</file>

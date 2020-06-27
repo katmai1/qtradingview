@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QDialog, QMessageBox
 from copy import copy
 
 from app.models.markets import Markets
@@ -7,19 +7,21 @@ from app.ui.dialog_config_Ui import Ui_DialogConfig
 
 # ─── CONFIG DIALOG ──────────────────────────────────────────────────────────────
 
-class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
+class DialogConfig(QDialog, Ui_DialogConfig):
 
     def __init__(self, parent=None, *args, **kwargs):
-        QtWidgets.QDialog.__init__(self, parent=parent, *args, **kwargs)
+        QDialog.__init__(self, parent=parent, *args, **kwargs)
         self.setupUi(self)
         self.mw = parent
         #
         self.list_exchanges.sortItems()
         self.config = self.mw.ctx.config
-        self.combo_initial_exchange.currentTextChanged.connect(self.onSelectInitialExchange)
         self._add_languages()
+        self.combo_initial_exchange.currentTextChanged.connect(self.onSelectInitialExchange)
+        self.combo_languages.currentTextChanged.connect(self.onChangeLanguage)
 
     def _add_languages(self):
+        self.combo_languages.blockSignals(True)
         self.combo_languages.addItem(self.tr("Spanish"), "es_ES")
         self.combo_languages.addItem(self.tr("English"), "en_EN")
 
@@ -29,6 +31,14 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
         return self.old_config["exchanges"] != self.config["exchanges"]
 
     # ─── EVENTOS ────────────────────────────────────────────────────────────────────
+
+    def onChangeLanguage(self, language):
+        mbox = QMessageBox(self)
+        mbox.setIcon(QMessageBox.Information)
+        mbox.setWindowTitle(self.tr("Language changed"))
+        mbox.setText(self.tr("The language change will be applied when restarting the application"))
+        mbox.setStandardButtons(QMessageBox.Ok)
+        mbox.show()
 
     def onSelectInitialExchange(self):
         """ Load initial markets of selected initial exchange """
@@ -46,6 +56,7 @@ class DialogConfig(QtWidgets.QDialog, Ui_DialogConfig):
         self._select_language(config['language'])
         self._select_initial_exchange()
         self.old_config = copy(config)
+        self.combo_languages.blockSignals(False)
 
     def _select_initial_exchange(self):
         """ Select initial exchange configured in config file """

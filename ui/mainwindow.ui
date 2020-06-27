@@ -178,7 +178,7 @@
      <normaloff>:/actions/settings</normaloff>:/actions/settings</iconset>
    </property>
    <property name="text">
-    <string>Settings</string>
+    <string>&amp;Settings</string>
    </property>
    <property name="toolTip">
     <string>Open settings window</string>
@@ -193,7 +193,7 @@
      <normaloff>:/actions/exit</normaloff>:/actions/exit</iconset>
    </property>
    <property name="text">
-    <string>Quit</string>
+    <string>&amp;Quit</string>
    </property>
    <property name="toolTip">
     <string>Quit</string>
@@ -223,7 +223,7 @@
      <normaloff>:/actions/markets</normaloff>:/actions/markets</iconset>
    </property>
    <property name="text">
-    <string>Markets</string>
+    <string>&amp;Markets</string>
    </property>
    <property name="toolTip">
     <string>Show/hide markets</string>
@@ -241,7 +241,7 @@
      <normaloff>:/actions/alarms</normaloff>:/actions/alarms</iconset>
    </property>
    <property name="text">
-    <string>Alarms</string>
+    <string>&amp;Alarms</string>
    </property>
    <property name="toolTip">
     <string>Show/hide alarms</string>
@@ -259,7 +259,7 @@
      <normaloff>:/actions/screen</normaloff>:/actions/screen</iconset>
    </property>
    <property name="text">
-    <string>Full Screen</string>
+    <string>&amp;Full Screen</string>
    </property>
    <property name="toolTip">
     <string>Activate/deactivate full screen</string>
@@ -277,7 +277,7 @@
      <normaloff>:/actions/debug</normaloff>:/actions/debug</iconset>
    </property>
    <property name="text">
-    <string>Debug</string>
+    <string>&amp;Debug</string>
    </property>
    <property name="toolTip">
     <string>Show/hide debug panel</string>

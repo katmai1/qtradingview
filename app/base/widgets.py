@@ -1,7 +1,7 @@
 import logging
 
 from PyQt5.QtWidgets import QSplashScreen, QDesktopWidget
-from PyQt5.QtCore import Qt, QCoreApplication, QTimer
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap
 
 from PyQt5.QtWebEngineWidgets import QWebEnginePage
@@ -78,17 +78,17 @@ class CustomWebEnginePage(QWebEnginePage):
 
 class CustomSplashScreen(QSplashScreen):
 
-    imagen = ":/base/splash.png"
+    imagen = ":/base/splash"
 
     def __init__(self, parent=None):
         screen_size = QDesktopWidget().screenGeometry(-1)
         pixmap = QPixmap(self.imagen).scaledToWidth(screen_size.width() / 3)
         super().__init__(parent, pixmap, Qt.SplashScreen)
         self.setMask(pixmap.mask())
-        mensaje = QCoreApplication.translate("splash", "Loading...")
-        self.set_texto(mensaje)
+        self.set_texto("Loading")
+        self.show()
 
     def set_texto(self, texto, size=3):
-        self.showMessage(f"<h{size}>{texto}</h{size}>", Qt.AlignCenter | Qt.AlignBottom)
+        self.showMessage(f"<h{size}>{self.tr(texto)}</h{size}>", Qt.AlignCenter | Qt.AlignBottom)
 
 # ────────────────────────────────────────────────────────────────────────────────

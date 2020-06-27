@@ -58,12 +58,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="23"/>
+        <location filename="../base/dialog_config.py" line="25"/>
         <source>Spanish</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="24"/>
+        <location filename="../base/dialog_config.py" line="26"/>
         <source>English</source>
         <translation></translation>
     </message>
@@ -152,6 +152,16 @@
         <source>TheRock</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../base/dialog_config.py" line="38"/>
+        <source>Language changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/dialog_config.py" line="39"/>
+        <source>The language change will be applied when restarting the application</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DockDebug</name>
@@ -184,11 +194,6 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="163"/>
-        <source>Settings</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow_Ui.py" line="165"/>
         <source>F9</source>
         <translation></translation>
@@ -204,11 +209,6 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="170"/>
-        <source>Markets</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow_Ui.py" line="171"/>
         <source>Show/hide markets</source>
         <translation></translation>
@@ -216,11 +216,6 @@
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="172"/>
         <source>F1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="173"/>
-        <source>Alarms</source>
         <translation></translation>
     </message>
     <message>
@@ -234,11 +229,6 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="176"/>
-        <source>Full Screen</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow_Ui.py" line="177"/>
         <source>Activate/deactivate full screen</source>
         <translation></translation>
@@ -246,11 +236,6 @@
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="178"/>
         <source>F11</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="179"/>
-        <source>Debug</source>
         <translation></translation>
     </message>
     <message>
@@ -269,12 +254,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="89"/>
+        <location filename="../base/mainwindow.py" line="91"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="89"/>
+        <location filename="../base/mainwindow.py" line="92"/>
         <source>Do you want quit?</source>
         <translation></translation>
     </message>
@@ -308,13 +293,63 @@
         <source>&amp;Toolbar</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="163"/>
+        <source>&amp;Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="166"/>
+        <source>&amp;Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="170"/>
+        <source>&amp;Markets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="173"/>
+        <source>&amp;Alarms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="176"/>
+        <source>&amp;Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="179"/>
+        <source>&amp;Debug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/mainwindow.py" line="102"/>
+        <source>Closing background processes...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>aboutDialog</name>
     <message>
-        <location filename="../ui/about_Ui.py" line="34"/>
+        <location filename="../ui/about_Ui.py" line="75"/>
         <source>About</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/about_Ui.py" line="76"/>
+        <source>QTradingView</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/about_Ui.py" line="77"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Noto Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Web: &lt;a href=&quot;https://github.com/katmai1/qtradingview&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;https://github.com/katmai1/qtradingview&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -377,14 +412,6 @@
     <message>
         <location filename="../ui/dock_markets_Ui.py" line="167"/>
         <source>Select an exchange</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>splash</name>
-    <message>
-        <location filename="../base/widgets.py" line="88"/>
-        <source>Loading...</source>
         <translation></translation>
     </message>
 </context>
