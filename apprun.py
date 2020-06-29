@@ -3,6 +3,7 @@ QTradingView
 
 Usage:
   qtradingview [--debug]
+  qtradingview [--updatedb]
   qtradingview -h | --help
   qtradingview -v | --version
 
@@ -11,6 +12,7 @@ Options:
   -h --help     Show this screen.
   -v --version  Show version.
   --debug       Execute in debug mode.
+  --updatedb    Update db forms.
 """
 # export QT_LOGGING_RULES='*=false'
 __version__ = '0.15.0'

@@ -71,14 +71,24 @@ class UpdateAllMarkets(QtCore.QThread):
             logging.error(e)
             return []
 
+    def _get_tickers_by_exchange(self):
+        try:
+            return self.client.fetch_tickers()
+        except Exception as e:
+            logging.error(e)
+            return []
+    
     # hace la rutina completa con la bd
     def _one_exchange(self):
         markets = self._get_markets_by_exchange()
+        prices = self._get_tickers_by_exchange()
         for symbol in markets:
             item, created = Markets.get_or_create(exchange=self.exchange, symbol=symbol)
             if created:
                 item.save()
             item.update_data(markets[symbol])
+            item.update_prices(prices[symbol])
+            item.save()
 
     def run(self):
         for exchange in self.exchanges_list:

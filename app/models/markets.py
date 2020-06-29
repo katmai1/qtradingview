@@ -37,7 +37,7 @@ class Markets(CustomModel):
 
     @classmethod
     def get_symbol_by_exchange(cls, symbol, exchange):
-        return cls.get(cls.exchange == exchange, cls.symbol == symbol)
+        return cls.get(cls.exchange == exchange.lower(), cls.symbol == symbol)
 
     @classmethod
     def check_symbol_is_fav(cls, symbol, exchange):

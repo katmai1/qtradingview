@@ -10,6 +10,7 @@ from PyQt5.QtCore import QLibraryInfo, QTranslator
 from app.utils import AppUtil
 from app.models.base import get_db
 from app.models.markets import Markets
+from app.portfolio.models import Trades
 from app.base.mainwindow import MainWindow
 
 
@@ -21,6 +22,7 @@ class ContextoApp:
         self.app = QApplication([])
         self.debug = args['--debug']
         signal(SIGINT, SIG_DFL)
+        self.args = args
         # disable qt logging if not debug mode
         if not self.debug:
             os.environ['QT_LOGGING_RULES'] = '*=false'
@@ -54,8 +56,8 @@ class ContextoApp:
 
     def check_db_file(self):
         """ Check if database file exists and create tables """
-        if not os.path.isfile(AppUtil.get_db_file_path()):
-            self.db.create_tables([Markets])
+        if not os.path.isfile(AppUtil.get_db_file_path()) or self.args['--updatedb']:
+            self.db.create_tables([Markets, Trades])
 
     # ─── PROPIEDADES ────────────────────────────────────────────────────────────────
 

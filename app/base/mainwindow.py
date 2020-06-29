@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 from app.markets.dock import DockMarkets
 from app.debug.dock import DockDebug, Qlogger
+from app.portfolio.dock import DockPortfolio
 
 from app.ui.mainwindow_Ui import Ui_MainWindow
 
@@ -50,6 +51,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionFull_Screen.toggled.connect(self.onActionFullScreen)
         self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
         self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
+        self.actionPortfolio.toggled['bool'].connect(self.dock_portfolio.setVisible)
         self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
@@ -58,6 +60,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
         self.dock_debug = DockDebug(self)
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_debug)
+        self.dock_portfolio = DockPortfolio(self)
+        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_portfolio)
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
 

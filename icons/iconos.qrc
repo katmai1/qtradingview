@@ -17,6 +17,7 @@
     <file alias="poloniex">exchanges/poloniex.png</file>
   </qresource>
   <qresource prefix="actions">
+    <file alias="portfolio">actions/portfolio.png</file>
     <file alias="update">actions/update.svg</file>
     <file alias="settings">actions/settings.svg</file>
     <file alias="exit">actions/salir.svg</file>

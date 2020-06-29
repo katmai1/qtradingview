@@ -47,6 +47,7 @@ class CustomContextMenu(QMenu):
         self.addAction(self._action(":/actions/markets", "Load chart...", self._run_load_chart, "Return"))
         self.addSeparator()
         self.addAction(self._action(":/actions/settings", "Set as initial market", self._run_set_initial_market))
+        self.addAction(self._action(":/actions/portfolio", "Add to portfolio...", self._run_add_portfolio))
 
     # inserta menu favorito, ejecuta evento externo
     def _insert_favorite(self, item):
@@ -64,6 +65,9 @@ class CustomContextMenu(QMenu):
         self.mw.config['initial_exchange'] = self._item.exchange.title()
         self.mw.config['initial_market'] = self._item.symbol
         self.mw.ctx.save_config()
+
+    def _run_add_portfolio(self):
+        self.mw.dock_portfolio.addPortfolio(self._item.exchange, self._item.symbol)
 
 # ────────────────────────────────────────────────────────────────────────────────
 

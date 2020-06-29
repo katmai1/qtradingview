@@ -100,6 +100,7 @@
    </attribute>
    <addaction name="actionMarkets"/>
    <addaction name="actionAlarms"/>
+   <addaction name="actionPortfolio"/>
   </widget>
   <widget class="QToolBar" name="appbar">
    <property name="sizePolicy">
@@ -158,6 +159,7 @@
     <addaction name="separator"/>
     <addaction name="actionMarkets"/>
     <addaction name="actionAlarms"/>
+    <addaction name="actionPortfolio"/>
     <addaction name="actionDebug"/>
     <addaction name="separator"/>
     <addaction name="actionFull_Screen"/>
@@ -298,6 +300,24 @@
    </property>
    <property name="shortcut">
     <string>F4</string>
+   </property>
+  </action>
+  <action name="actionPortfolio">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../icons/iconos.qrc">
+     <normaloff>:/actions/portfolio</normaloff>:/actions/portfolio</iconset>
+   </property>
+   <property name="text">
+    <string>Portfolio</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
    </property>
   </action>
  </widget>
