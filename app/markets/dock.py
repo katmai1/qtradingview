@@ -60,7 +60,9 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
 
     def onMarketsUpdaterFinished(self):
-        self._load_markets
+        if self.list_markets.count() == 0:
+            self._load_markets
+        QtCore.QTimer.singleShot(120 * 1000, self.markets_updater.start)
         self.mw.dock_portfolio.refreshTable()
 
     # gestiona los shortcuts del dock
