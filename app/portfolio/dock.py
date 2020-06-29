@@ -19,6 +19,11 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
         self._signals()
         self.refreshTable()
 
+    def getSelectedTrade(self):
+        row = self.tabla.currentIndex().row()
+        trade_id = self.model._data[row][0]
+        return Trades.get_by_id(trade_id)
+
     def setVisible(self, visible):
         super().setVisible(visible)
         if visible:
@@ -27,7 +32,7 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
     def _signals(self):
         self.btn_edit.clicked.connect(self.onButtonEdit)
         self.btn_delete.clicked.connect(self.onButtonDelete)
-        self.btn_update.clicked.connect(self.onButtonUpdate)
+        self.btn_update.clicked.connect(self.refreshTable)
 
     def addPortfolio(self, exchange, market):
         d = DialogTrade(self)
@@ -46,7 +51,10 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
             self.refreshTable()
 
     def onButtonDelete(self):
-        ...
+        t = self.getSelectedTrade()
+        t.delete_instance()
+        t.save()
+        self.refreshTable()
 
     def onButtonUpdate(self):
         self.mw.dock_markets.markets_updater.start()
@@ -56,10 +64,12 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
         for trade in Trades.get_all():
             data.append([
                 trade.id, trade.market.exchange, trade.market.symbol, trade.position,
-                trade.open_price, trade.amount
+                trade.open_price, trade.amount, trade.market.last_price, trade.market.since_update(),
+                trade.profit100(), trade.profit()
             ])
-        self.model = TradesTableModel(data)
-        self.tabla.setModel(self.model)
-        self.tabla.resizeColumnsToContents()
+        if len(data) > 0:
+            self.model = TradesTableModel(data)
+            self.tabla.setModel(self.model)
+            self.tabla.resizeColumnsToContents()
 
 # ────────────────────────────────────────────────────────────────────────────────

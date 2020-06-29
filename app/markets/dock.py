@@ -40,9 +40,9 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         self.btn_all.toggled.connect(self.onClickAllButton)
         self.btn_favorite.toggled.connect(self.onClickFavoriteButton)
         self.btn_margin.toggled.connect(self.onClickMarginButton)
-        self.btn_update.clicked.connect(self.start_update_market)
+        self.btn_update.clicked.connect(self.markets_updater.start)
         self.markets_updater.infoEvent.connect(self.onEventUpdater)
-        self.markets_updater.onFinished.connect(self._load_markets)
+        self.markets_updater.onFinished.connect(self.onMarketsUpdaterFinished)
 
     @property
     def selected_exchange(self):
@@ -58,6 +58,10 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             self.raise_()
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
+
+    def onMarketsUpdaterFinished(self):
+        self._load_markets
+        self.mw.dock_portfolio.refreshTable()
 
     # gestiona los shortcuts del dock
     def keyPressEvent(self, event):

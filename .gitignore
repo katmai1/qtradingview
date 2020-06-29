@@ -20,3 +20,4 @@
 /dist/
 /venv/
 /.idea/
+/migrations/

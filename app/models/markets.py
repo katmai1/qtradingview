@@ -1,6 +1,6 @@
 import peewee
 import logging
-
+from datetime import datetime
 from .base import CustomModel
 
 
@@ -23,6 +23,7 @@ class Markets(CustomModel):
     ask_price = peewee.FloatField(null=True)
     bid_price = peewee.FloatField(null=True)
     last_price = peewee.FloatField(null=True)
+    date = peewee.DateTimeField(default=datetime.now)
 
     class Meta:
         db_table = 'markets'
@@ -74,3 +75,10 @@ class Markets(CustomModel):
         self.ask_price = prices['ask']
         self.bid_price = prices['bid']
         self.last_price = prices['last']
+        self.date = datetime.now()
+
+    def since_update(self):
+        dif = datetime.now() - self.date
+        return dif.seconds / 60
+
+# ────────────────────────────────────────────────────────────────────────────────

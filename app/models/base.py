@@ -1,4 +1,5 @@
 from peewee import SqliteDatabase, Model
+from peewee_migrate import Router
 
 from app.utils import AppUtil
 
@@ -13,6 +14,16 @@ def get_db():
         'ignore_check_constraints': 0,
         'synchronous': 0})
     return db
+
+
+def migrate(db):
+    router = Router(db)
+    # Create migration
+    router.create('migration_name', auto=True)
+    # Run migration/migrations
+    router.run('migration_name')
+    # Run all unapplied migrations
+    router.run()
 
 
 # ─── CUSTOM MODEL BASE ──────────────────────────────────────────────────────────
