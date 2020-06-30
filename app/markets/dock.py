@@ -83,9 +83,9 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             logging.debug(event.key())
 
     def onEventUpdater(self, texto):
-        logging.info(texto)
+        logging.debug(texto)
         self.mw.set_text_status(texto)
-        
+
     # actualiza markets del exchange seleccionado en la db
     def start_update_market(self):
         self.mw.set_text_status(f'Updating markets from {self.selected_exchange.title()}...')
@@ -135,6 +135,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     def contextMenuEvent(self, position):
         contextMenu = CustomContextMenu(self.list_markets)
+        print(position)
         if "QPoint" in str(position):
             contextMenu.handler(position)
 

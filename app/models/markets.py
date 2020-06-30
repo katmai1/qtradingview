@@ -79,6 +79,7 @@ class Markets(CustomModel):
 
     def since_update(self):
         dif = datetime.now() - self.date
-        return dif.seconds / 60
+        minutes, seconds = divmod(dif.total_seconds(), 60)
+        return [int(minutes), int(seconds)]
 
 # ────────────────────────────────────────────────────────────────────────────────

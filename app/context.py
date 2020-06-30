@@ -27,6 +27,8 @@ class ContextoApp:
         if args['--updatedb']:
             migrate(self.db)
         if not self.debug:
+            print("hide debug")
+            os.system("export QT_LOGGING_RULES='*=false'")
             os.environ['QT_LOGGING_RULES'] = '*=false'
         #
         AppUtil.create_app_dir()

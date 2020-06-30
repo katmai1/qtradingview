@@ -172,22 +172,22 @@
 <context>
     <name>DockPortfolio</name>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="56"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="58"/>
         <source>Po&amp;rtfolio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="57"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="59"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="58"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="60"/>
         <source>Edit...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="59"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="61"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
