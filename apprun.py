@@ -15,7 +15,7 @@ Options:
   --updatedb    Update db forms.
 """
 # export QT_LOGGING_RULES='*=false'
-__version__ = '0.15.2'
+__version__ = '0.15.3'
 
 import sys
 import docopt
