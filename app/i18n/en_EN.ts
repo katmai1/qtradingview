@@ -172,23 +172,28 @@
 <context>
     <name>DockPortfolio</name>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="58"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="55"/>
         <source>Po&amp;rtfolio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="59"/>
-        <source>Update</source>
+        <location filename="../ui/dock_portfolio_Ui.py" line="56"/>
+        <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="60"/>
-        <source>Edit...</source>
+        <location filename="../ui/dock_portfolio_Ui.py" line="57"/>
+        <source>Closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="61"/>
-        <source>Delete</source>
+        <location filename="../portfolio/dock.py" line="58"/>
+        <source>Do you want delete this trade?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../portfolio/dock.py" line="67"/>
+        <source>Input close price:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -9,33 +9,30 @@ from .widgets import TradesTableModel, CustomContextMenu
 # ─── DOCK PORTFOLIO ─────────────────────────────────────────────────────────────
 
 class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
-    
+
     def __init__(self, parent=None):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
         self.setupUi(self)
         self.mw = parent
-        self.setVisible(self.mw.actionPortfolio.isChecked())
+        self.setWindowTitle("Portfolio")
         #
+        self.refresh_timer = QtCore.QTimer(self)
+        self.refresh_timer.setInterval(10000)
         self._signals()
-        self.refreshTable()
+        self.setVisible(self.mw.actionPortfolio.isChecked())
 
-    def getSelectedTrade(self):
-        row = self.tabla.currentIndex().row()
-        trade_id = self.model._data[row][0]
-        return Trades.get_by_id(trade_id)
-
-    def setVisible(self, visible):
-        super().setVisible(visible)
-        if visible:
-            self.raise_()
+    def setVisible(self, active):
+        """Show/hide this dock and start/stop refreshing table timer"""
+        self.refresh_timer.start() if active else self.refresh_timer.stop()
+        return super().setVisible(active)
 
     def _signals(self):
         self.tabla.customContextMenuRequested.connect(self.contextMenuEvent)
-        self.btn_edit.clicked.connect(self.onButtonEdit)
-        self.btn_delete.clicked.connect(self.onButtonDelete)
-        self.btn_update.clicked.connect(self.refreshTable)
+        self.refresh_timer.timeout.connect(self.refreshTable)
+        self.combo_trades.currentTextChanged.connect(self.refreshTable)
 
     def addPortfolio(self, exchange, market):
+        """Create new trade in portfolio"""
         d = DialogTrade(self)
         d.loadNewTradeData(exchange, market)
         if d.exec_():
@@ -43,20 +40,14 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
             self.refreshTable()
 
     def contextMenuEvent(self, position):
+        """Load contextual menu"""
         contextMenu = CustomContextMenu(self.tabla)
-        if "QPoint" in str(position):
+        index = self.tabla.indexAt(position)
+        if index.isValid():
             contextMenu.handler(position)
 
-    def onButtonEdit(self):
-        row = self.tabla.currentIndex().row()
-        trade_id = self.model._data[row][0]
-        d = DialogTrade(self)
-        d.loadEditTradeData(trade_id)
-        if d.exec_():
-            d.updateTrade()
-            self.refreshTable()
-    
     def openDialogEdit(self, trade_id):
+        """Edit trade from trade_id"""
         d = DialogTrade(self)
         d.loadEditTradeData(trade_id)
         if d.exec_():
@@ -64,36 +55,40 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
             self.refreshTable()
 
     def deleteTrade(self, trade_id):
+        """Delete trade from trade_id"""
         result = QtWidgets.QMessageBox.question(
-            self, "delete trade", "Do you want delete this trade?",
+            self, f"Trade {trade_id}", self.tr("Do you want delete this trade?"),
             QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No)
         if result == QtWidgets.QMessageBox.Yes:
             Trades.delete_by_id(trade_id)
             self.refreshTable()
 
-    def onButtonDelete(self):
-        t = self.getSelectedTrade()
-        t.delete_instance()
-        t.save()
+    def closeTrade(self, trade_id):
+        trade = Trades.get_by_id(trade_id)
+        close_price, okPressed = QtWidgets.QInputDialog.getDouble(
+            self, f"Trade {trade_id}", self.tr("Input close price:"),
+            decimals=8, value=trade.market.last_price)
+        if okPressed:
+            trade.close_price = close_price
+            trade.save()
         self.refreshTable()
 
-    def onButtonUpdate(self):
-        self.mw.dock_markets.markets_updater.start()
-
     def refreshTable(self):
-        data = []
-        for trade in Trades.get_all():
-            data.append([
-                trade.id, trade.market.exchange, trade.market.symbol, trade.position,
-                trade.open_price, trade.amount, trade.market.last_price, trade.market.since_update(),
-                trade.profit100(), trade.profit()
-            ])
+        """Add data from database"""
+        selected = self.combo_trades.currentText().lower()
+        if selected == "open":
+            data, headers = Trades.getOpenTradesDataAndHeader()
+        elif selected == "closed":
+            data, headers = Trades.getClosedTradesDataAndHeader()
+        else:
+            data = []
         if len(data) > 0:
-            self.model = TradesTableModel(data)
+            self.model = TradesTableModel(data, headers)
             self.tabla.setModel(self.model)
             self.resizeTableColumns()
 
     def resizeTableColumns(self):
+        """Custom resize columns method"""
         self.tabla.resizeColumnsToContents()
         for col, header in enumerate(self.model.headers):
             new_size = self.tabla.columnWidth(col) + 15

@@ -1,7 +1,7 @@
 import logging
 from PyQt5.QtCore import QAbstractTableModel, Qt
 from PyQt5.QtGui import QColor, QIcon
-from PyQt5.QtWidgets import QMenu, QAction, QMessageBox
+from PyQt5.QtWidgets import QMenu, QAction
 
 from .models import Trades
 
@@ -10,11 +10,10 @@ from .models import Trades
 
 class TradesTableModel(QAbstractTableModel):
     
-    headers = ['ID', 'Exchange', 'Market', 'PosType', 'OpenPrice', 'Amount', 'LastPrice', 'LastUpdate', 'Profit100', 'Profit']
-    
-    def __init__(self, data):
+    def __init__(self, data, headers):
         super(TradesTableModel, self).__init__()
         self._data = data
+        self.headers = headers
 
     def data(self, index, role=Qt.DisplayRole):
         if role == Qt.DisplayRole:
@@ -23,40 +22,24 @@ class TradesTableModel(QAbstractTableModel):
             return self.customForegroundRole(index)
         elif role == Qt.TextAlignmentRole:
             return Qt.AlignVCenter + Qt.AlignRight
-        elif role == "raw":
-            valor = self._data[index.row()][index.column()]
-            columna = self.headers[index.column()].lower()
-            if type(valor) == float:
-                return f"{valor:.8f}"
-            if columna == "lastupdate":
-                return self.customDisplayRole(index)
-            return valor
 
     # custom show values
     def customDisplayRole(self, index):
+        floats_heads = ["openprice", "closeprice", "amount", "lastprice", "profit"]
         valor = self._data[index.row()][index.column()]
-        columna = self.headers[index.column()].lower()
+        col = self.headers[index.column()].lower()
         if valor is not None:
             base_coin, quote_coin = self._data[index.row()][2].split("/")
-            if columna == "exchange":
+            if col == "exchange" or col == "postype":
                 return valor.title()
-            elif columna == "postype":
-                return valor.title()
-            elif columna == "openprice":
-                price = str(float("%.8f" % valor))
-                return f"{price} {quote_coin}"
-            elif columna == "amount":
-                amount = str(float("%.8f" % valor))
-                return f"{amount} {base_coin}"
-            elif columna == "profit100":
-                return "%.2f%%" % valor
-            elif columna == "profit":
-                profit = str(float("%.8f" % valor))
-                return f"{profit} {quote_coin}"
-            elif columna == "lastprice":
-                price = str(float("%.8f" % valor))
-                return f"{valor:.8f} {quote_coin}"
-            elif columna == "lastupdate":
+
+            elif col in floats_heads:
+                return f"{valor:.8f}"
+
+            elif col == "profit100":
+                return f"{valor:.2f}%"
+
+            elif col == "lastupdate":
                 return f"{valor[0]}m {valor[1]}s ago"
         return valor
 
@@ -101,13 +84,21 @@ class CustomContextMenu(QMenu):
         
     def handler(self, position):
         index = self.parent().indexAt(position)
-        self._valor = self.parent().model().data(index, role="raw")
+        self._valor = self.parent().model().data(index)
         self._trade = self._get_trade(position)
+        if self._valor is not None and self._trade is not None:
+            self._insertActions()
+            self.exec_(self.parent().viewport().mapToGlobal(position))
+
+    # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
+
+    def _insertActions(self):
+        self.addAction(self._action("Close...", self.runActionClose))
         self.addAction(self._action("Edit...", self.runActionEdit))
         self.addAction(self._action("Delete", self.runActionDelete))
-        self.addAction(self._action(f"Copy '{self._valor}' to clipboard", self.runActionCopyClipboard))
-        self.exec_(self.parent().mapToGlobal(position))
-    
+        self.addSeparator()
+        self.addAction(self._action(f"Copy to clipboard: '{self._valor}'", self.runActionCopyClipboard))
+
     def _get_trade(self, position):
         try:
             index = self.parent().indexAt(position)
@@ -118,7 +109,7 @@ class CustomContextMenu(QMenu):
             logging.warning("Exception trying get item on this position.")
             logging.error(e.__str__())
             return None
-    
+
     def _action(self, texto, cmd, icono=None, shortcut=None):
         action = QAction(texto, self, triggered=cmd)
         if shortcut is not None:
@@ -127,14 +118,20 @@ class CustomContextMenu(QMenu):
             action.setIcon(QIcon(icono))
         return action
 
+    # ─── ACTIONS ────────────────────────────────────────────────────────────────────
+
+    def runActionClose(self):
+        self.dock.closeTrade(self._trade.id)
+
     def runActionEdit(self):
         self.dock.openDialogEdit(self._trade.id)
-    
+
     def runActionDelete(self):
         self.dock.deleteTrade(self._trade.id)
-    
+
     def runActionCopyClipboard(self):
         clip = self.mw.ctx.app.clipboard()
         clip.setText(self._valor)
 
 # ────────────────────────────────────────────────────────────────────────────────
+

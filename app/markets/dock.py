@@ -17,6 +17,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
         self.setupUi(self)
+        self.setWindowTitle("Markets")
         #
         self.mw = self.parent()  # mainwindow
         self.setVisible(self.mw.actionMarkets.isChecked())
@@ -135,7 +136,6 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     def contextMenuEvent(self, position):
         contextMenu = CustomContextMenu(self.list_markets)
-        print(position)
         if "QPoint" in str(position):
             contextMenu.handler(position)
 

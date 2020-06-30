@@ -55,29 +55,37 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="btn_update">
-        <property name="text">
-         <string>Update</string>
+       <widget class="QComboBox" name="combo_trades">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
         </property>
-        <property name="icon">
-         <iconset resource="../icons/iconos.qrc">
-          <normaloff>:/actions/update</normaloff>:/actions/update</iconset>
+        <property name="insertPolicy">
+         <enum>QComboBox::InsertAtTop</enum>
         </property>
+        <item>
+         <property name="text">
+          <string>Open</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Closed</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="btn_edit">
-        <property name="text">
-         <string>Edit...</string>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_delete">
-        <property name="text">
-         <string>Delete</string>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
         </property>
-       </widget>
+       </spacer>
       </item>
      </layout>
     </item>

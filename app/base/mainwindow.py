@@ -55,6 +55,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
+        self.actionDebug.setChecked(self.config['panel_debug_active'])
+        self.actionMarkets.setChecked(self.config['panel_markets_active'])
+        self.actionPortfolio.setChecked(self.config['panel_portfolio_active'])
+        #
         self.setTabPosition(QtCore.Qt.AllDockWidgetAreas, QtWidgets.QTabWidget.North)
         self.dock_markets = DockMarkets(self)
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
@@ -97,6 +101,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         mbox.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
         result = mbox.exec_()
         if int(result) == 16384:
+            self.remember_panels()
             self.quit()
         event.ignore()
 
@@ -105,6 +110,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.dock_markets.markets_updater.terminate()
             self.set_text_status(self.tr("Closing background processes..."))
         self.ctx.app.quit()
+    
+    def remember_panels(self):
+        self.config['panel_markets_active'] = self.actionMarkets.isChecked()
+        self.config['panel_portfolio_active'] = self.actionPortfolio.isChecked()
+        self.config['panel_debug_active'] = self.actionDebug.isChecked()
+        self.ctx.save_config()
+
     # ────────────────────────────────────────────────────────────────────────────────
 
     # carga un market en la pagina

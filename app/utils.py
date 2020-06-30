@@ -24,6 +24,9 @@ class AppUtil:
         exchanges = [ "Bittrex", "Bitfinex", "Binance", "Poloniex",]
         initial_exchange = "Binance"
         initial_market = "BTC/USDT"
+        panel_markets_active = false
+        panel_portfolio_active = false
+        panel_debug_active = false
     """
 
     @classmethod

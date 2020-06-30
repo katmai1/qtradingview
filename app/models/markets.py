@@ -77,6 +77,7 @@ class Markets(CustomModel):
         self.last_price = prices['last']
         self.date = datetime.now()
 
+    @property
     def since_update(self):
         dif = datetime.now() - self.date
         minutes, seconds = divmod(dif.total_seconds(), 60)
