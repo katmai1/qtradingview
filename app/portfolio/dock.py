@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 
 from app.ui.dock_portfolio_Ui import Ui_DockPortfolio
 from .dialog import DialogTrade
@@ -82,10 +82,11 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
             data, headers = Trades.getClosedTradesDataAndHeader()
         else:
             data = []
-        if len(data) > 0:
-            self.model = TradesTableModel(data, headers)
-            self.tabla.setModel(self.model)
-            self.resizeTableColumns()
+            headers = []
+        self.model = TradesTableModel(data, headers)
+        self.tabla.setModel(self.model)
+        self.resizeTableColumns()
+        self.ed_profit100_total.setText(self.model.suma_profit100)
 
     def resizeTableColumns(self):
         """Custom resize columns method"""

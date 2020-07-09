@@ -9,11 +9,19 @@ from .models import Trades
 # ─── TRADES MODEL FOR TABLE ─────────────────────────────────────────────────────
 
 class TradesTableModel(QAbstractTableModel):
-    
+
     def __init__(self, data, headers):
         super(TradesTableModel, self).__init__()
         self._data = data
         self.headers = headers
+
+    @property
+    def suma_profit100(self):
+        index = self.headers.index('Profit100')
+        total = 0.0
+        for d in self._data:
+            total += d[index]
+        return f"{total:.2f}%"
 
     def data(self, index, role=Qt.DisplayRole):
         if role == Qt.DisplayRole:
@@ -46,14 +54,14 @@ class TradesTableModel(QAbstractTableModel):
     # custom color text
     def customForegroundRole(self, index):
         valor = self._data[index.row()][index.column()]
-        columna = self.headers[index.column()].lower()
-        if columna == "profit100" or columna == "profit":
+        col = self.headers[index.column()].lower()
+        if col == "profit100" or col == "profit":
             if valor > 0:
                 return QColor('green')
             elif valor < 0:
                 return QColor('red')
-        elif columna == "lastupdate":
-            if valor[0] > 3:
+        elif col == "lastupdate":
+            if valor[0] > 2:
                 return QColor('red')
         return
 
@@ -68,7 +76,7 @@ class TradesTableModel(QAbstractTableModel):
         return len(self._data)
 
     def columnCount(self, index):
-        return len(self._data[0])
+        return len(self.headers)
 
 # ────────────────────────────────────────────────────────────────────────────────
 
@@ -76,12 +84,12 @@ class TradesTableModel(QAbstractTableModel):
 # ─── PORTFOLIO CONTEXT MENU ─────────────────────────────────────────────────────
 
 class CustomContextMenu(QMenu):
-    
+
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.mw = self.parent().parent().parent().parent()
         self.dock = self.parent().parent().parent()
-        
+
     def handler(self, position):
         index = self.parent().indexAt(position)
         self._valor = self.parent().model().data(index)
@@ -134,4 +142,3 @@ class CustomContextMenu(QMenu):
         clip.setText(self._valor)
 
 # ────────────────────────────────────────────────────────────────────────────────
-

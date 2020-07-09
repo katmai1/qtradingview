@@ -28,6 +28,10 @@ class ContextoApp:
             os.system("export QT_LOGGING_RULES='*=false'")
             os.environ['QT_LOGGING_RULES'] = '*=false'
         #
+        if AppUtil.isPyinstaller():
+            print("pyinstaller")
+        else:
+            print("no pyinstaller")
         AppUtil.create_app_dir()
         AppUtil.create_default_config()
         self.check_db_file()

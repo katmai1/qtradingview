@@ -63,4 +63,12 @@ class AppUtil:
             with open(AppUtil.get_config_file_path(), "w") as f:
                 toml.dump(config, f)
 
+    @classmethod
+    def isPyinstaller(cls):
+        try:
+            _ = sys._MEIPASS
+            return True
+        except Exception:
+            return False
+
 # ────────────────────────────────────────────────────────────────────────────────

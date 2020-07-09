@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="es_ES" sourcelanguage="es">
+<!DOCTYPE TS>
+<TS version="2.1" language="es_ES" sourcelanguage="es">
 <context>
     <name>DialogConfig</name>
     <message>
@@ -70,47 +71,47 @@
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="197"/>
         <source>BitBay</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="201"/>
         <source>Bithumb</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="203"/>
         <source>Bitso</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="211"/>
         <source>Gemini</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="213"/>
         <source>HitBTC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="219"/>
         <source>OKCoin</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="223"/>
         <source>TheRock</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../base/dialog_config.py" line="38"/>
         <source>Language changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma cambiado</translation>
     </message>
     <message>
         <location filename="../base/dialog_config.py" line="39"/>
         <source>The language change will be applied when restarting the application</source>
-        <translation type="unfinished"></translation>
+        <translation>El cambio de idioma será aplicado después de reiniciar la aplicación</translation>
     </message>
 </context>
 <context>
@@ -172,28 +173,33 @@
 <context>
     <name>DockPortfolio</name>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="55"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="82"/>
         <source>Po&amp;rtfolio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="56"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="83"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="57"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="84"/>
         <source>Closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../portfolio/dock.py" line="58"/>
+        <location filename="../portfolio/dock.py" line="59"/>
         <source>Do you want delete this trade?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../portfolio/dock.py" line="67"/>
+        <location filename="../portfolio/dock.py" line="68"/>
         <source>Input close price:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dock_portfolio_Ui.py" line="85"/>
+        <source>Profit total:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -275,12 +281,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="95"/>
+        <location filename="../base/mainwindow.py" line="99"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="96"/>
+        <location filename="../base/mainwindow.py" line="100"/>
         <source>Do you want quit?</source>
         <translation>Quieres salir?</translation>
     </message>
@@ -317,47 +323,47 @@
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="172"/>
         <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Preferencias</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="175"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Salir</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="179"/>
         <source>&amp;Markets</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="182"/>
         <source>&amp;Alarms</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Alarmas</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="185"/>
         <source>&amp;Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Pantalla &amp;completa</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="188"/>
         <source>&amp;Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Depurar</translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="106"/>
+        <location filename="../base/mainwindow.py" line="111"/>
         <source>Closing background processes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrando procesos en segundo plano...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="193"/>
         <source>Portfolio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="194"/>
         <source>F3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

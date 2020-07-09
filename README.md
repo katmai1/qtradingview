@@ -4,6 +4,14 @@ PyQt App for TradingView.
 
 Recommends simple login to autosave your draws. 
 
+## Features
+
+- Includes the most cryptocurrencies exchanges available in tradingview.
+- Complete lists of available markets, with symbol filter.
+- Favorite and margin lists.
+- Portfolio.
+- Ads remove.
+
 ## Demo
 
 ![Image not found](icons/screenshots/demo.png)
@@ -29,3 +37,4 @@ Run
 ```
 python apprun.py
 ```
+

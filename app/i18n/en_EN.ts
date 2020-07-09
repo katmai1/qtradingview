@@ -172,28 +172,33 @@
 <context>
     <name>DockPortfolio</name>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="55"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="82"/>
         <source>Po&amp;rtfolio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="56"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="83"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dock_portfolio_Ui.py" line="57"/>
+        <location filename="../ui/dock_portfolio_Ui.py" line="84"/>
         <source>Closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../portfolio/dock.py" line="58"/>
+        <location filename="../portfolio/dock.py" line="59"/>
         <source>Do you want delete this trade?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../portfolio/dock.py" line="67"/>
+        <location filename="../portfolio/dock.py" line="68"/>
         <source>Input close price:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dock_portfolio_Ui.py" line="85"/>
+        <source>Profit total:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -275,12 +280,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="95"/>
+        <location filename="../base/mainwindow.py" line="99"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="96"/>
+        <location filename="../base/mainwindow.py" line="100"/>
         <source>Do you want quit?</source>
         <translation></translation>
     </message>
@@ -345,7 +350,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="106"/>
+        <location filename="../base/mainwindow.py" line="111"/>
         <source>Closing background processes...</source>
         <translation type="unfinished"></translation>
     </message>

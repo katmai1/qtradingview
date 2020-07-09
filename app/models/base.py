@@ -1,5 +1,5 @@
 from peewee import SqliteDatabase, Model
-from peewee_migrate import Router
+from playhouse.sqliteq import SqliteQueueDatabase
 
 from app.utils import AppUtil
 
@@ -16,7 +16,15 @@ def get_db():
     return db
 
 
+# genera el objeto db y lo devuelve
+def get_db_queue():
+    db_file_path = AppUtil.get_db_file_path()
+    db = SqliteQueueDatabase(db_file_path)
+    return db
+
+
 def migrate(db):
+    from peewee_migrate import Router
     router = Router(db)
     # Create migration
     router.create('migration_name', auto=True)
