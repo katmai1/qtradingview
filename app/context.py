@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QLibraryInfo, QTranslator
 
 from app.utils import AppUtil
-from app.models.base import get_db, migrate, get_db_queue
+from app.models.base import get_db, migrate
 
 from app.models.markets import Markets
 from app.portfolio.models import Trades
@@ -61,6 +61,7 @@ class ContextoApp:
 
     def check_db(self):
         """ Main method to checks related with database. """
+        self.db.close()
         # delete database file if is required by user
         if self.args['--deletedb']:
             self.deleteDatabaseFile()
@@ -75,7 +76,6 @@ class ContextoApp:
             self.createTablesDB()
 
     def deleteDatabaseFile(self):
-        self.db.close()
         if AppUtil.existsFileDB():
             os.remove(AppUtil.get_db_file_path())
         if not AppUtil.isPyinstaller():

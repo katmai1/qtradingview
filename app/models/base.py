@@ -1,5 +1,4 @@
 from peewee import SqliteDatabase, Model
-from playhouse.sqliteq import SqliteQueueDatabase
 
 from app.utils import AppUtil
 
@@ -13,13 +12,6 @@ def get_db():
         'foreign_keys': 1,
         'ignore_check_constraints': 0,
         'synchronous': 0})
-    return db
-
-
-# genera el objeto db y lo devuelve
-def get_db_queue():
-    db_file_path = AppUtil.get_db_file_path()
-    db = SqliteQueueDatabase(db_file_path)
     return db
 
 
