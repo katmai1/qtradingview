@@ -11,7 +11,7 @@ from .models import Trades
 class TradesTableModel(QAbstractTableModel):
 
     def __init__(self, data, headers):
-        super(TradesTableModel, self).__init__()
+        QAbstractTableModel.__init__(self)
         self._data = data
         self.headers = headers
 

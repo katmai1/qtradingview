@@ -70,5 +70,9 @@ class AppUtil:
             return True
         except Exception:
             return False
+    
+    @classmethod
+    def existsFileDB(cls):
+        return os.path.isfile(cls.get_db_file_path())
 
 # ────────────────────────────────────────────────────────────────────────────────

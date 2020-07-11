@@ -1,5 +1,7 @@
 import os
+import shutil
 import toml
+import sys
 
 from signal import signal, SIGINT, SIG_DFL
 from cached_property import cached_property
@@ -8,7 +10,11 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QLibraryInfo, QTranslator
 
 from app.utils import AppUtil
-from app.models.base import get_db, migrate
+from app.models.base import get_db, migrate, get_db_queue
+
+from app.models.markets import Markets
+from app.portfolio.models import Trades
+
 from app.base.mainwindow import MainWindow
 
 
@@ -22,19 +28,13 @@ class ContextoApp:
         signal(SIGINT, SIG_DFL)
         self.args = args
         # disable qt logging if not debug mode
-        if args['--updatedb']:
-            migrate(self.db)
         if not self.debug:
             os.system("export QT_LOGGING_RULES='*=false'")
             os.environ['QT_LOGGING_RULES'] = '*=false'
         #
-        if AppUtil.isPyinstaller():
-            print("pyinstaller")
-        else:
-            print("no pyinstaller")
         AppUtil.create_app_dir()
         AppUtil.create_default_config()
-        self.check_db_file()
+        self.check_db()
 
     def run(self):
         self.window.showMaximized()
@@ -59,10 +59,44 @@ class ContextoApp:
         with open(AppUtil.get_config_file_path(), "w") as f:
             toml.dump(self.config, f)
 
-    def check_db_file(self):
-        """ Check if database file exists and create tables """
-        if not os.path.isfile(AppUtil.get_db_file_path()):
+    def check_db(self):
+        """ Main method to checks related with database. """
+        # delete database file if is required by user
+        if self.args['--deletedb']:
+            self.deleteDatabaseFile()
+        # update db tables if is required by user
+        if self.args['--updatedb']:
+            self.createTablesDB()
+        # check if db file exists
+        if not AppUtil.existsFileDB():
+            self.createTablesDB()
+        # check if all tables are created
+        if not self.checkTablesExists():
+            self.createTablesDB()
+
+    def deleteDatabaseFile(self):
+        self.db.close()
+        if AppUtil.existsFileDB():
+            os.remove(AppUtil.get_db_file_path())
+        if not AppUtil.isPyinstaller():
+            shutil.rmtree('migrations', ignore_errors=True)
+        sys.exit("Execute again")
+
+    def createTablesDB(self):
+        """ Creating or updating database tables. """
+        if AppUtil.isPyinstaller():
+            self.db.create_tables([Markets, Trades])
+        else:
             migrate(self.db)
+        self.check_db()
+
+    def checkTablesExists(self):
+        """ Returns True if all tables exists """
+        if not Markets.table_exists():
+            return False
+        if not Trades.table_exists():
+            return False
+        return True
 
     # ─── PROPIEDADES ────────────────────────────────────────────────────────────────
 
