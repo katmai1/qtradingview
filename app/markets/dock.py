@@ -21,8 +21,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         #
         self.mw = self.parent()  # mainwindow
         self.setVisible(self.mw.actionMarkets.isChecked())
-        #
-
+                
         self.markets_updater = UpdateAllMarkets(self)
         self.lista_mode = "all"
         self._load_exchanges()

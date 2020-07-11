@@ -3,6 +3,7 @@ import logging
 from PyQt5.QtWidgets import QStyledItemDelegate, QListWidgetItem, QStyleOptionViewItem, QMenu, QAction
 from PyQt5.QtGui import QIcon
 
+
 from app.models.markets import Markets
 
 
@@ -36,27 +37,34 @@ class CustomContextMenu(QMenu):
             return None
 
     # funcion para configurar las opciones rapidamente
-    def _action(self, icono, texto, cmd, shortcut=None):
-        action = QAction(QIcon(icono), texto, self, triggered=cmd)
+    def _action(self, texto, cmd, icono=None, shortcut=None):
+        action = QAction(texto, self, triggered=cmd)
         if shortcut is not None:
             action.setShortcut(shortcut)
+        if icono is not None:
+            action.setIcon(QIcon(icono))
         return action
 
     # inserta los menus que ejecutan eventos
     def _insert_actions(self, item):
-        self.addAction(self._action(":/actions/markets", "Load chart...", self._run_load_chart, "Return"))
+        self.addAction(self._action("Load chart...", self._run_load_chart, icono=":/actions/markets", shortcut="Return"))
         self.addSeparator()
-        self.addAction(self._action(":/actions/settings", "Set as initial market", self._run_set_initial_market))
-        self.addAction(self._action(":/actions/portfolio", "Add to portfolio...", self._run_add_portfolio))
+        self.addAction(self._action("Set as initial market", self._run_set_initial_market, icono=":/actions/settings"))
+        self.addAction(self._action("Add to portfolio...", self._run_add_portfolio, icono=":/actions/portfolio"))
+        self.addSeparator()
+        self.addAction(self._action("Open custom chart", self._run_custom_chart))
 
     # inserta menu favorito, ejecuta evento externo
     def _insert_favorite(self, item):
         v = {}
         v[True] = {"txt": "Remove from favorite", "ico": ":base/voidstar"}
         v[False] = {"txt": "Add to favorite", "ico": ":base/star"}
-        self.addAction(self._action(v[item.is_favorite]['ico'], v[item.is_favorite]['txt'], item.toggle_favorite, "Esc"))
+        self.addAction(self._action(v[item.is_favorite]['txt'], item.toggle_favorite, shortcut="Esc", icono=v[item.is_favorite]['ico']))
 
     # ─── EVENTS ────────────────────────────────────────────────────────────────────
+
+    def _run_custom_chart(self):
+        ...
 
     def _run_load_chart(self):
         self.mw.load_chart(self._item.symbol, self._item.exchange)
