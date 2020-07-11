@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="2.0" language="en" sourcelanguage="es">
 <context>
+    <name>CustomContextMenu</name>
+    <message>
+        <location filename="../markets/widgets.py" line="50"/>
+        <source>MarketsWidgets</source>
+        <comment>Load chart...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../markets/widgets.py" line="52"/>
+        <source>MarketsWidgets</source>
+        <comment>Set as initial market</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../markets/widgets.py" line="53"/>
+        <source>MarketsWidgets</source>
+        <comment>Add to portfolio...</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../markets/widgets.py" line="58"/>
+        <source>MarketsWidgets</source>
+        <comment>Remove from favorite</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../markets/widgets.py" line="59"/>
+        <source>MarketsWidgets</source>
+        <comment>Add to favorite</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DialogConfig</name>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="188"/>
@@ -70,47 +103,47 @@
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="197"/>
         <source>BitBay</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="201"/>
         <source>Bithumb</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="203"/>
         <source>Bitso</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="211"/>
         <source>Gemini</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="213"/>
         <source>HitBTC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="219"/>
         <source>OKCoin</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_config_Ui.py" line="223"/>
         <source>TheRock</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../base/dialog_config.py" line="38"/>
         <source>Language changed</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../base/dialog_config.py" line="39"/>
         <source>The language change will be applied when restarting the application</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -118,55 +151,55 @@
     <message>
         <location filename="../ui/dialog_trade_Ui.py" line="101"/>
         <source>Trade</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_trade_Ui.py" line="102"/>
         <source>Exchange</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_trade_Ui.py" line="103"/>
         <source>Market</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_trade_Ui.py" line="104"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_trade_Ui.py" line="105"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_trade_Ui.py" line="106"/>
         <source>Long</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_trade_Ui.py" line="107"/>
         <source>Short</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dialog_trade_Ui.py" line="108"/>
         <source>Amount</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>DockDebug</name>
     <message>
         <location filename="../ui/dock_debug_Ui.py" line="49"/>
-        <source>Debug</source>
+        <source>Clear</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/dock_debug_Ui.py" line="50"/>
-        <source>Clear</source>
-        <translation></translation>
+        <location filename="../debug/dock.py" line="15"/>
+        <source>Debug</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -179,190 +212,185 @@
     <message>
         <location filename="../ui/dock_portfolio_Ui.py" line="83"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dock_portfolio_Ui.py" line="84"/>
         <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../portfolio/dock.py" line="59"/>
+        <location filename="../portfolio/dock.py" line="63"/>
         <source>Do you want delete this trade?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../portfolio/dock.py" line="68"/>
+        <location filename="../portfolio/dock.py" line="72"/>
         <source>Input close price:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/dock_portfolio_Ui.py" line="85"/>
         <source>Profit total:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="166"/>
+        <location filename="../ui/mainwindow_Ui.py" line="165"/>
         <source>QTradingview</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="167"/>
+        <location filename="../ui/mainwindow_Ui.py" line="166"/>
         <source>TradingBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="168"/>
+        <location filename="../ui/mainwindow_Ui.py" line="167"/>
         <source>AppBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="174"/>
+        <location filename="../ui/mainwindow_Ui.py" line="173"/>
         <source>F9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="176"/>
+        <location filename="../ui/mainwindow_Ui.py" line="175"/>
         <source>Quit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="177"/>
+        <location filename="../ui/mainwindow_Ui.py" line="176"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="180"/>
+        <location filename="../ui/mainwindow_Ui.py" line="179"/>
         <source>Show/hide markets</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="181"/>
+        <location filename="../ui/mainwindow_Ui.py" line="180"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="183"/>
+        <location filename="../ui/mainwindow_Ui.py" line="182"/>
         <source>Show/hide alarms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="184"/>
+        <location filename="../ui/mainwindow_Ui.py" line="183"/>
         <source>F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="186"/>
+        <location filename="../ui/mainwindow_Ui.py" line="185"/>
         <source>Activate/deactivate full screen</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="187"/>
+        <location filename="../ui/mainwindow_Ui.py" line="186"/>
         <source>F11</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="189"/>
+        <location filename="../ui/mainwindow_Ui.py" line="188"/>
         <source>Show/hide debug panel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="191"/>
+        <location filename="../ui/mainwindow_Ui.py" line="190"/>
         <source>Show/hide toolbar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="192"/>
+        <location filename="../ui/mainwindow_Ui.py" line="191"/>
         <source>F4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="99"/>
+        <location filename="../base/mainwindow.py" line="101"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="100"/>
+        <location filename="../base/mainwindow.py" line="102"/>
         <source>Do you want quit?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="169"/>
+        <location filename="../ui/mainwindow_Ui.py" line="168"/>
         <source>Fi&amp;le</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="170"/>
+        <location filename="../ui/mainwindow_Ui.py" line="169"/>
         <source>Vie&amp;w</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="171"/>
+        <location filename="../ui/mainwindow_Ui.py" line="170"/>
         <source>&amp;Help</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="173"/>
+        <location filename="../ui/mainwindow_Ui.py" line="172"/>
         <source>Open settings window</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="178"/>
-        <source>&amp;About</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="190"/>
-        <source>&amp;Toolbar</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="172"/>
-        <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="175"/>
-        <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="179"/>
-        <source>&amp;Markets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="182"/>
-        <source>&amp;Alarms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="185"/>
-        <source>&amp;Full Screen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow_Ui.py" line="188"/>
-        <source>&amp;Debug</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/mainwindow.py" line="111"/>
+        <location filename="../base/mainwindow.py" line="113"/>
         <source>Closing background processes...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow_Ui.py" line="193"/>
-        <source>Portfolio</source>
-        <translation type="unfinished"></translation>
+        <source>F3</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow_Ui.py" line="194"/>
-        <source>F3</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/mainwindow_Ui.py" line="171"/>
+        <source>Settings</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="177"/>
+        <source>About</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="178"/>
+        <source>Markets</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="181"/>
+        <source>Alarms</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="184"/>
+        <source>Full Screen</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="187"/>
+        <source>Debug</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="189"/>
+        <source>Toolbar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow_Ui.py" line="192"/>
+        <source>Portfolio</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -370,12 +398,12 @@
     <message>
         <location filename="../ui/about_Ui.py" line="75"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/about_Ui.py" line="76"/>
         <source>QTradingView</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/about_Ui.py" line="77"/>

@@ -12,9 +12,16 @@ class DockDebug(QtWidgets.QDockWidget, Ui_DockDebug):
     def __init__(self, parent):
         QtWidgets.QDockWidget.__init__(self, parent)
         self.setupUi(self)
+        self.setWindowTitle(self.tr('Debug'))
         #
         self.mw = parent
         self.setVisible(self.mw.actionDebug.isChecked())
+
+    def closeEvent(self, event):
+        self.mw.actionDebug.setChecked(False)
+        self.setVisible(False)
+
+# ────────────────────────────────────────────────────────────────────────────────
 
 
 # ─── QLOGGER CLASS ──────────────────────────────────────────────────────────────

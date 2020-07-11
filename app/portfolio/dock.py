@@ -21,6 +21,10 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
         self._signals()
         self.setVisible(self.mw.actionPortfolio.isChecked())
 
+    def closeEvent(self, event):
+        self.mw.actionPortfolio.setChecked(False)
+        self.setVisible(False)
+
     def setVisible(self, active):
         """Show/hide this dock and start/stop refreshing table timer"""
         self.refresh_timer.start() if active else self.refresh_timer.stop()

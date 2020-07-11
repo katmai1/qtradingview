@@ -55,17 +55,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
+        self.setTabPosition(QtCore.Qt.AllDockWidgetAreas, QtWidgets.QTabWidget.South)
         self.actionDebug.setChecked(self.config['panel_debug_active'])
         self.actionMarkets.setChecked(self.config['panel_markets_active'])
         self.actionPortfolio.setChecked(self.config['panel_portfolio_active'])
         #
-        self.setTabPosition(QtCore.Qt.AllDockWidgetAreas, QtWidgets.QTabWidget.North)
         self.dock_markets = DockMarkets(self)
-        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
         self.dock_debug = DockDebug(self)
-        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_debug)
         self.dock_portfolio = DockPortfolio(self)
+        #
+        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
+        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_debug)
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_portfolio)
+        self.tabifyDockWidget(self.dock_portfolio, self.dock_debug)
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
 

@@ -44,12 +44,9 @@ class ContextoApp:
         """Shortcut to translate function
 
         Args:
-
             context (str): Context word
             message (str): Message in english
-
         Returns:
-
             str: Translate string
         """
         return self.app.translate(context, message)

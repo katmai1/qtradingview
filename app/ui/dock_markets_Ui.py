@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_dock_markets(object):
     def setupUi(self, dock_markets):
         dock_markets.setObjectName("dock_markets")
-        dock_markets.resize(274, 581)
+        dock_markets.resize(281, 581)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -24,7 +24,7 @@ class Ui_dock_markets(object):
         icon.addPixmap(QtGui.QPixmap(":/actions/markets"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         dock_markets.setWindowIcon(icon)
         dock_markets.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
-        dock_markets.setFeatures(QtWidgets.QDockWidget.DockWidgetMovable)
+        dock_markets.setFeatures(QtWidgets.QDockWidget.AllDockWidgetFeatures)
         dock_markets.setAllowedAreas(QtCore.Qt.LeftDockWidgetArea|QtCore.Qt.RightDockWidgetArea)
         self.dockWidgetContents = QtWidgets.QWidget()
         self.dockWidgetContents.setObjectName("dockWidgetContents")

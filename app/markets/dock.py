@@ -43,7 +43,11 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         self.btn_update.clicked.connect(self.markets_updater.start)
         self.markets_updater.infoEvent.connect(self.onEventUpdater)
         self.markets_updater.onFinished.connect(self.onMarketsUpdaterFinished)
-
+    
+    def closeEvent(self, event):
+        self.mw.actionMarkets.setChecked(False)
+        self.setVisible(False)
+        
     @property
     def selected_exchange(self):
         return self.combo_exchange.currentText().lower()

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowIcon">
-   <iconset resource="../icons/iconos.qrc">
+   <iconset>
     <normaloff>:/actions/actions/debug.svg</normaloff>:/actions/actions/debug.svg</iconset>
   </property>
   <property name="autoFillBackground">
@@ -21,13 +21,10 @@
    <locale language="English" country="UnitedStates"/>
   </property>
   <property name="features">
-   <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   <set>QDockWidget::AllDockWidgetFeatures</set>
   </property>
   <property name="allowedAreas">
    <set>Qt::BottomDockWidgetArea|Qt::TopDockWidgetArea</set>
-  </property>
-  <property name="windowTitle">
-   <string>Debug</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QVBoxLayout" name="verticalLayout">

@@ -42,10 +42,7 @@
    <enum>Qt::ToolButtonIconOnly</enum>
   </property>
   <property name="dockOptions">
-   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks|QMainWindow::GroupedDragging|QMainWindow::VerticalTabs</set>
-  </property>
-  <property name="unifiedTitleAndToolBarOnMac">
-   <bool>true</bool>
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks</set>
   </property>
   <property name="currentExchange" stdset="0">
    <string/>
@@ -180,7 +177,7 @@
      <normaloff>:/actions/settings</normaloff>:/actions/settings</iconset>
    </property>
    <property name="text">
-    <string>&amp;Settings</string>
+    <string>Settings</string>
    </property>
    <property name="toolTip">
     <string>Open settings window</string>
@@ -195,7 +192,7 @@
      <normaloff>:/actions/exit</normaloff>:/actions/exit</iconset>
    </property>
    <property name="text">
-    <string>&amp;Quit</string>
+    <string>Quit</string>
    </property>
    <property name="toolTip">
     <string>Quit</string>
@@ -210,7 +207,7 @@
      <normaloff>:/base/logo</normaloff>:/base/logo</iconset>
    </property>
    <property name="text">
-    <string>&amp;About</string>
+    <string>About</string>
    </property>
   </action>
   <action name="actionMarkets">
@@ -225,7 +222,7 @@
      <normaloff>:/actions/markets</normaloff>:/actions/markets</iconset>
    </property>
    <property name="text">
-    <string>&amp;Markets</string>
+    <string>Markets</string>
    </property>
    <property name="toolTip">
     <string>Show/hide markets</string>
@@ -243,7 +240,7 @@
      <normaloff>:/actions/alarms</normaloff>:/actions/alarms</iconset>
    </property>
    <property name="text">
-    <string>&amp;Alarms</string>
+    <string>Alarms</string>
    </property>
    <property name="toolTip">
     <string>Show/hide alarms</string>
@@ -261,7 +258,7 @@
      <normaloff>:/actions/screen</normaloff>:/actions/screen</iconset>
    </property>
    <property name="text">
-    <string>&amp;Full Screen</string>
+    <string>Full Screen</string>
    </property>
    <property name="toolTip">
     <string>Activate/deactivate full screen</string>
@@ -279,7 +276,7 @@
      <normaloff>:/actions/debug</normaloff>:/actions/debug</iconset>
    </property>
    <property name="text">
-    <string>&amp;Debug</string>
+    <string>Debug</string>
    </property>
    <property name="toolTip">
     <string>Show/hide debug panel</string>
@@ -293,7 +290,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Toolbar</string>
+    <string>Toolbar</string>
    </property>
    <property name="statusTip">
     <string>Show/hide toolbar</string>
