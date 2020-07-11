@@ -27,7 +27,7 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
         return super().setVisible(active)
 
     def _signals(self):
-        self.tabla.customContextMenuRequested.connect(self.contextMenuEvent)
+        self.tabla.customContextMenuRequested.connect(self.contextoMenuEvent)
         self.refresh_timer.timeout.connect(self.refreshTable)
         self.combo_trades.currentTextChanged.connect(self.refreshTable)
 
@@ -39,7 +39,7 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
             d.createTrade()
             self.refreshTable()
 
-    def contextMenuEvent(self, position):
+    def contextoMenuEvent(self, position):
         """Load contextual menu"""
         contextMenu = CustomContextMenu(self.tabla)
         index = self.tabla.indexAt(position)
