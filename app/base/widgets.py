@@ -1,4 +1,5 @@
 import logging
+from bs4 import BeautifulSoup
 
 from PyQt5.QtWidgets import QSplashScreen, QDesktopWidget
 from PyQt5.QtCore import Qt, QTimer
@@ -14,12 +15,17 @@ class CustomWebEnginePage(QWebEnginePage):
     adblocker_2020 = """
         (
             function() {
-                'use strict';
                 const checkAd = setInterval(() => {
                     const adBox = document.getElementById('tv-toasts');
-                    if (adBox) {    adBox.remove(); }
-                    const adWrapper = $("div[class^='toast-positioning-wrapper-']")[0];
-                    if (adWrapper)  {   adWrapper.style.display = "none";   }
+                    if (adBox) {
+                        adBox.remove();
+                        console.log("ad removed");
+                    }
+                    const adWrapper = document.querySelectorAll("[class^='toast-positioning-wrapper-']")[0];
+                    if (adWrapper)  {
+                        adWrapper.remove();
+                        console.log("ad removed");
+                    }
                 }, 1500);
             }
         )();"""
@@ -50,6 +56,7 @@ class CustomWebEnginePage(QWebEnginePage):
 
     # actualiza el titulo de la ventana con el market y precio actual
     def update_titulo(self):
+        self.html = self.toHtml(self._get_html)
         try:
             v = self.title().split(" ")
             titulo = f"{v[0]} {v[1]} {v[2]} | QTradingView"
@@ -62,7 +69,11 @@ class CustomWebEnginePage(QWebEnginePage):
     # funcion necesaria para ver el codigo html (toHtml)
     def _get_html(self, html_str):
         self.html = html_str
-        # logging.debug(html_str)
+        # if html_str is not None:
+        #     soup = BeautifulSoup(html_str, 'html.parser')
+        #     for part in soup.select('[class*="toast"]'):
+        #         print(part['class'])
+        return html_str
 
     # javascripts
     def javaScriptConsoleMessage(self, level, msg, line, sourceID):
@@ -85,7 +96,7 @@ class CustomSplashScreen(QSplashScreen):
         pixmap = QPixmap(self.imagen).scaledToWidth(screen_size.width() / 3)
         super().__init__(parent, pixmap, Qt.SplashScreen)
         self.setMask(pixmap.mask())
-        self.set_texto("Loading")
+        self.set_texto(self.tr("Loading"))
         self.show()
 
     def set_texto(self, texto, size=3):

@@ -47,16 +47,16 @@ class CustomContextMenu(QMenu):
 
     # inserta los menus que ejecutan eventos
     def _insert_actions(self, item):
-        self.addAction(self._action(self.tr('MarketsWidgets', "Load chart..."), self._run_load_chart, icono=":/actions/markets", shortcut="Return"))
+        self.addAction(self._action(self.tr("Load chart..."), self._run_load_chart, icono=":/actions/markets", shortcut="Return"))
         self.addSeparator()
-        self.addAction(self._action(self.tr('MarketsWidgets', "Set as initial market"), self._run_set_initial_market, icono=":/actions/settings"))
-        self.addAction(self._action(self.tr('MarketsWidgets', "Add to portfolio..."), self._run_add_portfolio, icono=":/actions/portfolio"))
+        self.addAction(self._action(self.tr("Set as initial market"), self._run_set_initial_market, icono=":/actions/settings"))
+        self.addAction(self._action(self.tr("Add to portfolio..."), self._run_add_portfolio, icono=":/actions/portfolio"))
 
     # inserta menu favorito, ejecuta evento externo
     def _insert_favorite(self, item):
         v = {}
-        v[True] = {"txt": self.tr('MarketsWidgets', "Remove from favorite"), "ico": ":base/voidstar"}
-        v[False] = {"txt": self.tr('MarketsWidgets', "Add to favorite"), "ico": ":base/star"}
+        v[True] = {"txt": self.tr("Remove from favorite"), "ico": ":base/voidstar"}
+        v[False] = {"txt": self.tr("Add to favorite"), "ico": ":base/star"}
         self.addAction(self._action(v[item.is_favorite]['txt'], item.toggle_favorite, shortcut="Esc", icono=v[item.is_favorite]['ico']))
 
     # ─── EVENTS ────────────────────────────────────────────────────────────────────
