@@ -4,32 +4,35 @@
     <name>CustomContextMenu</name>
     <message>
         <location filename="../markets/widgets.py" line="50"/>
-        <source>MarketsWidgets</source>
-        <comment>Load chart...</comment>
+        <source>Load chart...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../markets/widgets.py" line="52"/>
-        <source>MarketsWidgets</source>
-        <comment>Set as initial market</comment>
+        <source>Set as initial market</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../markets/widgets.py" line="53"/>
-        <source>MarketsWidgets</source>
-        <comment>Add to portfolio...</comment>
+        <source>Add to portfolio...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../markets/widgets.py" line="58"/>
-        <source>MarketsWidgets</source>
-        <comment>Remove from favorite</comment>
+        <source>Remove from favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../markets/widgets.py" line="59"/>
-        <source>MarketsWidgets</source>
-        <comment>Add to favorite</comment>
+        <source>Add to favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CustomSplashScreen</name>
+    <message>
+        <location filename="../base/widgets.py" line="99"/>
+        <source>Loading</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -313,12 +316,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="101"/>
+        <location filename="../base/mainwindow.py" line="107"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="102"/>
+        <location filename="../base/mainwindow.py" line="108"/>
         <source>Do you want quit?</source>
         <translation></translation>
     </message>
@@ -343,7 +346,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="113"/>
+        <location filename="../base/mainwindow.py" line="119"/>
         <source>Closing background processes...</source>
         <translation></translation>
     </message>
@@ -413,6 +416,49 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Noto Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Web: &lt;a href=&quot;https://github.com/katmai1/qtradingview&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;https://github.com/katmai1/qtradingview&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>dialogAlarm</name>
+    <message>
+        <location filename="../ui/dialog_alarm_Ui.py" line="119"/>
+        <source>Alarm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_alarm_Ui.py" line="120"/>
+        <source>Exchange</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_alarm_Ui.py" line="121"/>
+        <source>Market</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_alarm_Ui.py" line="122"/>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_alarm_Ui.py" line="123"/>
+        <source>Current price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_alarm_Ui.py" line="124"/>
+        <source>Autodelete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_alarm_Ui.py" line="125"/>
+        <source>if less than</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/dialog_alarm_Ui.py" line="126"/>
+        <source>if great than</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

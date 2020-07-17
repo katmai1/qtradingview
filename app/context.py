@@ -14,6 +14,7 @@ from app.models.base import get_db, migrate
 
 from app.models.markets import Markets
 from app.portfolio.models import Trades
+from app.alarms.models import Alarms
 
 from app.base.mainwindow import MainWindow
 
@@ -82,7 +83,7 @@ class ContextoApp:
     def createTablesDB(self):
         """ Creating or updating database tables. """
         if AppUtil.isPyinstaller():
-            self.db.create_tables([Markets, Trades])
+            self.db.create_tables([Markets, Trades, Alarms])
         else:
             migrate(self.db)
         self.check_db()
@@ -92,6 +93,8 @@ class ContextoApp:
         if not Markets.table_exists():
             return False
         if not Trades.table_exists():
+            return False
+        if not Alarms.table_exists():
             return False
         return True
 

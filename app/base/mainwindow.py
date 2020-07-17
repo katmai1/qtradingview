@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QMessageBox
 from app.markets.dock import DockMarkets
 from app.debug.dock import DockDebug, Qlogger
 from app.portfolio.dock import DockPortfolio
+from app.alarms.dock import DockAlarms
 
 from app.ui.mainwindow_Ui import Ui_MainWindow
 
@@ -52,10 +53,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
         self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
         self.actionPortfolio.toggled['bool'].connect(self.dock_portfolio.setVisible)
+        self.actionAlarms.toggled['bool'].connect(self.dock_alarms.setVisible)
         self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
-        self.setTabPosition(QtCore.Qt.AllDockWidgetAreas, QtWidgets.QTabWidget.South)
+        self.setTabPosition(QtCore.Qt.BottomDockWidgetArea, QtWidgets.QTabWidget.South)
+        self.setTabPosition(QtCore.Qt.LeftDockWidgetArea, QtWidgets.QTabWidget.North)
         self.actionDebug.setChecked(self.config['panel_debug_active'])
         self.actionMarkets.setChecked(self.config['panel_markets_active'])
         self.actionPortfolio.setChecked(self.config['panel_portfolio_active'])
@@ -63,10 +66,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.dock_markets = DockMarkets(self)
         self.dock_debug = DockDebug(self)
         self.dock_portfolio = DockPortfolio(self)
+        self.dock_alarms = DockAlarms(self)
         #
         self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
+        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_alarms)
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_debug)
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_portfolio)
+        self.tabifyDockWidget(self.dock_markets, self.dock_alarms)
         self.tabifyDockWidget(self.dock_portfolio, self.dock_debug)
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
