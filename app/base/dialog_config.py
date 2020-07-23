@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import QDialog, QMessageBox
-from copy import copy
 
 from app.models.markets import Markets
 from app.ui.dialog_config_Ui import Ui_DialogConfig
@@ -15,7 +14,6 @@ class DialogConfig(QDialog, Ui_DialogConfig):
         self.mw = parent
         #
         self.list_exchanges.sortItems()
-        self.config = self.mw.ctx.config
         self.cfg = self.mw.ctx.settings
         #
         self.loadConfig()

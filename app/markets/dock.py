@@ -2,7 +2,7 @@ import logging
 from PyQt5 import QtWidgets, QtGui, QtCore
 
 from app.markets.widgets import CustomItem, CustomItemDelegate, CustomContextMenu
-from app.markets.updater import UpdateMarkets, UpdateAllMarkets
+from app.markets.updater import UpdateAllMarkets
 
 from app.models.markets import Markets
 from app.ui.dock_markets_Ui import Ui_dock_markets
@@ -18,19 +18,19 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         QtWidgets.QDockWidget.__init__(self, parent=parent)
         self.setupUi(self)
         self.setWindowTitle("Markets")
-        #
         self.mw = self.parent()  # mainwindow
         self.setVisible(self.mw.actionMarkets.isChecked())
-                
+        # base
         self.markets_updater = UpdateAllMarkets(self)
-        self.lista_mode = "all"
+        self.lista_mode = self.mw.cfg.value("markets/list_mode", defaultValue="all")
         self._load_exchanges()
         self._signals()
-        #
+        # list markets
         self.delegate = CustomItemDelegate()
         self.list_markets.setItemDelegate(self.delegate)
         self.list_markets.customContextMenuRequested.connect(self.contextMenuEvent)
-        self.onClickAllButton(True)
+        # markets updater
+        self.loadListMode(self.lista_mode)
         self.markets_updater.start()
 
     def _signals(self):
@@ -63,10 +63,17 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
 
+    def onActionEvent(self, actived):
+        """ Show/hide this dock and raise if actived """
+        self.setVisible(actived)
+        if actived:
+            self.raise_()
+
     def onMarketsUpdaterFinished(self):
         if self.list_markets.count() == 0:
             r = QtWidgets.QMessageBox.information(self, "debes reiniciar", "reiniciaaaa")
-            print(r)
+            if r:
+                self.mw.ctx.app.quit()
         QtCore.QTimer.singleShot(120 * 1000, self.markets_updater.start)
         self.mw.dock_portfolio.refreshTable()
 
@@ -74,7 +81,7 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
     def keyPressEvent(self, event):
         # f5 actualiza markets
         if event.key() == QtCore.Qt.Key_F5:
-            self.start_update_market()
+            self.markets_updater.start()
         # si el foco esta en la lista de markets...
         if self.list_markets.hasFocus():
             item = self.list_markets.currentItem()
@@ -91,37 +98,41 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
         logging.debug(texto)
         self.mw.set_text_status(texto)
 
-    # actualiza markets del exchange seleccionado en la db
-    def start_update_market(self):
-        self.mw.set_text_status(f'Updating markets from {self.selected_exchange.title()}...')
-        QtCore.QCoreApplication.processEvents()
-        self.updater = UpdateMarkets(self.selected_exchange)
-        self.updater.onFinished.connect(self.onExchangeChanged)
-        self.updater.run()
+    # ─── LIST MODE ──────────────────────────────────────────────────────────────────
 
-    # filtro al
-    def onClickAllButton(self, all_actived):
+    def loadListMode(self, mode):
+        if mode == "fav":
+            self.btn_favorite.setChecked(True)
+            self.onClickFavoriteButton(True)
+        elif mode == "margin":
+            self.btn_margin.setChecked(True)
+            self.onClickMarginButton(True)
+        else:
+            self.btn_all.setChecked(True)
+            self.onClickAllButton(True)
+
+    def onClickAllButton(self, actived):
         self.lista_mode = "all"
         filtro = self.edit_filtro.text()
         for index in range(self.list_markets.count()):
             item = self.list_markets.item(index)
             item.mostrar(self.lista_mode, filtro)
 
-    # filtro favorite
-    def onClickFavoriteButton(self, fav_actived):
+    def onClickFavoriteButton(self, actived):
         self.lista_mode = "fav"
         filtro = self.edit_filtro.text()
         for index in range(self.list_markets.count()):
             item = self.list_markets.item(index)
             item.mostrar(self.lista_mode, filtro)
 
-    # filtro margin
-    def onClickMarginButton(self, margin_actived):
+    def onClickMarginButton(self, actived):
         self.lista_mode = "margin"
         filtro = self.edit_filtro.text()
         for index in range(self.list_markets.count()):
             item = self.list_markets.item(index)
             item.mostrar(self.lista_mode, filtro)
+
+    # ────────────────────────────────────────────────────────────────────────────────
 
     # filtro de texto
     def onFiltroChanged(self, text):

@@ -21,6 +21,12 @@ class DockDebug(QtWidgets.QDockWidget, Ui_DockDebug):
         self.mw.actionDebug.setChecked(False)
         self.setVisible(False)
 
+    def onActionEvent(self, actived):
+        """ Show/hide this dock and raise if actived """
+        self.setVisible(actived)
+        if actived:
+            self.raise_()
+
 # ────────────────────────────────────────────────────────────────────────────────
 
 

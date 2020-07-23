@@ -35,6 +35,7 @@ class ContextoApp:
         AppUtil.create_app_dir()
         # AppUtil.create_default_config()
         self.check_db()
+        self.setDefaultConfig()
 
     def run(self):
         self.window.show()
@@ -82,6 +83,16 @@ class ContextoApp:
         if not Alarms.table_exists():
             return False
         return True
+    
+    def setDefaultConfig(self):
+        if self.settings.value("settings/exchanges") is None:
+            self.settings.setValue("settings/exchanges", ["Binance", "Bitfinex"])
+        if self.settings.value("settings/language") is None:
+            self.settings.setValue("settings/language", "en_EN")
+        if self.settings.value("settings/initial_exchange") is None:
+            self.settings.setValue("settings/initial_exchange", "Binance")
+        if self.settings.value("settings/initial_market") is None:
+            self.settings.setValue("settings/initial_market", "BTC/USDT")
 
     # ─── PROPIEDADES ────────────────────────────────────────────────────────────────
 
@@ -100,14 +111,14 @@ class ContextoApp:
 
     @cached_property
     def app_language(self):
-        language = self.settings.value('settings/language', defaultValue="en_EN")
+        language = self.settings.value('settings/language')
         qtrans = QTranslator()
         qtrans.load(language, AppUtil.get_i18n_dir())
         return qtrans
 
     @cached_property
     def system_language(self):
-        language = self.settings.value('settings/language', defaultValue='en_EN')
+        language = self.settings.value('settings/language')
         qtrans = QTranslator()
         lang = f"qtbase_{language}"
         qtrans.load(lang, QLibraryInfo.location(QLibraryInfo.TranslationsPath))

@@ -3,32 +3,32 @@
 <context>
     <name>CustomContextMenu</name>
     <message>
-        <location filename="../markets/widgets.py" line="50"/>
+        <location filename="../markets/widgets.py" line="49"/>
         <source>Load chart...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="55"/>
+        <location filename="../markets/widgets.py" line="54"/>
         <source>Set as initial market</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="52"/>
+        <location filename="../markets/widgets.py" line="51"/>
         <source>Add to portfolio...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="60"/>
+        <location filename="../markets/widgets.py" line="59"/>
         <source>Remove from favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="61"/>
+        <location filename="../markets/widgets.py" line="60"/>
         <source>Add to favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="53"/>
+        <location filename="../markets/widgets.py" line="52"/>
         <source>New alarm...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -99,12 +99,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="25"/>
+        <location filename="../base/dialog_config.py" line="27"/>
         <source>Spanish</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="26"/>
+        <location filename="../base/dialog_config.py" line="28"/>
         <source>English</source>
         <translation></translation>
     </message>
@@ -144,12 +144,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="38"/>
+        <location filename="../base/dialog_config.py" line="46"/>
         <source>Language changed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="39"/>
+        <location filename="../base/dialog_config.py" line="47"/>
         <source>The language change will be applied when restarting the application</source>
         <translation></translation>
     </message>
@@ -200,7 +200,7 @@
 <context>
     <name>DockAlarms</name>
     <message>
-        <location filename="../alarms/dock.py" line="17"/>
+        <location filename="../alarms/dock.py" line="18"/>
         <source>Alarms</source>
         <translation type="unfinished"></translation>
     </message>
@@ -236,12 +236,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../portfolio/dock.py" line="63"/>
+        <location filename="../portfolio/dock.py" line="69"/>
         <source>Do you want delete this trade?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../portfolio/dock.py" line="72"/>
+        <location filename="../portfolio/dock.py" line="78"/>
         <source>Input close price:</source>
         <translation></translation>
     </message>
@@ -329,12 +329,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="107"/>
+        <location filename="../base/mainwindow.py" line="126"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="108"/>
+        <location filename="../base/mainwindow.py" line="127"/>
         <source>Do you want quit?</source>
         <translation></translation>
     </message>
@@ -359,7 +359,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="119"/>
+        <location filename="../base/mainwindow.py" line="138"/>
         <source>Closing background processes...</source>
         <translation></translation>
     </message>

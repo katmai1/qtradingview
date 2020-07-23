@@ -47,31 +47,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # carga market inicial
         self._loadInitialConfig()
         self.load_chart(
-            self.cfg.value('initial_market', defaultValue="BTC/USDT"),
-            self.cfg.value('initial_exchange', defaultValue="binance")
+            self.cfg.value('settings/initial_market'),
+            self.cfg.value('settings/initial_exchange')
         )
         self.splash.hide()
 
     def _loadInitialConfig(self):
-        # set window size and position
-        if self.cfg.contains("window/size"):
-            self.resize(self.cfg.value("window/size"))
-        if self.cfg.contains("window/pos"):
-            self.move(self.cfg.value("window/pos"))
+        # size
+        size = self.cfg.value("window/size")
+        if size is None:
+            self.showMaximized()
+        else:
+            self.resize(size)
+        # position
+        position = self.cfg.value("window/pos")
+        if position is not None:
+            self.move(position)
         # set panels checked
         self.actionDebug.setChecked(self.cfg.value("debug/checked", defaultValue=False, type=bool))
         self.actionMarkets.setChecked(self.cfg.value("markets/checked", defaultValue=True, type=bool))
         self.actionPortfolio.setChecked(self.cfg.value("portfolio/checked", defaultValue=False, type=bool))
         self.actionAlarms.setChecked(self.cfg.value("alarms/checked", defaultValue=False, type=bool))
 
-    # signal connectors
     def _signals(self):
+        """ Define signals """
         self.actionSettings.triggered.connect(self.openDialogSettings)
         self.actionFull_Screen.toggled.connect(self.onActionFullScreen)
-        self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
-        self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
-        self.actionPortfolio.toggled['bool'].connect(self.dock_portfolio.setVisible)
-        self.actionAlarms.toggled['bool'].connect(self.onActionAlarms)
+        self.actionMarkets.toggled['bool'].connect(self.dock_markets.onActionEvent)
+        self.actionDebug.toggled['bool'].connect(self.dock_debug.onActionEvent)
+        self.actionPortfolio.toggled['bool'].connect(self.dock_portfolio.onActionEvent)
+        self.actionAlarms.toggled['bool'].connect(self.dock_alarms.onActionEvent)
         self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
@@ -90,26 +95,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tabifyDockWidget(self.dock_markets, self.dock_alarms)
         self.tabifyDockWidget(self.dock_portfolio, self.dock_debug)
 
+    def _quit(self):
+        if self.dock_markets.markets_updater.isRunning():
+            self.dock_markets.markets_updater.terminate()
+            self.set_text_status(self.tr("Closing background processes..."))
+        self.ctx.app.quit()
+    
+    def _remember_panels(self):
+        self.cfg.setValue("markets/checked", self.actionMarkets.isChecked())
+        self.cfg.setValue("markets/list_mode", self.dock_markets.lista_mode)
+        self.cfg.setValue("portfolio/checked", self.actionPortfolio.isChecked())
+        self.cfg.setValue("debug/checked", self.actionDebug.isChecked())
+        self.cfg.setValue("alarms/checked", self.actionAlarms.isChecked())
+        self.cfg.setValue("window/size", self.size())
+        self.cfg.setValue("window/pos", self.pos())
+
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
-
-    def onActionAlarms(self, actived):
-        self.dock_alarms.setVisible(actived)
-        if actived:
-            self.dock_alarms.raise_()
-
-    def openAboutDialog(self):
-        dialog = DialogAbout(self)
-        dialog.exec_()
-
-    def set_text_status(self, text, msecs=3000):
-        self.statusbar.showMessage(text, msecs=msecs)
-
-    # config dialog
-    def openDialogSettings(self):
-        dialog = DialogConfig(self)
-        if dialog.exec_():
-            if dialog.exchanges_is_changed:
-                self.dock_markets._load_exchanges()
 
     # fullscreen
     def onActionFullScreen(self):
@@ -119,8 +120,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.showNormal()
             self.showMaximized()
 
-    # confirmacion de salida
     def closeEvent(self, event):
+        """ Quit app event """
         mbox = QMessageBox(self)
         mbox.setIcon(QMessageBox.Question)
         mbox.setWindowTitle(self.tr('Exit'))
@@ -128,25 +129,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         mbox.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
         result = mbox.exec_()
         if int(result) == 16384:
-            self.remember_panels()
-            self.quit()
+            self._remember_panels()
+            self._quit()
         event.ignore()
 
-    def quit(self):
-        if self.dock_markets.markets_updater.isRunning():
-            self.dock_markets.markets_updater.terminate()
-            self.set_text_status(self.tr("Closing background processes..."))
-        self.ctx.app.quit()
-    
-    def remember_panels(self):
-        self.cfg.setValue("markets/checked", self.actionMarkets.isChecked())
-        self.cfg.setValue("portfolio/checked", self.actionPortfolio.isChecked())
-        self.cfg.setValue("debug/checked", self.actionDebug.isChecked())
-        self.cfg.setValue("alarms/checked", self.actionAlarms.isChecked())
-        self.cfg.setValue("window/size", self.size())
-        self.cfg.setValue("window/pos", self.pos())
+    # ─── PUBLIC METHODS ──────────────────────────────────────────────
 
-    # ────────────────────────────────────────────────────────────────────────────────
+    def openAboutDialog(self):
+        dialog = DialogAbout(self)
+        dialog.exec_()
+
+    def set_text_status(self, text, msecs=3000):
+        self.statusbar.showMessage(text, msecs=msecs)
+
+    def openDialogSettings(self):
+        """ Open dialog settings and reload exchanges if needed """
+        dialog = DialogConfig(self)
+        if dialog.exec_():
+            if dialog.exchanges_is_changed:
+                self.dock_markets.markets_updater.first_run = True
+                self.dock_markets._load_exchanges()
 
     # carga un market en la pagina
     def load_chart(self, market, exchange):

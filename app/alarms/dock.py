@@ -20,6 +20,12 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
         self.setVisible(self.mw.actionAlarms.isChecked())
         self.refreshTable()
 
+    def onActionEvent(self, actived):
+        """ Show/hide this dock and raise if actived """
+        self.setVisible(actived)
+        if actived:
+            self.raise_()
+
     def closeEvent(self, event):
         self.mw.actionAlarms.setChecked(False)
         self.setVisible(False)

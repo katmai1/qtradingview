@@ -77,7 +77,7 @@ class Ui_dock_markets(object):
         self.btn_all.setAutoFillBackground(True)
         self.btn_all.setIconSize(QtCore.QSize(24, 24))
         self.btn_all.setCheckable(True)
-        self.btn_all.setChecked(True)
+        self.btn_all.setChecked(False)
         self.btn_all.setAutoExclusive(True)
         self.btn_all.setFlat(False)
         self.btn_all.setObjectName("btn_all")

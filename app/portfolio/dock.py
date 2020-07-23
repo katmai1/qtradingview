@@ -21,6 +21,12 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
         self._signals()
         self.setVisible(self.mw.actionPortfolio.isChecked())
 
+    def onActionEvent(self, actived):
+        """ Show/hide this dock and raise if actived """
+        self.setVisible(actived)
+        if actived:
+            self.raise_()
+
     def closeEvent(self, event):
         self.mw.actionPortfolio.setChecked(False)
         self.setVisible(False)
