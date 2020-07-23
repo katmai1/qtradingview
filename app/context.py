@@ -1,13 +1,12 @@
 import os
 import shutil
-import toml
 import sys
 
 from signal import signal, SIGINT, SIG_DFL
 from cached_property import cached_property
 
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QLibraryInfo, QTranslator
+from PyQt5.QtCore import QLibraryInfo, QTranslator, QSettings
 
 from app.utils import AppUtil
 from app.models.base import get_db, migrate
@@ -28,38 +27,24 @@ class ContextoApp:
         self.debug = args['--debug']
         signal(SIGINT, SIG_DFL)
         self.args = args
-        # disable qt logging if not debug mode
-        if not self.debug:
-            os.system("export QT_LOGGING_RULES='*=false'")
-            os.environ['QT_LOGGING_RULES'] = '*=false'
+        # # disable qt logging if not debug mode
+        # if not self.debug:
+        #     os.system("export QT_LOGGING_RULES='*=false'")
+        #     os.environ['QT_LOGGING_RULES'] = '*=false'
         #
         AppUtil.create_app_dir()
-        AppUtil.create_default_config()
+        # AppUtil.create_default_config()
         self.check_db()
 
     def run(self):
-        self.window.showMaximized()
+        self.window.show()
         return self.app.exec_()
 
     def tr(self, context, message):
-        """Shortcut to translate function
-
-        Args:
-            context (str): Context word
-            message (str): Message in english
-        Returns:
-            str: Translate string
-        """
         return self.app.translate(context, message)
-
-    def save_config(self):
-        """ Save configuration changes in config file """
-        with open(AppUtil.get_config_file_path(), "w") as f:
-            toml.dump(self.config, f)
 
     def check_db(self):
         """ Main method to checks related with database. """
-        self.db.close()
         # delete database file if is required by user
         if self.args['--deletedb']:
             self.deleteDatabaseFile()
@@ -86,7 +71,7 @@ class ContextoApp:
             self.db.create_tables([Markets, Trades, Alarms])
         else:
             migrate(self.db)
-        self.check_db()
+        sys.exit("Execute again")
 
     def checkTablesExists(self):
         """ Returns True if all tables exists """
@@ -101,8 +86,8 @@ class ContextoApp:
     # ─── PROPIEDADES ────────────────────────────────────────────────────────────────
 
     @cached_property
-    def config(self):
-        return toml.load(AppUtil.get_config_file_path())
+    def settings(self):
+        return QSettings("QTradingView", "Settings")
 
     @cached_property
     def window(self):
@@ -115,14 +100,16 @@ class ContextoApp:
 
     @cached_property
     def app_language(self):
+        language = self.settings.value('settings/language', defaultValue="en_EN")
         qtrans = QTranslator()
-        qtrans.load(self.config['language'], AppUtil.get_i18n_dir())
+        qtrans.load(language, AppUtil.get_i18n_dir())
         return qtrans
 
     @cached_property
     def system_language(self):
+        language = self.settings.value('settings/language', defaultValue='en_EN')
         qtrans = QTranslator()
-        lang = f"qtbase_{self.config['language']}"
+        lang = f"qtbase_{language}"
         qtrans.load(lang, QLibraryInfo.location(QLibraryInfo.TranslationsPath))
         return qtrans
 

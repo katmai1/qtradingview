@@ -18,7 +18,7 @@ class Ui_DockAlarms(object):
         DockAlarms.setToolTip("")
         DockAlarms.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         DockAlarms.setFeatures(QtWidgets.QDockWidget.AllDockWidgetFeatures)
-        DockAlarms.setAllowedAreas(QtCore.Qt.LeftDockWidgetArea|QtCore.Qt.RightDockWidgetArea)
+        DockAlarms.setAllowedAreas(QtCore.Qt.AllDockWidgetAreas)
         self.dockWidgetContents = QtWidgets.QWidget()
         self.dockWidgetContents.setObjectName("dockWidgetContents")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.dockWidgetContents)
@@ -28,6 +28,7 @@ class Ui_DockAlarms(object):
         self.tb_alarms.setAlternatingRowColors(True)
         self.tb_alarms.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tb_alarms.setObjectName("tb_alarms")
+        self.tb_alarms.verticalHeader().setVisible(False)
         self.verticalLayout.addWidget(self.tb_alarms)
         DockAlarms.setWidget(self.dockWidgetContents)
 

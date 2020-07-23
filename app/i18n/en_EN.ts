@@ -8,23 +8,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="52"/>
+        <location filename="../markets/widgets.py" line="55"/>
         <source>Set as initial market</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="53"/>
+        <location filename="../markets/widgets.py" line="52"/>
         <source>Add to portfolio...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="58"/>
+        <location filename="../markets/widgets.py" line="60"/>
         <source>Remove from favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../markets/widgets.py" line="59"/>
+        <location filename="../markets/widgets.py" line="61"/>
         <source>Add to favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../markets/widgets.py" line="53"/>
+        <source>New alarm...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -190,6 +195,14 @@
         <location filename="../ui/dialog_trade_Ui.py" line="108"/>
         <source>Amount</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>DockAlarms</name>
+    <message>
+        <location filename="../alarms/dock.py" line="17"/>
+        <source>Alarms</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -422,43 +435,28 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>dialogAlarm</name>
     <message>
-        <location filename="../ui/dialog_alarm_Ui.py" line="119"/>
+        <location filename="../ui/dialog_alarm_Ui.py" line="111"/>
         <source>Alarm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_alarm_Ui.py" line="120"/>
-        <source>Exchange</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/dialog_alarm_Ui.py" line="121"/>
+        <location filename="../ui/dialog_alarm_Ui.py" line="112"/>
         <source>Market</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_alarm_Ui.py" line="122"/>
+        <location filename="../ui/dialog_alarm_Ui.py" line="114"/>
         <source>Condition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_alarm_Ui.py" line="123"/>
-        <source>Current price</source>
+        <location filename="../ui/dialog_alarm_Ui.py" line="113"/>
+        <source>Show last price of this market</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/dialog_alarm_Ui.py" line="124"/>
-        <source>Autodelete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/dialog_alarm_Ui.py" line="125"/>
-        <source>if less than</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/dialog_alarm_Ui.py" line="126"/>
-        <source>if great than</source>
+        <location filename="../ui/dialog_alarm_Ui.py" line="115"/>
+        <source>Autodelete when complished</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

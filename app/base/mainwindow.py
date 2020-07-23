@@ -1,6 +1,7 @@
 import logging
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtCore import Qt, QUrl
 
 from app.markets.dock import DockMarkets
 from app.debug.dock import DockDebug, Qlogger
@@ -24,8 +25,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #
         self.splash = CustomSplashScreen(self)
         self.ctx = ctx
-        self.config = ctx.config
-
+        # self.config = ctx.config
+        self.cfg = self.ctx.settings
+        
         # webenginepage
         page = CustomWebEnginePage(self.webview)
         self.webview.setPage(page)
@@ -43,8 +45,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         logging.getLogger().setLevel(log_mode)
 
         # carga market inicial
-        self.load_chart(self.config['initial_market'], self.config['initial_exchange'])
+        self._loadInitialConfig()
+        self.load_chart(
+            self.cfg.value('initial_market', defaultValue="BTC/USDT"),
+            self.cfg.value('initial_exchange', defaultValue="binance")
+        )
         self.splash.hide()
+
+    def _loadInitialConfig(self):
+        # set window size and position
+        if self.cfg.contains("window/size"):
+            self.resize(self.cfg.value("window/size"))
+        if self.cfg.contains("window/pos"):
+            self.move(self.cfg.value("window/pos"))
+        # set panels checked
+        self.actionDebug.setChecked(self.cfg.value("debug/checked", defaultValue=False, type=bool))
+        self.actionMarkets.setChecked(self.cfg.value("markets/checked", defaultValue=True, type=bool))
+        self.actionPortfolio.setChecked(self.cfg.value("portfolio/checked", defaultValue=False, type=bool))
+        self.actionAlarms.setChecked(self.cfg.value("alarms/checked", defaultValue=False, type=bool))
 
     # signal connectors
     def _signals(self):
@@ -53,29 +71,31 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionMarkets.toggled['bool'].connect(self.dock_markets.setVisible)
         self.actionDebug.toggled['bool'].connect(self.dock_debug.setVisible)
         self.actionPortfolio.toggled['bool'].connect(self.dock_portfolio.setVisible)
-        self.actionAlarms.toggled['bool'].connect(self.dock_alarms.setVisible)
+        self.actionAlarms.toggled['bool'].connect(self.onActionAlarms)
         self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
-        self.setTabPosition(QtCore.Qt.BottomDockWidgetArea, QtWidgets.QTabWidget.South)
-        self.setTabPosition(QtCore.Qt.LeftDockWidgetArea, QtWidgets.QTabWidget.North)
-        self.actionDebug.setChecked(self.config['panel_debug_active'])
-        self.actionMarkets.setChecked(self.config['panel_markets_active'])
-        self.actionPortfolio.setChecked(self.config['panel_portfolio_active'])
+        self.setTabPosition(Qt.BottomDockWidgetArea, QtWidgets.QTabWidget.South)
+        self.setTabPosition(Qt.LeftDockWidgetArea, QtWidgets.QTabWidget.West)
         #
         self.dock_markets = DockMarkets(self)
         self.dock_debug = DockDebug(self)
         self.dock_portfolio = DockPortfolio(self)
         self.dock_alarms = DockAlarms(self)
         #
-        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_markets)
-        self.addDockWidget(QtCore.Qt.LeftDockWidgetArea, self.dock_alarms)
-        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_debug)
-        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.dock_portfolio)
+        self.addDockWidget(Qt.LeftDockWidgetArea, self.dock_markets)
+        self.addDockWidget(Qt.LeftDockWidgetArea, self.dock_alarms)
+        self.addDockWidget(Qt.BottomDockWidgetArea, self.dock_debug)
+        self.addDockWidget(Qt.BottomDockWidgetArea, self.dock_portfolio)
         self.tabifyDockWidget(self.dock_markets, self.dock_alarms)
         self.tabifyDockWidget(self.dock_portfolio, self.dock_debug)
 
     # ─── EVENTS ─────────────────────────────────────────────────────────────────────
+
+    def onActionAlarms(self, actived):
+        self.dock_alarms.setVisible(actived)
+        if actived:
+            self.dock_alarms.raise_()
 
     def openAboutDialog(self):
         dialog = DialogAbout(self)
@@ -87,7 +107,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # config dialog
     def openDialogSettings(self):
         dialog = DialogConfig(self)
-        dialog.load_config(self.config)
         if dialog.exec_():
             if dialog.exchanges_is_changed:
                 self.dock_markets._load_exchanges()
@@ -120,10 +139,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ctx.app.quit()
     
     def remember_panels(self):
-        self.config['panel_markets_active'] = self.actionMarkets.isChecked()
-        self.config['panel_portfolio_active'] = self.actionPortfolio.isChecked()
-        self.config['panel_debug_active'] = self.actionDebug.isChecked()
-        self.ctx.save_config()
+        self.cfg.setValue("markets/checked", self.actionMarkets.isChecked())
+        self.cfg.setValue("portfolio/checked", self.actionPortfolio.isChecked())
+        self.cfg.setValue("debug/checked", self.actionDebug.isChecked())
+        self.cfg.setValue("alarms/checked", self.actionAlarms.isChecked())
+        self.cfg.setValue("window/size", self.size())
+        self.cfg.setValue("window/pos", self.pos())
 
     # ────────────────────────────────────────────────────────────────────────────────
 
@@ -131,6 +152,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def load_chart(self, market, exchange):
         mar, ket = market.split("/")
         url = f"https://es.tradingview.com/chart/?symbol={exchange.upper()}:{mar}{ket}"
-        self.webview.setUrl(QtCore.QUrl(url))
+        self.webview.setUrl(QUrl(url))
         self.currentExchange = exchange
         self.currentMarket = market

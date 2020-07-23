@@ -65,7 +65,8 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     def onMarketsUpdaterFinished(self):
         if self.list_markets.count() == 0:
-            self._load_markets
+            r = QtWidgets.QMessageBox.information(self, "debes reiniciar", "reiniciaaaa")
+            print(r)
         QtCore.QTimer.singleShot(120 * 1000, self.markets_updater.start)
         self.mw.dock_portfolio.refreshTable()
 
@@ -146,10 +147,10 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
     def _load_exchanges(self):
         self.combo_exchange.blockSignals(True)
         self.combo_exchange.clear()
-        for x in self.mw.config['exchanges']:
+        for x in self.mw.cfg.value('settings/exchanges'):
             path = f":/exchanges/{x.lower()}"
             self.combo_exchange.addItem(QtGui.QIcon(path), x.title())
-        default_index = self.combo_exchange.findText(self.mw.config['initial_exchange'].title())
+        default_index = self.combo_exchange.findText(self.mw.cfg.value('settings/initial_exchange').title())
         if default_index != -1:
             self.combo_exchange.setCurrentIndex(default_index)
         self.combo_exchange.blockSignals(False)

@@ -49,6 +49,8 @@ class UpdateMarkets(QtCore.QThread):
 # ────────────────────────────────────────────────────────────────────────────────
 
 
+# ─── AQUEST ES EL BO? ───────────────────────────────────────────────────────────
+
 class UpdateAllMarkets(QtCore.QThread):
     
     onFinished = QtCore.pyqtSignal()
@@ -56,7 +58,7 @@ class UpdateAllMarkets(QtCore.QThread):
 
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.exchanges_list = parent.mw.config['exchanges']
+        self.exchanges_list = parent.mw.cfg.value('settings/exchanges')
     
     def _load_client(self, exchange):
         self.exchange = exchange.lower()
@@ -87,7 +89,8 @@ class UpdateAllMarkets(QtCore.QThread):
             if created:
                 item.save()
             item.update_data(markets[symbol])
-            item.update_prices(prices[symbol])
+            if prices.get(symbol):
+                item.update_prices(prices[symbol])
             item.save()
 
     def run(self):

@@ -16,19 +16,28 @@ class DialogConfig(QDialog, Ui_DialogConfig):
         #
         self.list_exchanges.sortItems()
         self.config = self.mw.ctx.config
-        self._add_languages()
+        self.cfg = self.mw.ctx.settings
+        #
+        self.loadConfig()
         self.combo_initial_exchange.currentTextChanged.connect(self.onSelectInitialExchange)
         self.combo_languages.currentTextChanged.connect(self.onChangeLanguage)
+        self.onSelectInitialExchange()
 
-    def _add_languages(self):
-        self.combo_languages.blockSignals(True)
+    def loadConfig(self):
+        # add language
         self.combo_languages.addItem(self.tr("Spanish"), "es_ES")
         self.combo_languages.addItem(self.tr("English"), "en_EN")
-
+        self._select_language(self.cfg.value("settings/language"))
+        # exchanges list and initial exchange
+        self._select_exchanges(self.cfg.value("settings/exchanges"))
+        self._select_initial_exchange()
+        # copy exchanges list actived to compare on exit
+        self.old_exchanges = self.cfg.value("settings/exchanges")
+     
     @property
     def exchanges_is_changed(self):
         """ Return true if exchanges list is modified """
-        return self.old_config["exchanges"] != self.config["exchanges"]
+        return self.old_exchanges != self.cfg.value("settings/exchanges")
 
     # ─── EVENTOS ────────────────────────────────────────────────────────────────────
 
@@ -45,29 +54,21 @@ class DialogConfig(QDialog, Ui_DialogConfig):
         self.combo_initial_market.clear()
         for it in Markets.get_all_by_exchange(self.combo_initial_exchange.currentText().lower()):
             self.combo_initial_market.addItem(it.symbol)
-        index = self.combo_initial_market.findText(self.config['initial_market'])
+        index = self.combo_initial_market.findText(self.cfg.value("settings/initial_market"))
         self.combo_initial_market.setCurrentIndex(index)
 
     # ─── load methods ───────────────────────────────────────────────────────
 
-    def load_config(self, config):
-        """ Load config in form widgets """
-        self._select_exchanges(config['exchanges'])
-        self._select_language(config['language'])
-        self._select_initial_exchange()
-        self.old_config = copy(config)
-        self.combo_languages.blockSignals(False)
-
     def _select_initial_exchange(self):
         """ Select initial exchange configured in config file """
-        index = self.combo_initial_exchange.findText(self.config['initial_exchange'])
+        index = self.combo_initial_exchange.findText(self.cfg.value("settings/initial_exchange"))
         self.combo_initial_exchange.setCurrentIndex(index)
 
     def _select_exchanges(self, exchanges):
         """ Select exchanges actived in config file """
         for index in range(self.list_exchanges.count()):
             item = self.list_exchanges.item(index)
-            if item.text() in self.config['exchanges']:
+            if item.text() in exchanges:
                 item.setSelected(True)
             # añade la lista al combo de paso
             self.combo_initial_exchange.addItem(item.text())
@@ -90,10 +91,9 @@ class DialogConfig(QDialog, Ui_DialogConfig):
 
     # actualiza self.config y guarda cambios al fichero
     def accept(self):
-        self.config['language'] = self.combo_languages.currentData()
-        self.config['exchanges'] = self._get_list_exchanges()
-        self.config['initial_exchange'] = self.combo_initial_exchange.currentText()
-        self.config['initial_market'] = self.combo_initial_market.currentText()
-        self.mw.ctx.save_config()
+        self.cfg.setValue("settings/language", self.combo_languages.currentData())
+        self.cfg.setValue("settings/exchanges", self._get_list_exchanges())
+        self.cfg.setValue("settings/initial_exchange", self.combo_initial_exchange.currentText())
+        self.cfg.setValue("settings/initial_market", self.combo_initial_market.currentText())
         return super().accept()
 # ────────────────────────────────────────────────────────────────────────────────
