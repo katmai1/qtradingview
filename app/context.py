@@ -32,8 +32,6 @@ class ContextoApp:
         #     os.system("export QT_LOGGING_RULES='*=false'")
         #     os.environ['QT_LOGGING_RULES'] = '*=false'
         #
-        AppUtil.create_app_dir()
-        # AppUtil.create_default_config()
         self.check_db()
         self.setDefaultConfig()
 
@@ -52,20 +50,18 @@ class ContextoApp:
         # update db tables if is required by user
         if self.args['--updatedb']:
             self.createTablesDB()
-        # check if db file exists
-        if not AppUtil.existsFileDB():
-            self.createTablesDB()
         # check if all tables are created
         if not self.checkTablesExists():
             self.createTablesDB()
 
     def deleteDatabaseFile(self):
-        if AppUtil.existsFileDB():
-            os.remove(AppUtil.get_db_file_path())
+        dirname = os.path.dirname(self.settings.fileName())
+        nou_path = os.path.join(dirname, 'database.db')
+        os.remove(nou_path)
         if not AppUtil.isPyinstaller():
             shutil.rmtree('migrations', ignore_errors=True)
         sys.exit("Execute again")
-
+        
     def createTablesDB(self):
         """ Creating or updating database tables. """
         if AppUtil.isPyinstaller():

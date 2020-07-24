@@ -2,6 +2,10 @@ import logging
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtMultimedia import QSound
+
+from notificator import notificator
+from notificator.alingments import BottomRight
 
 from app.markets.dock import DockMarkets
 from app.debug.dock import DockDebug, Qlogger
@@ -25,9 +29,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #
         self.splash = CustomSplashScreen(self)
         self.ctx = ctx
-        # self.config = ctx.config
         self.cfg = self.ctx.settings
-        
+        self._notify = notificator()
+
         # webenginepage
         page = CustomWebEnginePage(self.webview)
         self.webview.setPage(page)
@@ -100,7 +104,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.dock_markets.markets_updater.terminate()
             self.set_text_status(self.tr("Closing background processes..."))
         self.ctx.app.quit()
-    
+
     def _remember_panels(self):
         self.cfg.setValue("markets/checked", self.actionMarkets.isChecked())
         self.cfg.setValue("markets/list_mode", self.dock_markets.lista_mode)
@@ -134,6 +138,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         event.ignore()
 
     # ─── PUBLIC METHODS ──────────────────────────────────────────────
+
+    def notify(self, titulo, texto, tipo="sucess", duracion=None):
+        """ Public method to generate notifications """
+        QSound.play(":/base/notify")
+        if tipo == "sucess":
+            self._notify.sucess(titulo, texto, self, BottomRight, duracion=duracion)
+        elif tipo == "critical":
+            self._notify.critical(titulo, texto, self, BottomRight, duracion=duracion)
+        elif tipo == "info":
+            self._notify.info(titulo, texto, self, BottomRight, duracion=duracion)
+        elif tipo == "warning":
+            self._notify.warning(titulo, texto, self, BottomRight, duracion=duracion)
+        # else:
+        #     self._notify.custom(titulo, texto, self, BottomRight, duracion=duracion)
 
     def openAboutDialog(self):
         dialog = DialogAbout(self)

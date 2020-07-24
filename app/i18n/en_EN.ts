@@ -99,12 +99,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="27"/>
+        <location filename="../base/dialog_config.py" line="26"/>
         <source>Spanish</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="28"/>
+        <location filename="../base/dialog_config.py" line="27"/>
         <source>English</source>
         <translation></translation>
     </message>
@@ -144,12 +144,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="46"/>
+        <location filename="../base/dialog_config.py" line="45"/>
         <source>Language changed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/dialog_config.py" line="47"/>
+        <location filename="../base/dialog_config.py" line="46"/>
         <source>The language change will be applied when restarting the application</source>
         <translation></translation>
     </message>
@@ -200,8 +200,13 @@
 <context>
     <name>DockAlarms</name>
     <message>
-        <location filename="../alarms/dock.py" line="18"/>
+        <location filename="../alarms/dock.py" line="20"/>
         <source>Alarms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../alarms/dock.py" line="87"/>
+        <source>Do you want delete this alarm?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -329,12 +334,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="126"/>
+        <location filename="../base/mainwindow.py" line="131"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="127"/>
+        <location filename="../base/mainwindow.py" line="132"/>
         <source>Do you want quit?</source>
         <translation></translation>
     </message>
@@ -359,7 +364,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../base/mainwindow.py" line="138"/>
+        <location filename="../base/mainwindow.py" line="105"/>
         <source>Closing background processes...</source>
         <translation></translation>
     </message>

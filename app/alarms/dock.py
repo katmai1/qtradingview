@@ -1,8 +1,9 @@
-from PyQt5.QtWidgets import QDockWidget
+from PyQt5.QtWidgets import QDockWidget, QMessageBox
+from PyQt5.QtCore import QTimer
 
 from app.ui.dock_alarms_Ui import Ui_DockAlarms
 
-from .widgets import AlarmsTableModel
+from .widgets import AlarmsTableModel, CustomContextMenu
 from .models import Alarms
 from .dialog import DialogAlarm
 
@@ -18,6 +19,32 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
         self.setWindowTitle(self.tr("Alarms"))
         #
         self.setVisible(self.mw.actionAlarms.isChecked())
+        self.refreshTable()
+        #
+        self.alarm_checker = QTimer(self)
+        self.alarm_checker.setInterval(10000)
+        self.alarm_checker.timeout.connect(self.checkAlarms)
+        self.alarm_checker.start()
+        self.tb_alarms.customContextMenuRequested.connect(self.contextoMenuEvent)
+    
+    def contextoMenuEvent(self, position):
+        """Load contextual menu"""
+        contextMenu = CustomContextMenu(self.tb_alarms)
+        index = self.tb_alarms.indexAt(position)
+        if index.isValid():
+            contextMenu.handler(position)
+
+    def checkAlarms(self):
+        for alarm in Alarms.get_all():
+            if alarm.enabled:
+                if alarm.isComplished:
+                    titulo = f"#{alarm.id} {alarm.market.symbol}"
+                    msg = f"Alarm #{alarm.id} | This alarm is complished with condition '{alarm.condition_label} {alarm.price:.8}'"
+                    self.mw.notify(titulo, msg)
+                    alarm.enabled = False
+                    alarm.save()
+                    if alarm.autodelete:
+                        alarm.delete_instance()
         self.refreshTable()
 
     def onActionEvent(self, actived):
@@ -42,11 +69,28 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
         self.tb_alarms.resizeColumnsToContents()
     
     def addAlarm(self, exchange, market):
-        """Create new alarm"""
-        d = DialogAlarm(exchange, market)
-        d.loadNewAlarm()
+        """ Open dialog to create new alarm"""
+        d = DialogAlarm(self)
+        d.loadNewAlarm(exchange, market)
         if d.exec_():
             d.createAlarm()
+            self.refreshTable()
+    
+    def editAlarm(self, alarm_id):
+        """ Open dialog to edit alarm"""
+        d = DialogAlarm(self)
+        d.loadAlarm(alarm_id)
+        if d.exec_():
+            d.updateAlarm(alarm_id)
+            self.refreshTable()
+    
+    def deleteAlarm(self, alarm_id):
+        """Delete trade from trade_id"""
+        result = QMessageBox.question(
+            self, f"Alarm {alarm_id}", self.tr("Do you want delete this alarm?"),
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if result == QMessageBox.Yes:
+            Alarms.delete_by_id(alarm_id)
             self.refreshTable()
  
 # ────────────────────────────────────────────────────────────────────────────────

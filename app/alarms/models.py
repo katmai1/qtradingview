@@ -11,11 +11,16 @@ class Alarms(CustomModel):
         (0, "Less than"),
         (1, "Great than")
     )
-    market = peewee.ForeignKeyField(Markets, backref="alarms")
+    market = peewee.ForeignKeyField(column_name='market', model=Markets, null=True)
     description = peewee.CharField(null=True)
     condition = peewee.IntegerField(choices=CONDITIONS_CHOICES, default=0)
     price = peewee.FloatField(null=True)
+    enabled = peewee.BooleanField(null=True, default=True)
     autodelete = peewee.BooleanField(null=True)
+
+    @classmethod
+    def get_all(cls):
+        return cls.select()
 
     @property
     def condition_label(self):
@@ -24,11 +29,22 @@ class Alarms(CustomModel):
     @classmethod
     def getAlarmsToTable(cls):
         data = []
-        headers = ['id', 'exchange', 'market', 'condition', 'price']
+        headers = ['id', 'exchange', 'market', 'condition', 'price', 'enabled']
         for t in cls.select():
             data.append([
                 t.id, t.market.exchange, t.market.symbol,
-                t.condition_label, t.price
+                t.condition_label, t.price, t.enabled
             ])
         return data, headers
+
+    @property
+    def isComplished(self):
+        if self.condition == 0:
+            if self.market.last_price < self.price:
+                return True
+        if self.condition == 1:
+            if self.market.last_price > self.price:
+                return True
+        return False
+
 # ────────────────────────────────────────────────────────────────────────────────
