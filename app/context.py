@@ -1,6 +1,5 @@
 import os
 import shutil
-import sys
 
 from signal import signal, SIGINT, SIG_DFL
 from cached_property import cached_property
@@ -22,17 +21,12 @@ from app.base.mainwindow import MainWindow
 
 class ContextoApp:
 
+    #     os.system("export QT_LOGGING_RULES='*=false'")
     def __init__(self, args):
         self.app = QApplication([])
         self.debug = args['--debug']
         signal(SIGINT, SIG_DFL)
         self.args = args
-        # # disable qt logging if not debug mode
-        # if not self.debug:
-        #     os.system("export QT_LOGGING_RULES='*=false'")
-        #     os.environ['QT_LOGGING_RULES'] = '*=false'
-        #
-        self.check_db()
         self.setDefaultConfig()
 
     def run(self):
@@ -42,33 +36,22 @@ class ContextoApp:
     def tr(self, context, message):
         return self.app.translate(context, message)
 
-    def check_db(self):
-        """ Main method to checks related with database. """
-        # delete database file if is required by user
-        if self.args['--deletedb']:
-            self.deleteDatabaseFile()
-        # update db tables if is required by user
-        if self.args['--updatedb']:
-            self.createTablesDB()
-        # check if all tables are created
-        if not self.checkTablesExists():
-            self.createTablesDB()
-
     def deleteDatabaseFile(self):
         dirname = os.path.dirname(self.settings.fileName())
         nou_path = os.path.join(dirname, 'database.db')
         os.remove(nou_path)
         if not AppUtil.isPyinstaller():
             shutil.rmtree('migrations', ignore_errors=True)
-        sys.exit("Execute again")
-        
+
+    def createDB(self):
+        self.db.create_tables([Markets, Trades, Alarms])
+
     def createTablesDB(self):
         """ Creating or updating database tables. """
         if AppUtil.isPyinstaller():
             self.db.create_tables([Markets, Trades, Alarms])
         else:
             migrate(self.db)
-        sys.exit("Execute again")
 
     def checkTablesExists(self):
         """ Returns True if all tables exists """
@@ -79,7 +62,7 @@ class ContextoApp:
         if not Alarms.table_exists():
             return False
         return True
-    
+
     def setDefaultConfig(self):
         if self.settings.value("settings/exchanges") is None:
             self.settings.setValue("settings/exchanges", ["Binance", "Bitfinex"])

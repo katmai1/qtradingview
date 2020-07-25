@@ -47,4 +47,11 @@ class Alarms(CustomModel):
                 return True
         return False
 
+    def disable(self):
+        self.enabled = False
+        self.save()
+
+    def enable(self):
+        self.enabled = True
+        self.save()
 # ────────────────────────────────────────────────────────────────────────────────

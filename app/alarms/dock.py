@@ -26,7 +26,7 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
         self.alarm_checker.timeout.connect(self.checkAlarms)
         self.alarm_checker.start()
         self.tb_alarms.customContextMenuRequested.connect(self.contextoMenuEvent)
-    
+
     def contextoMenuEvent(self, position):
         """Load contextual menu"""
         contextMenu = CustomContextMenu(self.tb_alarms)
@@ -41,8 +41,7 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
                     titulo = f"#{alarm.id} {alarm.market.symbol}"
                     msg = f"Alarm #{alarm.id} | This alarm is complished with condition '{alarm.condition_label} {alarm.price:.8}'"
                     self.mw.notify(titulo, msg)
-                    alarm.enabled = False
-                    alarm.save()
+                    alarm.disable()
                     if alarm.autodelete:
                         alarm.delete_instance()
         self.refreshTable()
@@ -66,8 +65,9 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
         data, headers = Alarms.getAlarmsToTable()
         self.model = AlarmsTableModel(data, headers)
         self.tb_alarms.setModel(self.model)
+        self.tb_alarms.hideColumn(5)
         self.tb_alarms.resizeColumnsToContents()
-    
+
     def addAlarm(self, exchange, market):
         """ Open dialog to create new alarm"""
         d = DialogAlarm(self)
@@ -75,7 +75,7 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
         if d.exec_():
             d.createAlarm()
             self.refreshTable()
-    
+
     def editAlarm(self, alarm_id):
         """ Open dialog to edit alarm"""
         d = DialogAlarm(self)
@@ -83,7 +83,7 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
         if d.exec_():
             d.updateAlarm(alarm_id)
             self.refreshTable()
-    
+
     def deleteAlarm(self, alarm_id):
         """Delete trade from trade_id"""
         result = QMessageBox.question(
@@ -92,5 +92,5 @@ class DockAlarms(QDockWidget, Ui_DockAlarms):
         if result == QMessageBox.Yes:
             Alarms.delete_by_id(alarm_id)
             self.refreshTable()
- 
+
 # ────────────────────────────────────────────────────────────────────────────────

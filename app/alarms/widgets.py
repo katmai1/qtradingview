@@ -16,13 +16,21 @@ class AlarmsTableModel(QAbstractTableModel):
         self.headers = headers
 
     def data(self, index, role=Qt.DisplayRole):
+        valor = self._data[index.row()][index.column()]
+        col = self.headers[index.column()]
         if role == Qt.DisplayRole:
-            valor = self._data[index.row()][index.column()]
+            if col == "exchange":
+                return valor.title()
             return valor
         if role == Qt.BackgroundRole:
             isEnabled = self._data[index.row()][5]
-            if not isEnabled:
-                return QColor('red')
+            if isEnabled:
+                return QColor(127, 212, 150)
+            else:
+                return QColor(189, 121, 100)
+        if role == Qt.DecorationRole:
+            if col == "exchange":
+                return QIcon(f":/exchanges/{valor}")
 
     def headerData(self, section, orientation, role=Qt.DisplayRole):
         if role == Qt.DisplayRole and orientation == Qt.Horizontal:
@@ -56,6 +64,11 @@ class CustomContextMenu(QMenu):
     # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
 
     def _insertActions(self):
+        if self._alarm.enabled:
+            self.addAction(self._action("Disable", self.runActionDisable))
+        else:
+            self.addAction(self._action("Enable", self.runActionEnable))
+        self.addSeparator()
         self.addAction(self._action("Edit...", self.runActionEdit))
         self.addAction(self._action("Delete", self.runActionDelete))
 
@@ -79,6 +92,16 @@ class CustomContextMenu(QMenu):
         return action
 
     # ─── ACTIONS ────────────────────────────────────────────────────────────────────
+
+    def runActionDisable(self):
+        self._alarm.enabled = False
+        self._alarm.save()
+        self.dock.refreshTable()
+
+    def runActionEnable(self):
+        self._alarm.enabled = True
+        self._alarm.save()
+        self.dock.refreshTable()
 
     def runActionEdit(self):
         self.dock.editAlarm(self._alarm.id)

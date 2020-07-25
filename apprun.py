@@ -30,6 +30,11 @@ from app.context import ContextoApp
 if __name__ == "__main__":
     args = docopt.docopt(__doc__, version=__version__)
     appctx = ContextoApp(args)
+
+    if args['--deletedb']:
+        appctx.deleteDatabaseFile()
+    appctx.createDB()
+
     appctx.app.installTranslator(appctx.app_language)
     appctx.app.installTranslator(appctx.system_language)
     exit_code = appctx.run()

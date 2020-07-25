@@ -9,28 +9,25 @@ from .models import Alarms
 # ─── DIALOG ALARMS ──────────────────────────────────────────────────────────────
 
 class DialogAlarm(QDialog, Ui_dialogAlarm):
-    
+
     def __init__(self, parent=None):
         QDialog.__init__(self, parent=parent)
         self.setupUi(self)
         #
-        # load conditions
         for c in Alarms.CONDITIONS_CHOICES:
             self.cb_condition.addItem(c[1], c[0])
         self.spin_price.setLocale(QLocale('C'))
 
     def loadNewAlarm(self, exchange, market):
         """ Load data to create new alarm """
-        # load market info
         self.ed_exchange.setText(exchange.title())
         self.ed_market.setText(market.upper())
         self.m = Markets.get_symbol_by_exchange(self.ed_market.text(), self.ed_exchange.text())
         self.ed_lastPrice.setText(f"{self.m.last_price:.8}")
-        # config spin
         self.spin_price.setMaximum(self.m.last_price * 100)
         self.spin_price.setSingleStep(self.m.last_price * 0.005)
         self.spin_price.setValue(self.m.last_price)
-    
+
     def loadAlarm(self, alarm_id):
         """ Load data from alarm """
         alarm = Alarms.get_by_id(alarm_id)
@@ -38,7 +35,7 @@ class DialogAlarm(QDialog, Ui_dialogAlarm):
         self.ed_market.setText(alarm.market.symbol)
         self.ed_lastPrice.setText(f"{alarm.market.last_price:.8}")
         self.cb_condition.setCurrentIndex(alarm.condition)
-        # config spin
+        self.ck_autodelete.setChecked(alarm.autodelete)
         self.spin_price.setMaximum(alarm.market.last_price * 100)
         self.spin_price.setSingleStep(alarm.market.last_price * 0.005)
         self.spin_price.setValue(alarm.price)
@@ -50,7 +47,7 @@ class DialogAlarm(QDialog, Ui_dialogAlarm):
             price=self.spin_price.value(), autodelete=self.ck_autodelete.isChecked()
         )
         al.save()
-    
+
     def updateAlarm(self, alarm_id):
         """ Update data of alarm """
         alarm = Alarms.get_by_id(alarm_id)
