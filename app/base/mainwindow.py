@@ -1,6 +1,5 @@
 import logging
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QLabel, QMainWindow, QTabWidget
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtMultimedia import QSound
 
@@ -21,10 +20,10 @@ from .dialog_about import DialogAbout
 
 # ─── MAIN WINDOW ────────────────────────────────────────────────────────────────
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
 
     def __init__(self, ctx, *args, **kwargs):
-        QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
+        QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
         #
         self.splash = CustomSplashScreen(self)
@@ -55,6 +54,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.cfg.value('settings/initial_exchange')
         )
         self.splash.hide()
+        self.static_price = QLabel("- BTC/USDT ")
+        self.statusbar.addPermanentWidget(self.static_price)
 
     def _loadInitialConfig(self):
         # size
@@ -84,8 +85,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionAbout.triggered.connect(self.openAboutDialog)
 
     def _docks(self):
-        self.setTabPosition(Qt.BottomDockWidgetArea, QtWidgets.QTabWidget.South)
-        self.setTabPosition(Qt.LeftDockWidgetArea, QtWidgets.QTabWidget.West)
+        self.setTabPosition(Qt.BottomDockWidgetArea, QTabWidget.South)
+        self.setTabPosition(Qt.LeftDockWidgetArea, QTabWidget.West)
         #
         self.dock_markets = DockMarkets(self)
         self.dock_debug = DockDebug(self)

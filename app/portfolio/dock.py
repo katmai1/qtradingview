@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtCore import Qt, QLocale
 
 from app.ui.dock_portfolio_Ui import Ui_DockPortfolio
 from .dialog import DialogTrade
@@ -75,11 +76,17 @@ class DockPortfolio(QtWidgets.QDockWidget, Ui_DockPortfolio):
 
     def closeTrade(self, trade_id):
         trade = Trades.get_by_id(trade_id)
-        close_price, okPressed = QtWidgets.QInputDialog.getDouble(
-            self, f"Trade {trade_id}", self.tr("Input close price:"),
-            decimals=8, value=trade.market.last_price)
-        if okPressed:
-            trade.close_price = close_price
+        d = QtWidgets.QInputDialog(self)
+        d.setInputMode(QtWidgets.QInputDialog.DoubleInput)
+        d.setLocale(QLocale('C'))
+        d.setWindowTitle(f"Trade {trade_id}")
+        d.setLabelText(self.tr("Input close price:"))
+        d.setDoubleMaximum(trade.market.last_price * 100)
+        d.setDoubleStep(trade.market.last_price * 0.005)
+        d.setDoubleDecimals(8)
+        d.setDoubleValue(trade.market.last_price)
+        if d.exec_():
+            trade.close_price = d.doubleValue()
             trade.save()
         self.refreshTable()
 

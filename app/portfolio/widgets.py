@@ -24,37 +24,42 @@ class TradesTableModel(QAbstractTableModel):
         return f"{total:.2f}%"
 
     def data(self, index, role=Qt.DisplayRole):
-        if role == Qt.DisplayRole:
-            return self.customDisplayRole(index)
-        elif role == Qt.ForegroundRole:
-            return self.customForegroundRole(index)
-        elif role == Qt.TextAlignmentRole:
-            return Qt.AlignVCenter + Qt.AlignRight
-
-    # custom show values
-    def customDisplayRole(self, index):
-        floats_heads = ["openprice", "closeprice", "amount", "lastprice", "profit"]
-        valor = self._data[index.row()][index.column()]
+        """ Insert data  on table """
         col = self.headers[index.column()].lower()
+        valor = self._data[index.row()][index.column()]
+
+        if role == Qt.DisplayRole:
+            return self.customDisplayRole(col, valor)
+
+        elif role == Qt.ForegroundRole:
+            return self.customForegroundRole(col, valor)
+
+        elif role == Qt.TextAlignmentRole:
+            return Qt.AlignCenter
+
+        elif role == Qt.DecorationRole:
+            if col == "exchange":
+                return QIcon(f":/exchanges/{valor}")
+
+        elif role == Qt.ToolTipRole:
+            return self.customTooltipRole(col, valor)
+
+    def customDisplayRole(self, col, valor):
+        """ Custom method to display values """
+        floats_heads = ["openprice", "closeprice", "amount", "lastprice", "profit"]
         if valor is not None:
-            base_coin, quote_coin = self._data[index.row()][2].split("/")
             if col == "exchange" or col == "postype":
                 return valor.title()
-
             elif col in floats_heads:
                 return f"{valor:.8f}"
-
             elif col == "profit100":
                 return f"{valor:.2f}%"
-
             elif col == "lastupdate":
                 return f"{valor[0]}m {valor[1]}s ago"
         return valor
 
-    # custom color text
-    def customForegroundRole(self, index):
-        valor = self._data[index.row()][index.column()]
-        col = self.headers[index.column()].lower()
+    def customForegroundRole(self, col, valor):
+        """ Custom method to set text color """
         if col == "profit100" or col == "profit":
             if valor > 0:
                 return QColor('green')
@@ -65,6 +70,15 @@ class TradesTableModel(QAbstractTableModel):
                 return QColor('red')
         return
 
+    def customTooltipRole(self, col, valor):
+        if col == "id":
+            return self.tr("Identifier number of this position")
+        elif col == "exchange":
+            return self.tr("Exchange where be open position")
+        elif col == "market":
+            return self.tr("Market of this position")
+        return
+    
     # ────────────────────────────────────────────────────────────────────────────────
 
     def headerData(self, section, orientation, role=Qt.DisplayRole):

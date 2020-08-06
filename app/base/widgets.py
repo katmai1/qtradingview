@@ -1,7 +1,7 @@
 import logging
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 
-from PyQt5.QtWidgets import QSplashScreen, QDesktopWidget
+from PyQt5.QtWidgets import QSplashScreen, QDesktopWidget, QFrame
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap
 
@@ -103,3 +103,10 @@ class CustomSplashScreen(QSplashScreen):
         self.showMessage(f"<h{size}>{self.tr(texto)}</h{size}>", Qt.AlignCenter | Qt.AlignBottom)
 
 # ────────────────────────────────────────────────────────────────────────────────
+
+
+class VLine(QFrame):
+    # a simple VLine, like the one you get from designer
+    def __init__(self):
+        super(VLine, self).__init__()
+        self.setFrameShape(self.VLine | self.Sunken)

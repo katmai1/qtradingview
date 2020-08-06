@@ -74,7 +74,10 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
             r = QtWidgets.QMessageBox.information(self, "debes reiniciar", "reiniciaaaa")
             if r:
                 self.mw.ctx.app.quit()
-        QtCore.QTimer.singleShot(120 * 1000, self.markets_updater.start)
+        #
+        m = Markets.get_symbol_by_exchange("BTC/USDT", "binance")
+        self.mw.static_price.setText(f"{m.last_price: .8} BTC/USDT ")
+        QtCore.QTimer.singleShot(30 * 1000, self.markets_updater.start)
         self.mw.dock_portfolio.refreshTable()
 
     # gestiona los shortcuts del dock
@@ -136,15 +139,18 @@ class DockMarkets(QtWidgets.QDockWidget, Ui_dock_markets):
 
     # filtro de texto
     def onFiltroChanged(self, text):
+        """ On write/modify filter field """
         for index in range(self.list_markets.count()):
             item = self.list_markets.item(index)
             item.mostrar(self.lista_mode, text)
 
     def onExchangeChanged(self):
+        """ When exchange combo is changed """
         self.edit_filtro.clear()
         self._load_markets()
 
     def onDoubleClickMarket(self, item):
+        """ When double click over market """
         self.mw.load_chart(item.text(), self.selected_exchange)
 
     # ─── PRIVATE METHODS ────────────────────────────────────────────────────────────
