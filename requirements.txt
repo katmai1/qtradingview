@@ -8,3 +8,4 @@ toml
 docopt
 cached_property
 versionner
+pyqt5-notificator

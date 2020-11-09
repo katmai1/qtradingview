@@ -28,7 +28,7 @@ conda activate env_name
 Install PyQt5 and dependencies
 ```
 conda install -c anaconda pyqt
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
 
 Run

@@ -17,7 +17,7 @@ Options:
   --deletedb    Delete db file.
 """
 # export QT_LOGGING_RULES='*=false'
-__version__ = '0.16.4'
+__version__ = '0.17.0'
 
 import sys
 import docopt
