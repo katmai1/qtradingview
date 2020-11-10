@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qtradingview"
-version = "0.19.1"
+version = "0.19.2"
 description = "PyQt App for TradingView"
 authors = ["katmai <katmai.mobil@gmail.com>"]
 readme = "README.md"
@@ -9,7 +9,7 @@ readme = "README.md"
 qtradingview = 'qtradingview.main:run'
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 docopt = "^0.6.2"
 ccxt = "^1.37.52"
 cached-property = "^1.5.2"
