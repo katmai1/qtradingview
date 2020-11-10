@@ -22,12 +22,10 @@ __version__ = '0.17.0'
 import sys
 import docopt
 
-from app.context import ContextoApp
+from qtradingview.context import ContextoApp
 
 
-# ─── MAIN ───────────────────────────────────────────────────────────────────────
-
-if __name__ == "__main__":
+def run():
     args = docopt.docopt(__doc__, version=__version__)
     appctx = ContextoApp(args)
 
@@ -39,3 +37,9 @@ if __name__ == "__main__":
     appctx.app.installTranslator(appctx.system_language)
     exit_code = appctx.run()
     sys.exit(exit_code)
+
+
+# ─── MAIN ───────────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    run()

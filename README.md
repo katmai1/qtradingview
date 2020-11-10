@@ -4,7 +4,25 @@ PyQt App for TradingView.
 
 Recommends simple login to autosave your draws. 
 
-## Features
+
+![Image not found](icons/screenshots/demo.png)  
+
+---
+---
+
+## **Index**
+
+
+- [Features](#Features)
+- [Installation](#Installation)
+- [Usage](#Usage)
+
+---
+---
+***
+
+  
+### **Features**
 
 - Includes the most cryptocurrencies exchanges available in tradingview.
 - Complete lists of available markets, with symbol filter.
@@ -12,11 +30,66 @@ Recommends simple login to autosave your draws.
 - Portfolio.
 - Ads remove.
 
-## Demo
+--- 
 
-![Image not found](icons/screenshots/demo.png)
+
+### **Installation**
+
+QTradingView needs an environment with Python3 and Qt5
+
+#### ___Prepare environment___
+
+    
+- Install [Anaconda](https://docs.anaconda.com/anaconda/install/)
+
+- Create and active environment.
+    ```
+    conda create -n env_name python=3.7
+    conda activate env_name
+    ```
+
+- Install PyQt5
+    ```
+    conda install -c anaconda pyqt
+    ```
+
+
+#### __QTradingView from source code__
+
+```
+    pip install poetry
+    git clone https://github.com/katmai1/qtradingview
+    cd qtradingview
+
+```
 
 ---
+
+### **Usage**
+---
+---
+
+
+#### Install PyQt5 libs using anaconda
+
+Create and active environment.
+```
+conda create -n env_name python=3.7
+conda activate env_name
+```
+
+Install PyQt5 and dependencies
+```
+conda install -c anaconda pyqt
+```
+
+install
+```
+pip install qtradingview
+```
+
+---
+
 ## Running from source using Anaconda
 
 Create and active environment.

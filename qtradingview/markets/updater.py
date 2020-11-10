@@ -2,7 +2,7 @@ import logging
 import ccxt
 
 from PyQt5 import QtCore
-from app.models.markets import Markets
+from qtradingview.models.markets import Markets
 
 
 # ─── MARKETS UPDATER ────────────────────────────────────────────────────────────

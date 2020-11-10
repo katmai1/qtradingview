@@ -2,7 +2,7 @@ import os
 from PyQt5.QtCore import QSettings
 from peewee import SqliteDatabase, Model
 
-from app.utils import AppUtil
+from qtradingview.utils import AppUtil
 
 
 # genera el objeto db y lo devuelve

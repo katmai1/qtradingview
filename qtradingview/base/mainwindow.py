@@ -6,12 +6,12 @@ from PyQt5.QtMultimedia import QSound
 from notificator import notificator
 from notificator.alingments import BottomRight
 
-from app.markets.dock import DockMarkets
-from app.debug.dock import DockDebug, Qlogger
-from app.portfolio.dock import DockPortfolio
-from app.alarms.dock import DockAlarms
+from qtradingview.markets.dock import DockMarkets
+from qtradingview.debug.dock import DockDebug, Qlogger
+from qtradingview.portfolio.dock import DockPortfolio
+from qtradingview.alarms.dock import DockAlarms
 
-from app.ui.mainwindow_Ui import Ui_MainWindow
+from qtradingview.ui.mainwindow_Ui import Ui_MainWindow
 
 from .widgets import CustomWebEnginePage, CustomSplashScreen
 from .dialog_config import DialogConfig

@@ -1,6 +1,6 @@
 import peewee
-from app.models.base import CustomModel
-from app.models.markets import Markets
+from qtradingview.models.base import CustomModel
+from qtradingview.models.markets import Markets
 
 
 # ─── TRADE MODEL ────────────────────────────────────────────────────────────────

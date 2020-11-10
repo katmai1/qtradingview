@@ -1,11 +1,11 @@
 import logging
 from PyQt5 import QtWidgets, QtGui, QtCore
 
-from app.markets.widgets import CustomItem, CustomItemDelegate, CustomContextMenu
-from app.markets.updater import UpdateAllMarkets
+from qtradingview.markets.widgets import CustomItem, CustomItemDelegate, CustomContextMenu
+from qtradingview.markets.updater import UpdateAllMarkets
 
-from app.models.markets import Markets
-from app.ui.dock_markets_Ui import Ui_dock_markets
+from qtradingview.models.markets import Markets
+from qtradingview.ui.dock_markets_Ui import Ui_dock_markets
 
 
 # ─── DOCK MARKETS ───────────────────────────────────────────────────────────────

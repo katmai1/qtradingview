@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import QLocale
 
-from app.ui.dialog_alarm_Ui import Ui_dialogAlarm
-from app.models.markets import Markets
+from qtradingview.ui.dialog_alarm_Ui import Ui_dialogAlarm
+from qtradingview.models.markets import Markets
 from .models import Alarms
 
 

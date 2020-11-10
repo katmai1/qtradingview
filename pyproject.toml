@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "qtradingview"
+version = "0.19.0"
+description = "PyQt App for TradingView"
+authors = ["katmai <katmai.mobil@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+qtradingview = 'qtradingview.main:run'
+
+[tool.poetry.dependencies]
+python = "^3.8"
+docopt = "^0.6.2"
+ccxt = "^1.37.52"
+cached-property = "^1.5.2"
+pyqt5-notificator = "^1.0.12"
+toml = "^0.10.2"
+PyQtWebEngine = "^5.15.1"
+beautifulsoup4 = "^4.9.3"
+peewee = "^3.14.0"
+html5lib = "^1.1"
+coloredlogs = "^14.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
