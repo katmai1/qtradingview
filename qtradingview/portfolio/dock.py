@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt, QLocale
 
-from qtradingview.ui.Ui_dock_portfolio import Ui_DockPortfolio
+from qtradingview.ui.dock_portfolio_Ui import Ui_DockPortfolio
 from .dialog import DialogTrade
 from .models import Trades
 from .widgets import TradesTableModel, CustomContextMenu

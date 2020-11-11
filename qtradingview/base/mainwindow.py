@@ -11,7 +11,7 @@ from qtradingview.debug.dock import DockDebug, Qlogger
 from qtradingview.portfolio.dock import DockPortfolio
 from qtradingview.alarms.dock import DockAlarms
 
-from qtradingview.ui.Ui_mainwindow import Ui_MainWindow
+from qtradingview.ui.mainwindow_Ui import Ui_MainWindow
 
 from .widgets import CustomWebEnginePage, CustomSplashScreen
 from .dialog_config import DialogConfig

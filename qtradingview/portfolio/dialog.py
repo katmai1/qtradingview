@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import Qt, QLocale
 
-from qtradingview.ui.Ui_dialog_trade import Ui_DialogTrade
+from qtradingview.ui.dialog_trade_Ui import Ui_DialogTrade
 from qtradingview.models.markets import Markets
 from .models import Trades
 

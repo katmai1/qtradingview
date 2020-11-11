@@ -325,6 +325,9 @@
    <header location="global">QtWebEngineWidgets/QWebEngineView</header>
   </customwidget>
  </customwidgets>
+ <resources>
+  <include location="../qtradingview/icons/iconos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionToolbar</sender>

@@ -390,5 +390,8 @@
   <tabstop>edit_filtro</tabstop>
   <tabstop>list_markets</tabstop>
  </tabstops>
+ <resources>
+  <include location="../qtradingview/icons/iconos.qrc"/>
+ </resources>
  <connections/>
 </ui>

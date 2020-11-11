@@ -137,5 +137,8 @@
    </layout>
   </widget>
  </widget>
+ <resources>
+  <include location="../qtradingview/icons/iconos.qrc"/>
+ </resources>
  <connections/>
 </ui>

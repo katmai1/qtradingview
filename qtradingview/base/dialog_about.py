@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 
-from qtradingview.ui.Ui_about import Ui_aboutDialog
+from qtradingview.ui.about_Ui import Ui_aboutDialog
 
 
 class DialogAbout(QtWidgets.QDialog, Ui_aboutDialog):
