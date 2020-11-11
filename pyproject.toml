@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "qtradingview"
-version = "0.19.2"
+version = "0.19.3"
 description = "PyQt App for TradingView"
 authors = ["katmai <katmai.mobil@gmail.com>"]
 readme = "README.md"

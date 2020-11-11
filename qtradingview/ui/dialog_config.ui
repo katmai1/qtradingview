@@ -35,7 +35,7 @@
    <string>Settings</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../icons/iconos.qrc">
+   <iconset resource="../qtradingview/icons/iconos.qrc">
     <normaloff>:/actions/settings</normaloff>:/actions/settings</iconset>
   </property>
   <property name="locale">
@@ -189,7 +189,7 @@
        <string>Binance</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/binance</normaloff>:/exchanges/binance</iconset>
       </property>
      </item>
@@ -198,7 +198,7 @@
        <string>BitBay</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/bitbay</normaloff>:/exchanges/bitbay</iconset>
       </property>
      </item>
@@ -207,7 +207,7 @@
        <string>Bitfinex</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/bitfinex</normaloff>:/exchanges/bitfinex</iconset>
       </property>
      </item>
@@ -216,7 +216,7 @@
        <string>Bithumb</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/bithumb</normaloff>:/exchanges/bithumb</iconset>
       </property>
      </item>
@@ -225,7 +225,7 @@
        <string>Bitso</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/bitso</normaloff>:/exchanges/bitso</iconset>
       </property>
      </item>
@@ -234,7 +234,7 @@
        <string>Bitstamp</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/bitstamp</normaloff>:/exchanges/bitstamp</iconset>
       </property>
      </item>
@@ -243,7 +243,7 @@
        <string>Bittrex</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/bittrex</normaloff>:/exchanges/bittrex</iconset>
       </property>
      </item>
@@ -252,7 +252,7 @@
        <string>Coinbase</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/coinbase</normaloff>:/exchanges/coinbase</iconset>
       </property>
      </item>
@@ -261,7 +261,7 @@
        <string>Gemini</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/gemini</normaloff>:/exchanges/gemini</iconset>
       </property>
      </item>
@@ -270,7 +270,7 @@
        <string>HitBTC</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/hitbtc</normaloff>:/exchanges/hitbtc</iconset>
       </property>
      </item>
@@ -279,7 +279,7 @@
        <string>Kraken</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/kraken</normaloff>:/exchanges/kraken</iconset>
       </property>
      </item>
@@ -288,7 +288,7 @@
        <string>Kucoin</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/kucoin</normaloff>:/exchanges/kucoin</iconset>
       </property>
      </item>
@@ -297,7 +297,7 @@
        <string>OKCoin</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/okcoin</normaloff>:/exchanges/okcoin</iconset>
       </property>
      </item>
@@ -306,7 +306,7 @@
        <string>Poloniex</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/poloniex</normaloff>:/exchanges/poloniex</iconset>
       </property>
      </item>
@@ -315,7 +315,7 @@
        <string>TheRock</string>
       </property>
       <property name="icon">
-       <iconset resource="../icons/iconos.qrc">
+       <iconset resource="../qtradingview/icons/iconos.qrc">
         <normaloff>:/exchanges/therock</normaloff>:/exchanges/therock</iconset>
       </property>
      </item>
@@ -337,7 +337,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../icons/iconos.qrc"/>
+  <include location="../qtradingview/icons/iconos.qrc"/>
  </resources>
  <connections>
   <connection>

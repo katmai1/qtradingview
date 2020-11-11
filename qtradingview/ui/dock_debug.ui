@@ -61,7 +61,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="../icons/iconos.qrc"/>
+  <include location="../qtradingview/icons/iconos.qrc"/>
  </resources>
  <connections>
   <connection>
