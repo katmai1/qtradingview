@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QDialog, QMessageBox
 
 from qtradingview.models.markets import Markets
-from qtradingview.ui.dialog_config_Ui import Ui_DialogConfig
+from qtradingview.ui.Ui_dialog_config import Ui_DialogConfig
 
 
 # ─── CONFIG DIALOG ──────────────────────────────────────────────────────────────

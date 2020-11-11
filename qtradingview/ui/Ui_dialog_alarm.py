@@ -113,4 +113,3 @@ class Ui_dialogAlarm(object):
         self.ed_lastPrice.setToolTip(_translate("dialogAlarm", "Show last price of this market"))
         self.group_condition.setTitle(_translate("dialogAlarm", "Condition"))
         self.ck_autodelete.setText(_translate("dialogAlarm", "Autodelete when complished"))
-import iconos_rc

@@ -222,4 +222,3 @@ class Ui_DialogConfig(object):
         item = self.list_exchanges.item(14)
         item.setText(_translate("DialogConfig", "TheRock"))
         self.list_exchanges.setSortingEnabled(__sortingEnabled)
-import iconos_rc

@@ -177,4 +177,3 @@ class Ui_dock_markets(object):
         self.edit_filtro.setToolTip(_translate("dock_markets", "Filter markets by symbol"))
         self.edit_filtro.setPlaceholderText(_translate("dock_markets", "Filter"))
         self.list_markets.setSortingEnabled(True)
-import iconos_rc

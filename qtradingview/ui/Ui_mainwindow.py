@@ -192,4 +192,3 @@ class Ui_MainWindow(object):
         self.actionPortfolio.setText(_translate("MainWindow", "Portfolio"))
         self.actionPortfolio.setShortcut(_translate("MainWindow", "F3"))
 from PyQt5 import QtWebEngineWidgets
-import iconos_rc

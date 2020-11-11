@@ -83,4 +83,3 @@ class Ui_DockPortfolio(object):
         self.combo_trades.setItemText(0, _translate("DockPortfolio", "Open"))
         self.combo_trades.setItemText(1, _translate("DockPortfolio", "Closed"))
         self.label.setText(_translate("DockPortfolio", "Profit total:"))
-import iconos_rc

@@ -2,7 +2,7 @@ import logging
 import coloredlogs
 
 from PyQt5 import QtWidgets
-from qtradingview.ui.dock_debug_Ui import Ui_DockDebug
+from qtradingview.ui.Ui_dock_debug import Ui_DockDebug
 
 
 # ─── PANEL DEBUG ────────────────────────────────────────────────────────────────
