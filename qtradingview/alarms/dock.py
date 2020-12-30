@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QDockWidget, QMessageBox
 from PyQt5.QtCore import QTimer
 
-from qtradingview.ui.dock_alarms_Ui import Ui_DockAlarms
+from qtradingview.ui.Ui_dock_alarms import Ui_DockAlarms
 
 from .widgets import AlarmsTableModel, CustomContextMenu
 from .models import Alarms

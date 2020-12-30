@@ -5,7 +5,7 @@ from qtradingview.markets.widgets import CustomItem, CustomItemDelegate, CustomC
 from qtradingview.markets.updater import UpdateAllMarkets
 
 from qtradingview.models.markets import Markets
-from qtradingview.ui.dock_markets_Ui import Ui_dock_markets
+from qtradingview.ui.Ui_dock_markets import Ui_dock_markets
 
 
 # ─── DOCK MARKETS ───────────────────────────────────────────────────────────────
