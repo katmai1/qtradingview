@@ -1,3 +1,10 @@
+NOTE:
+The original PyQt version had many problems because it required a very specific python development environment. To solve this, there is a C++ version in another repository.
+
+https://github.com/katmai1/qtradingview2
+
+------------------------------------
+
 # QTradingView
 
 PyQt App for TradingView.
